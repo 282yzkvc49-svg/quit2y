@@ -1,0 +1,2607 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2 года без сигарет</title>
+<meta name="description" content="Сундучок на каждый день двух лет без сигарет: вехи здоровья, награды, копилка и журнал тяги. Работает без интернета.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Не курю">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#eef5f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1b17" media="(prefers-color-scheme: dark)">
+<style>
+  /* ================= Токены ================= */
+  :root {
+    --bg: #eef5f1; --surface: #ffffff; --surface-2: #e2eee8; --ink: #10302a; --muted: #52706a; --line: #d2e1da;
+    --mint: #0b7d58; --mint-ink: #ffffff; --mint-bright: #23b883; --mint-soft: #d4efe3;
+    --gold: #e3a21a; --gold-deep: #a8700a; --gold-lid: #f2bf45; --gold-soft: #fbefd2; --gold-ink: #845500;
+    --chest-body: var(--gold); --chest-band: var(--gold-deep); --chest-lid: var(--gold-lid); --chest-inside: #4a2e06; --chest-lock: var(--gold-deep);
+    --lock-body: #9ab0a6; --scrim: rgb(9 28 23 / .45);
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", Roboto, sans-serif;
+    --font-display: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --font-note: ui-serif, "New York", Georgia, "Times New Roman", serif;
+    --future-body: #c9d8d0; --future-band: #aabeb4; --future-lid: #d6e3dc; --future-lock: #9ab0a6;
+    --tap: 44px; --content: 720px; --tabbar: 58px;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1b17; --surface: #142621; --surface-2: #1b322b; --ink: #e4f1eb; --muted: #93aca3; --line: #26433b;
+      --mint: #3fd3a0; --mint-ink: #052019; --mint-bright: #3fd3a0; --mint-soft: #15392e;
+      --gold: #efb435; --gold-deep: #b97f10; --gold-lid: #f6c95a; --gold-soft: #3a2f14; --gold-ink: #f4c863;
+      --chest-inside: #2a1a03; --lock-body: #5f7a71; --scrim: rgb(0 0 0 / .6);
+      --future-body: #2c463e; --future-band: #23392f; --future-lid: #36534a; --future-lock: #4b665c;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+      --bg: #0d1b17; --surface: #142621; --surface-2: #1b322b; --ink: #e4f1eb; --muted: #93aca3; --line: #26433b;
+      --mint: #3fd3a0; --mint-ink: #052019; --mint-bright: #3fd3a0; --mint-soft: #15392e;
+      --gold: #efb435; --gold-deep: #b97f10; --gold-lid: #f6c95a; --gold-soft: #3a2f14; --gold-ink: #f4c863;
+      --chest-inside: #2a1a03; --lock-body: #5f7a71; --scrim: rgb(0 0 0 / .6);
+      --future-body: #2c463e; --future-band: #23392f; --future-lid: #36534a; --future-lock: #4b665c;
+      color-scheme: dark;
+  }
+
+  /* ================= База ================= */
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    min-height: 100vh; min-height: 100dvh;
+    background: var(--bg); color: var(--ink);
+    font: 17px/1.45 var(--font);
+    -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation; overscroll-behavior-y: none;
+  }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  input, select, textarea { font-size: max(16px, 1em); }
+  button { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--mint-bright); outline-offset: 2px; }
+  [hidden] { display: none !important; }
+  h1, h2, h3, p { margin: 0; }
+  .num { font-family: var(--font-display); font-variant-numeric: tabular-nums; }
+  .muted { color: var(--muted); }
+  .small { font-size: 15px; }
+  .tiny { font-size: 13px; }
+
+  .btn {
+    min-height: var(--tap); padding: 0 18px; border: 0; border-radius: 14px;
+    background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line);
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; font-size: 16px;
+    text-decoration: none;
+  }
+  .btn:active { transform: scale(.97); }
+  .btn.primary { background: var(--mint); color: var(--mint-ink); box-shadow: none; }
+  .btn.gold { background: var(--gold); color: #2b1a00; box-shadow: none; }
+  .btn.ghost { background: transparent; box-shadow: none; color: var(--mint); }
+  .btn.quiet { color: var(--muted); }
+  .btn.wide { width: 100%; }
+  .btn.big { min-height: 56px; font-size: 18px; border-radius: 18px; }
+  .btn.icon { padding: 0; width: var(--tap); font-size: 20px; }
+  .btn:disabled { opacity: .45; transform: none; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .row > .grow { flex: 1 1 auto; }
+  .stack { display: grid; gap: 10px; }
+
+  .field {
+    min-height: var(--tap); width: 100%; padding: 10px 14px;
+    border: 1px solid var(--line); border-radius: 12px; background: var(--surface);
+  }
+  .field:focus { outline: 2px solid var(--mint-bright); outline-offset: 1px; }
+  label.lbl { display: grid; gap: 6px; font-size: 15px; color: var(--muted); }
+  label.lbl > span b { color: var(--ink); font-weight: 600; }
+  textarea.field { min-height: 80px; resize: vertical; }
+
+  .chip {
+    min-height: 40px; padding: 0 14px; border-radius: 999px; border: 0;
+    background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); font-size: 15px; font-weight: 500;
+  }
+  .chip[aria-pressed="true"] { background: var(--mint); color: var(--mint-ink); box-shadow: none; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 4px; padding: 4px; background: var(--surface-2); border-radius: 14px; }
+  .seg button { min-height: 40px; border: 0; border-radius: 10px; background: transparent; font-weight: 600; font-size: 15px; color: var(--muted); }
+  .seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / .12); }
+
+  .bar { height: 8px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
+  .bar > i { display: block; height: 100%; border-radius: 99px; background: var(--mint-bright); min-width: 4px; }
+  .bar.gold > i { background: var(--gold); }
+
+  .banner {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin: 0 0 14px; padding: 12px 14px; border-radius: 16px;
+    background: var(--mint-soft); color: var(--ink);
+  }
+  .banner p { flex: 1 1 220px; font-size: 15px; }
+
+  .toast {
+    position: fixed; left: 50%; transform: translate(-50%, 8px);
+    bottom: calc(var(--tabbar) + 84px + env(safe-area-inset-bottom));
+    padding: 12px 18px; border-radius: 16px; background: var(--ink); color: var(--bg);
+    opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 60; max-width: min(90vw, 420px); text-align: center; font-size: 15px;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  /* ================= Экран приветствия и мастер ================= */
+  .screen {
+    min-height: 100vh; min-height: 100dvh;
+    padding: calc(24px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-right)) calc(28px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-left));
+    display: flex; flex-direction: column;
+  }
+  .welcome { justify-content: center; align-items: center; text-align: center; gap: 22px; max-width: 520px; margin: 0 auto; }
+  .welcome .hero-chest { width: min(260px, 70vw); filter: drop-shadow(0 18px 30px rgb(227 162 26 / .28)); }
+  .welcome h1 { font-family: var(--font-display); font-size: clamp(34px, 9vw, 46px); line-height: 1.05; letter-spacing: -0.02em; }
+  .welcome p { color: var(--muted); max-width: 30em; }
+  .welcome .btn { width: min(100%, 360px); }
+
+  .wizard { max-width: 560px; margin: 0 auto; width: 100%; gap: 18px; }
+  .wz-top { display: flex; align-items: center; gap: 12px; }
+  .wz-steps { display: flex; gap: 6px; flex: 1; }
+  .wz-steps i { flex: 1; height: 6px; border-radius: 9px; background: var(--surface-2); }
+  .wz-steps i.on { background: var(--mint-bright); }
+  .wz-count { font-size: 14px; color: var(--muted); white-space: nowrap; }
+  .wizard h1 { font-family: var(--font-display); font-size: 30px; line-height: 1.1; letter-spacing: -0.01em; }
+  .wizard .lead { color: var(--muted); }
+  .wz-body { display: grid; gap: 16px; align-content: start; flex: 1; }
+  .wz-nav { display: flex; gap: 10px; position: sticky; bottom: 0; padding: 20px 0 calc(12px + env(safe-area-inset-bottom)); background: linear-gradient(to bottom, transparent, var(--bg) 40%); }
+  .wz-nav .btn { flex: 1; }
+  .two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+  .reward-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .reward-list li { display: flex; gap: 8px; align-items: center; }
+  .reward-list .field { flex: 1; }
+  .note { padding: 12px 14px; border-radius: 14px; background: var(--gold-soft); color: var(--ink); font-size: 15px; }
+  .summary { display: grid; gap: 2px; padding: 4px 0; }
+  .summary div { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .summary div:last-child { border-bottom: 0; }
+  .summary dt { color: var(--muted); }
+  .summary dd { margin: 0; font-weight: 600; text-align: right; }
+
+  /* ================= Основной экран ================= */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; gap: 10px;
+    padding: calc(8px + env(safe-area-inset-top)) calc(12px + env(safe-area-inset-right)) 8px calc(16px + env(safe-area-inset-left));
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  }
+  .topbar h1 { flex: 1; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+  .topbar .btn.icon { background: transparent; box-shadow: none; color: var(--muted); }
+  main#view {
+    width: 100%; max-width: calc(var(--content) + 40px); margin: 0 auto;
+    padding: 4px calc(16px + env(safe-area-inset-right)) calc(var(--tabbar) + 96px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left));
+  }
+  .sec { margin-top: 28px; }
+  .sec > h2 { font-size: 20px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
+  .sec > h2 + .muted { margin: -6px 0 12px; font-size: 15px; }
+  .panel { background: var(--surface); border-radius: 20px; padding: 16px; }
+
+  .tabbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    padding: 4px calc(6px + env(safe-area-inset-right)) env(safe-area-inset-bottom) calc(6px + env(safe-area-inset-left));
+    background: var(--surface);
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+  }
+  .tabbar button {
+    min-height: var(--tabbar); border: 0; background: transparent; color: var(--muted);
+    display: grid; justify-items: center; align-content: center; gap: 2px; font-size: 11px; font-weight: 600;
+  }
+  .tabbar svg { width: 26px; height: 26px; }
+  .tabbar button[aria-current="page"] { color: var(--mint); }
+  .fab {
+    position: fixed; z-index: 31; left: 50%; transform: translateX(-50%);
+    bottom: calc(var(--tabbar) + 14px + env(safe-area-inset-bottom));
+    min-height: 52px; padding: 0 26px 0 20px; border: 0; border-radius: 999px;
+    background: var(--ink); color: var(--bg); font-weight: 700; font-size: 17px;
+    display: inline-flex; align-items: center; gap: 10px; white-space: nowrap;
+    box-shadow: 0 10px 24px rgb(7 30 24 / .28);
+  }
+  .fab:active { transform: translateX(-50%) scale(.96); }
+  .fab svg { width: 22px; height: 22px; }
+
+  /* ---------- Сундучки: шапка ---------- */
+  .daystat { padding: 8px 0 4px; display: grid; gap: 10px; }
+  .daystat .dayline { display: flex; align-items: baseline; gap: 10px; }
+  .daystat .dayline .lbl { font-size: 17px; color: var(--muted); font-weight: 600; }
+  .daystat .dayline .big { font-family: var(--font-display); font-size: 64px; line-height: .9; font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+  .daystat .dayline .of { font-family: var(--font-display); font-size: 20px; color: var(--muted); font-weight: 600; }
+  .daystat .timer { font-size: 16px; color: var(--muted); }
+  .daystat .timer b { color: var(--ink); font-family: var(--font-display); font-size: 19px; font-variant-numeric: tabular-nums; }
+  .savings { display: flex; gap: 22px; flex-wrap: wrap; font-size: 15px; color: var(--muted); }
+  .savings b { display: block; font-family: var(--font-display); font-size: 24px; color: var(--ink); font-variant-numeric: tabular-nums; line-height: 1.15; }
+
+  /* ---------- Сундучки: сегодня ---------- */
+  .hero-today {
+    margin-top: 18px; display: grid; justify-items: center; text-align: center; gap: 12px;
+    padding: 22px 16px 20px; border-radius: 26px;
+    background: radial-gradient(120% 80% at 50% 30%, color-mix(in srgb, var(--gold) 22%, var(--surface)) 0%, var(--surface) 70%);
+  }
+  .hero-today .chest-svg { width: min(210px, 56vw); cursor: pointer; }
+  .hero-today h2 { font-family: var(--font-display); font-size: 24px; letter-spacing: -0.01em; }
+  .hero-today .btn { min-width: 240px; }
+  .hero-today.opened { justify-items: stretch; text-align: left; background: var(--surface); }
+  .hero-today.opened .peek { font-family: var(--font-note); font-size: 19px; line-height: 1.5; }
+  .hero-today.opened .peek-top { display: flex; align-items: center; gap: 12px; }
+  .hero-today.opened .peek-top svg { width: 56px; flex: none; }
+
+  /* ---------- Календарь ---------- */
+  .cal-head { display: flex; align-items: center; gap: 4px; margin: 26px 0 10px; }
+  .cal-head h2 { flex: 1; font-size: 20px; font-weight: 700; text-align: center; }
+  .cal-head .btn.icon { background: transparent; box-shadow: none; font-size: 26px; color: var(--ink); }
+  .cal-head .btn.icon:disabled { opacity: .25; }
+  .cal-tools { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 14px; color: var(--muted); }
+  .cal-tools .btn { min-height: 36px; font-size: 14px; padding: 0 12px; }
+  .wk, .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+  .wk span { text-align: center; font-size: 12px; color: var(--muted); font-weight: 600; padding-bottom: 4px; }
+  .cell {
+    position: relative; aspect-ratio: 1 / 1.08; min-height: 44px; border: 0; padding: 0; border-radius: 12px;
+    background: var(--surface); display: grid; place-items: center;
+  }
+  .cell .dn { position: absolute; left: 6px; top: 4px; font-size: 11px; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .cell svg.mini { width: 70%; margin-top: 10%; }
+  .cell.out { background: transparent; color: var(--line); pointer-events: none; }
+  .cell.out .dn { color: var(--line); }
+  .cell.future { --chest-body: var(--future-body); --chest-band: var(--future-band); --chest-lid: var(--future-lid); --chest-lock: var(--future-lock); }
+  .cell.future svg.mini { opacity: .9; }
+  .cell.today { box-shadow: 0 0 0 2px var(--gold), 0 6px 18px rgb(227 162 26 / .35); background: var(--gold-soft); }
+  .cell.today .dn { color: var(--gold-ink); }
+  .cell.missed::after { content: ""; position: absolute; right: 6px; top: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+  .cell.sel { box-shadow: 0 0 0 2px var(--mint); }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; font-size: 13px; color: var(--muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend svg { width: 22px; }
+
+  .layout { display: block; }
+  .side { display: none; }
+
+  /* ---------- Карточка дня ---------- */
+  .daycard { display: grid; gap: 14px; }
+  .dc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .dc-day { font-family: var(--font-display); font-size: 28px; font-weight: 700; letter-spacing: -0.01em; }
+  .dc-date { color: var(--muted); font-size: 15px; }
+  .dc-kind { display: inline-block; justify-self: start; padding: 4px 10px; border-radius: 99px; background: var(--mint-soft); color: var(--ink); font-size: 13px; font-weight: 600; }
+  .dc-kind.k-milestone { background: color-mix(in srgb, var(--mint-bright) 22%, var(--surface)); }
+  .dc-kind.k-celebration { background: var(--gold-soft); color: var(--gold-ink); }
+  .dc-text { margin: 0; font-family: var(--font-note); font-size: 21px; line-height: 1.5; }
+  .dc-src { font-size: 13px; color: var(--muted); margin-top: -6px; }
+  .figs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; margin: 0; }
+  .figs div { padding: 10px 12px; border-radius: 14px; background: var(--surface-2); }
+  .figs dt { font-size: 13px; color: var(--muted); }
+  .figs dd { margin: 0; font-family: var(--font-display); font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .dc-reward {
+    display: grid; gap: 10px; padding: 16px; border-radius: 18px;
+    background: linear-gradient(160deg, var(--gold-soft), color-mix(in srgb, var(--gold) 30%, var(--gold-soft)));
+  }
+  .dc-reward .r-lbl { font-size: 14px; font-weight: 700; color: var(--gold-ink); }
+  .dc-reward .r-text { font-family: var(--font-display); font-size: 24px; font-weight: 700; line-height: 1.2; }
+
+  /* ================= Диалоги ================= */
+  dialog {
+    width: min(520px, 100vw); max-width: 100vw; max-height: 92vh; max-height: 92dvh;
+    padding: 0; border: 0; border-radius: 24px; background: var(--bg); color: var(--ink);
+    overflow: hidden;
+  }
+  dialog::backdrop { background: var(--scrim); }
+  .dlg { display: flex; flex-direction: column; max-height: inherit; }
+  .dlg-head { display: flex; align-items: center; gap: 8px; padding: 18px 12px 6px 20px; }
+  .dlg-head h2 { flex: 1; font-size: 21px; font-weight: 700; letter-spacing: -0.01em; }
+  .dlg-head .btn.icon { background: var(--surface-2); box-shadow: none; width: 36px; min-height: 36px; border-radius: 50%; font-size: 16px; color: var(--muted); }
+  .dlg-body { padding: 8px 20px 20px; overflow-y: auto; -webkit-overflow-scrolling: touch; display: grid; gap: 16px; }
+  .dlg-foot { padding: 12px 20px calc(16px + env(safe-area-inset-bottom)); display: grid; gap: 8px; border-top: 1px solid var(--line); background: var(--bg); }
+  dialog.confirm { width: min(400px, calc(100vw - 32px)); }
+  dialog.confirm .dlg-body { padding-top: 22px; font-size: 17px; }
+  dialog.confirm .dlg-foot { border-top: 0; padding-bottom: 18px; }
+  @media (max-width: 599px) {
+    dialog.sheet { margin: auto 0 0; width: 100vw; border-radius: 24px 24px 0 0; }
+  }
+
+  /* --- Сундук открывается --- */
+  dialog.chest-dlg {
+    width: 100vw; height: 100vh; height: 100dvh; max-height: none; max-width: none; margin: 0; border-radius: 0;
+    background: var(--bg);
+    background: radial-gradient(90% 60% at 50% 22%, color-mix(in srgb, var(--gold) 30%, var(--bg)) 0%, var(--bg) 70%);
+  }
+  .chest-stage { height: 100%; overflow-y: auto; padding: calc(12px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left)); }
+  .chest-stage .close { position: sticky; top: 0; margin-left: auto; display: flex; z-index: 2; background: var(--surface); box-shadow: none; border-radius: 50%; width: 40px; min-height: 40px; }
+  .chest-inner { max-width: 560px; margin: 0 auto; display: grid; gap: 18px; }
+  .stage-chest { width: min(230px, 58vw); justify-self: center; margin-top: 64px; overflow: visible; }
+  .chest-card { background: var(--surface); border-radius: 24px; padding: 20px; opacity: 0; transform: translateY(14px); transition: opacity .45s ease, transform .45s ease; }
+  .chest-card.show { opacity: 1; transform: none; }
+
+  .chest-svg .lid { transform-box: view-box; transform-origin: 16px 54px; transition: transform .55s cubic-bezier(.3,1.4,.5,1); }
+  .chest-svg .glow { opacity: 0; transition: opacity .5s ease .15s; }
+  .chest-svg.is-open .lid { transform: translate(-4px, -16px) rotate(-24deg); }
+  .chest-svg.is-open .glow { opacity: 1; }
+  .chest-svg.shake { animation: shake .5s ease-in-out; transform-origin: 50% 90%; }
+  @keyframes shake {
+    0%, 100% { transform: rotate(0); } 15% { transform: rotate(-5deg); } 30% { transform: rotate(5deg); }
+    45% { transform: rotate(-4deg); } 60% { transform: rotate(4deg); } 75% { transform: rotate(-2deg); }
+  }
+  .wobble { animation: wobble 3.2s ease-in-out infinite; transform-origin: 50% 90%; }
+  @keyframes wobble { 0%, 76%, 100% { transform: rotate(0); } 82% { transform: rotate(-4deg); } 88% { transform: rotate(4deg); } 94% { transform: rotate(-2deg); } }
+  .cell.today svg.mini { animation: wobble 3.2s ease-in-out infinite; transform-origin: 50% 90%; }
+
+  .confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 70; }
+  .confetti i { position: absolute; top: -12px; width: 9px; height: 14px; border-radius: 2px; animation: fall linear forwards; }
+  @keyframes fall { to { transform: translate3d(var(--dx), 105vh, 0) rotate(var(--rot)); } }
+
+  /* --- SOS --- */
+  .breath { display: grid; place-items: center; height: 230px; position: relative; }
+  .breath .ring { position: absolute; width: 200px; height: 200px; border-radius: 50%; background: var(--mint-soft); }
+  .breath .core {
+    width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, var(--mint-bright), var(--mint));
+    transform: scale(.55); animation: breathe 14s ease-in-out infinite; opacity: .92;
+  }
+  .breath .phase { position: absolute; font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--mint-ink); }
+  @keyframes breathe { 0% { transform: scale(.55); } 28.57% { transform: scale(1); } 57.14% { transform: scale(1); } 100% { transform: scale(.55); } }
+  .sos-timer { font-family: var(--font-display); font-size: 44px; font-weight: 700; text-align: center; font-variant-numeric: tabular-nums; }
+  .tipbox { padding: 14px 16px; border-radius: 16px; background: var(--surface); }
+  .reasons { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+
+  /* --- Отметка тяги --- */
+  .intens { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .intens button { min-height: 46px; border: 0; border-radius: 12px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); font-family: var(--font-display); font-weight: 700; font-size: 18px; }
+  .intens button[aria-pressed="true"] { background: var(--ink); color: var(--bg); box-shadow: none; }
+  details.more summary { cursor: pointer; color: var(--mint); font-weight: 600; font-size: 15px; min-height: 36px; display: flex; align-items: center; }
+
+  /* ================= Тяга: журнал ================= */
+  .j-day { margin-top: 20px; }
+  .j-day h3 { font-size: 15px; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
+  .j-list { list-style: none; margin: 0; padding: 0; background: var(--surface); border-radius: 18px; overflow: hidden; }
+  .j-list li + li { border-top: 1px solid var(--line); }
+  .j-item { width: 100%; display: grid; grid-template-columns: 54px 1fr auto; gap: 10px; align-items: center; padding: 12px 14px; border: 0; background: transparent; text-align: left; min-height: 56px; }
+  .j-item .t { font-family: var(--font-display); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .j-item .what { font-weight: 600; }
+  .j-item .note { padding: 0; background: none; font-size: 14px; color: var(--muted); }
+  .dots { display: inline-flex; gap: 3px; }
+  .dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--line); }
+  .dots i.on { background: var(--ink); }
+  .tag { font-size: 13px; font-weight: 600; padding: 3px 9px; border-radius: 99px; background: var(--mint-soft); white-space: nowrap; }
+  .tag.smoked { background: var(--surface-2); color: var(--muted); }
+  .empty { padding: 36px 20px; text-align: center; color: var(--muted); display: grid; gap: 12px; justify-items: center; }
+  .empty svg { width: 72px; opacity: .8; }
+  .sos-cta { display: flex; gap: 14px; align-items: center; padding: 16px; border-radius: 20px; background: var(--surface); }
+  .sos-cta p { flex: 1; font-size: 15px; color: var(--muted); }
+  .sos-cta p b { display: block; color: var(--ink); font-size: 17px; }
+
+  /* ================= Здоровье ================= */
+  .lungs-hero { display: grid; justify-items: center; gap: 12px; padding: 18px 16px; border-radius: 26px; background: var(--surface); text-align: center; }
+  .lungs-hero svg { width: min(300px, 80vw); overflow: visible; }
+  .lungs-hero .pct { font-family: var(--font-display); font-size: 30px; font-weight: 700; letter-spacing: -0.01em; }
+  .lungs-hero .seg { width: min(280px, 100%); }
+  .breathing { animation: lungs 4s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 40%; }
+  @keyframes lungs { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+  .systems { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  .sys { background: var(--surface); border-radius: 20px; padding: 14px 16px; display: grid; gap: 8px; }
+  .sys h3 { font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .sys h3 svg { width: 22px; height: 22px; color: var(--mint); }
+  .sys .done { font-size: 15px; }
+  .sys .done::before { content: "✓ "; color: var(--mint); font-weight: 700; }
+  .sys .next { font-size: 15px; color: var(--muted); }
+  .ms-list { list-style: none; margin: 0; padding: 0; background: var(--surface); border-radius: 20px; overflow: hidden; }
+  .ms-list li { padding: 14px 16px; display: grid; gap: 8px; }
+  .ms-list li + li { border-top: 1px solid var(--line); }
+  .ms-top { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+  .ms-when { font-family: var(--font-display); font-weight: 700; white-space: nowrap; }
+  .ms-state { font-size: 13px; color: var(--muted); white-space: nowrap; }
+  .ms-state.passed { color: var(--mint); font-weight: 600; }
+  .ms-title { font-size: 15px; }
+  .ms-src { font-size: 12px; color: var(--muted); }
+  .disclaimer { font-size: 13px; color: var(--muted); margin-top: 18px; }
+
+  /* ================= Аналитика ================= */
+  .kpis { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+  .kpi { background: var(--surface); border-radius: 18px; padding: 14px; display: grid; gap: 2px; align-content: start; }
+  .kpi .v { font-family: var(--font-display); font-size: 26px; font-weight: 700; line-height: 1.15; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+  .kpi .l { font-size: 14px; color: var(--muted); }
+  .kpi .s { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .kpi.wide { grid-column: 1 / -1; }
+  @media (max-width: 699px) { .kpi.wide-phone { grid-column: 1 / -1; } }
+  .chart { background: var(--surface); border-radius: 20px; padding: 14px 14px 10px; }
+  .chart h3 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+  .chart .sub { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+  .chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .readout { min-height: 22px; font-size: 14px; color: var(--muted); margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .chart svg text { fill: var(--muted); font-size: 11px; font-family: var(--font); }
+  .chart svg .lbl-ink { fill: var(--ink); font-weight: 600; font-size: 12px; }
+  [data-tip] { cursor: pointer; }
+  .insight { font-family: var(--font-note); font-size: 20px; line-height: 1.45; padding: 16px; border-radius: 20px; background: var(--mint-soft); }
+  .ach { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
+  .ach div { background: var(--surface); border-radius: 18px; padding: 12px 8px; text-align: center; display: grid; gap: 6px; justify-items: center; align-content: start; }
+  .ach svg { width: 46px; height: 46px; }
+  .ach b { font-size: 14px; line-height: 1.2; }
+  .ach span { font-size: 12px; color: var(--muted); line-height: 1.25; }
+  .ach .off svg { filter: grayscale(1); opacity: .35; }
+  .ach .off b { color: var(--muted); }
+  .history { list-style: none; margin: 0; padding: 0; }
+  .history li { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 15px; }
+  .history li:first-child { border-top: 0; }
+  .history li .grow { flex: 1; }
+  .history .btn { min-height: 36px; padding: 0 10px; font-size: 14px; }
+
+  /* ================= Настройки ================= */
+  .set-group { display: grid; gap: 12px; padding: 16px; background: var(--surface); border-radius: 20px; }
+  .set-group h3 { font-size: 17px; font-weight: 700; }
+  .ver { text-align: center; font-size: 13px; color: var(--muted); padding: 8px; }
+  .debug { border: 2px dashed var(--gold); }
+
+  /* ================= Широкий экран (iPad) ================= */
+  @media (min-width: 700px) {
+    .systems { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 960px) and (orientation: landscape) {
+    main#view { max-width: 1180px; }
+    .layout.chests { display: grid; grid-template-columns: minmax(0, 1fr) minmax(340px, 420px); gap: 28px; align-items: start; }
+    .side { display: block; position: sticky; top: calc(64px + env(safe-area-inset-top)); background: var(--surface); border-radius: 24px; padding: 20px; max-height: calc(100dvh - 170px); overflow-y: auto; }
+    .layout.chests .hero-today { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+    .chest-card { transition: opacity .3s ease !important; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <section class="screen welcome" id="screenWelcome" hidden></section>
+  <section class="screen wizard" id="screenWizard" hidden></section>
+
+  <div id="screenMain" hidden>
+    <header class="topbar">
+      <h1 id="title">Сундучки</h1>
+      <button class="btn icon" data-act="settings" aria-label="Настройки">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 8.9 19.4a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 8.9 4.6 1.7 1.7 0 0 0 9.97 3.04V3a2 2 0 1 1 4 0v.09A1.7 1.7 0 0 0 15 4.6a1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 8.9c.2.62.78 1.04 1.43 1.07H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1.03z"/></svg>
+      </button>
+    </header>
+    <main id="view">
+      <div id="banners"></div>
+      <div id="tab"></div>
+    </main>
+    <button class="fab" data-act="craving" aria-label="Хочу курить — отметить желание">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 9c2.5-2.4 4.5-2.4 7 0s4.5 2.4 7 0 4.5-2.4 6 0"/><path d="M2 15c2.5-2.4 4.5-2.4 7 0s4.5 2.4 7 0 4.5-2.4 6 0"/></svg>
+      Хочу курить
+    </button>
+    <nav class="tabbar" aria-label="Разделы">
+      <button data-tab="chests"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 11V9a6 5 0 0 1 6-5h6a6 5 0 0 1 6 5v2"/><rect x="10" y="9.5" width="4" height="5" rx="1"/></svg>Сундучки</button>
+      <button data-tab="journal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 9c2.5-2.4 4.5-2.4 7 0s4.5 2.4 7 0 4.5-2.4 6 0"/><path d="M2 15c2.5-2.4 4.5-2.4 7 0s4.5 2.4 7 0 4.5-2.4 6 0"/></svg>Тяга</button>
+      <button data-tab="health"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v8"/><path d="M12 9c-1 1.5-2.5 2-4 2"/><path d="M12 9c1 1.5 2.5 2 4 2"/><path d="M9 6.5C5 6 3 11 3 15.5 3 19 5 21 7.5 20.5 10 20 10.5 17 10.5 14V9.5"/><path d="M15 6.5c4-.5 6 4.5 6 9 0 3.5-2 5.5-4.5 5-2.5-.5-3-3.5-3-6.5V9.5"/></svg>Здоровье</button>
+      <button data-tab="stats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg>Аналитика</button>
+    </nav>
+  </div>
+</div>
+
+<dialog id="dlg" class="sheet" aria-labelledby="dlgTitle"></dialog>
+<dialog id="dlg2" class="sheet" aria-labelledby="dlg2Title"></dialog>
+<dialog id="chestDlg" class="chest-dlg" aria-label="Сундучок дня"></dialog>
+<dialog id="dlgc" class="confirm" aria-label="Подтверждение"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="ch-closed" viewBox="0 0 40 34">
+      <path d="M4 15V12C4 6.5 10 3.5 20 3.5S36 6.5 36 12v3z" style="fill:var(--chest-lid)"/>
+      <rect x="9" y="3.6" width="3.2" height="11.6" style="fill:var(--chest-band)"/>
+      <rect x="27.8" y="3.6" width="3.2" height="11.6" style="fill:var(--chest-band)"/>
+      <rect x="4" y="15" width="32" height="16" rx="2.5" style="fill:var(--chest-body)"/>
+      <rect x="9" y="15" width="3.2" height="16" style="fill:var(--chest-band)"/>
+      <rect x="27.8" y="15" width="3.2" height="16" style="fill:var(--chest-band)"/>
+      <rect x="4" y="14.2" width="32" height="2" style="fill:var(--chest-band)"/>
+      <rect x="17" y="12" width="6" height="8" rx="1.4" style="fill:var(--chest-lock)"/>
+      <circle cx="20" cy="15.6" r="1.1" style="fill:var(--chest-inside)"/>
+    </symbol>
+    <symbol id="ch-open" viewBox="0 0 40 34">
+      <ellipse cx="20" cy="14" rx="15" ry="6" fill="#ffd36b" opacity=".55"/>
+      <path d="M6 13 L4.5 3 C10 1 30 1 35.5 3 L34 13z" style="fill:var(--chest-lid)" opacity=".95"/>
+      <rect x="4" y="13" width="32" height="5" rx="1" style="fill:var(--chest-inside)"/>
+      <rect x="4" y="16" width="32" height="15" rx="2.5" style="fill:var(--chest-body)"/>
+      <rect x="9" y="16" width="3.2" height="15" style="fill:var(--chest-band)"/>
+      <rect x="27.8" y="16" width="3.2" height="15" style="fill:var(--chest-band)"/>
+      <rect x="4" y="15.4" width="32" height="2" style="fill:var(--chest-band)"/>
+    </symbol>
+    <symbol id="ch-lock" viewBox="0 0 40 34">
+      <path d="M26 21v-3a4 4 0 0 1 8 0v3" fill="none" stroke="var(--lock-body)" stroke-width="2.2"/>
+      <rect x="24" y="20.5" width="12" height="10" rx="2.2" style="fill:var(--lock-body)"/>
+    </symbol>
+    <symbol id="ch-star" viewBox="0 0 40 34">
+      <path d="M20 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L20 14.9l-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z" fill="#ffc531" stroke="#a8700a" stroke-width="1"/>
+    </symbol>
+  </defs>
+</svg>
+
+<script>
+'use strict';
+/* Тексты сундучков. Формат каждого: { id, type, day?, text, source? }.
+   Новые тексты добавляй ТОЛЬКО в конец своих списков: id мотивации, советов и фактов
+   берутся по порядку, а план дней хранит id — вставка в середину сдвинет тексты. */
+const CONTENT = (() => {
+  const out = [];
+  const pad3 = (n) => String(n).padStart(3, '0');
+
+  /* ---- Вехи здоровья: день = целое число суток до вехи + 1 ---- */
+  [
+    [1, 'ms-d1', 'Первый день. Уже через 20 минут после последней сигареты снизились пульс и давление, а к 12 часам уровень угарного газа в крови придёт в норму.', 'ВОЗ'],
+    [2, 'ms-d2', 'Сутки без сигарет. Лёгкие начали выводить слизь и остатки дыма, а никотина в крови почти не осталось.', 'NHS, Минздрав Австралии'],
+    [3, 'ms-d3', '48 часов: никотин выведен из организма. Вкус и обоняние начинают возвращаться — съешь сегодня что-нибудь ароматное и прислушайся.', 'NHS'],
+    [8, 'ms-d8', 'Неделя! Естественная система очистки лёгких начала восстанавливаться, а вкус и запахи становятся ярче.', 'Минздрав Австралии'],
+    [15, 'ms-d15', 'Две недели. Начинается период, когда улучшается кровообращение и растёт функция лёгких — подниматься по лестнице становится легче.', 'ВОЗ, NHS'],
+    [31, 'ms-d31', 'Месяц без сигарет. С этого момента и примерно до девяти месяцев постепенно уходят кашель и одышка.', 'ВОЗ'],
+    [61, 'ms-d61', 'Два месяца. Кровь стала менее густой, руки и ноги снабжаются кровью лучше, иммунитет восстанавливается — организму проще справляться с инфекциями.', 'Минздрав Австралии'],
+    [85, 'ms-d85', '12 недель. Позади период, за который заметно улучшаются кровообращение и функция лёгких. Нагрузки даются легче, чем три месяца назад.', 'ВОЗ'],
+    [183, 'ms-d183', 'Полгода! Лёгкие работают заметно лучше, мокроты меньше. А ещё через полгода после отказа у большинства стресса меньше, чем было во время курения.', 'Минздрав Австралии'],
+    [271, 'ms-d271', 'Девять месяцев. К этому сроку кашель и одышка обычно заметно отступают, а лёгкие продолжают восстанавливаться.', 'ВОЗ'],
+    [366, 'ms-d366', 'Год без сигарет! Риск ишемической болезни сердца теперь примерно вдвое ниже, чем если бы ты продолжал курить.', 'ВОЗ']
+  ].forEach(([day, id, text, source]) => out.push({ id, type: 'milestone', day, text, source }));
+
+  /* ---- Праздники на круглые дни ---- */
+  [
+    [10, '10 дней! Самые тяжёлые первые дни позади. Тяга ещё будет приходить, но ты уже знаешь, что она проходит.'],
+    [50, '50 дней — это уже не попытка, а новая привычка. Пятьдесят раз подряд ты проснулся и прожил день без сигарет.'],
+    [100, '100 дней! Сто раз подряд ты выбрал себя. Загляни в аналитику — там видно, сколько всего уже изменилось.'],
+    [200, '200 дней. Когда-то ты считал часы до следующей сигареты, теперь считаешь дни без неё. И их уже двести.'],
+    [300, '300 дней. До годовщины чуть больше двух месяцев, а копилка и сигаретная башня растут каждый день.'],
+    [365, 'Ровно год с первого дня! Ты прошёл все четыре сезона без сигарет: праздники, отпуск, будни и стрессы. Отметь это как следует.'],
+    [500, '500 дней. Если кто-то спросит, как бросить курить, — у тебя уже есть ответ из собственного опыта.'],
+    [600, '600 дней. Курение всё больше становится историей из прошлого, а не частью твоего дня.'],
+    [700, '700 дней. До финиша один месяц. Подумай, как отметишь двухлетие, — ты это заслужил.'],
+    [730, '730 дней — два года без сигарет! Программа пройдена. Впереди этап, когда сильно снижается риск инфаркта и инсульта. Это сделал ты.']
+  ].forEach(([day, text]) => out.push({ id: 'cel-' + day, type: 'celebration', day, text }));
+
+  /* ---- Факты (с источником) ---- */
+  [
+    ['В табачном дыме больше 7000 химических веществ, около 70 из них могут вызывать рак. Каждый день без сигарет — день без них.', 'CDC'],
+    ['Если бросить курить около 30 лет, можно выиграть почти 10 лет жизни по сравнению с теми, кто продолжает курить.', 'ВОЗ'],
+    ['Бросившие около 40 лет в среднем выигрывают 9 лет жизни, около 50 — 6 лет, около 60 — 3 года. Бросать полезно в любом возрасте.', 'ВОЗ'],
+    ['Отказ от курения после инфаркта вдвое снижает вероятность повторного.', 'ВОЗ'],
+    ['Когда взрослый бросает курить, у детей рядом снижается риск болезней от пассивного курения — например, астмы и отитов.', 'ВОЗ'],
+    ['Отказ от курения снижает риск импотенции, проблем с зачатием, выкидышей и преждевременных родов.', 'ВОЗ'],
+    ['Польза от отказа от курения есть в любом возрасте — даже после долгих лет курения. Чем раньше бросаешь, тем больше выигрыш.', 'CDC'],
+    ['Отказ от курения может добавить до 10 лет к ожидаемой продолжительности жизни.', 'CDC'],
+    ['После отказа от курения снижаются маркеры воспаления и свёртываемости крови — сосудам становится легче.', 'CDC'],
+    ['Отказ от курения быстро улучшает уровень «хорошего» холестерина — ЛПВП.', 'CDC'],
+    ['Отказ от курения замедляет развитие раннего атеросклероза — отложений в стенках сосудов.', 'CDC'],
+    ['Риск ишемической болезни сердца резко падает в первые 1–2 года после отказа, а потом продолжает снижаться, только медленнее.', 'CDC'],
+    ['Отказ от курения снижает риск 12 видов рака, среди них рак лёгких, гортани, полости рта, пищевода, желудка, поджелудочной железы, почек и мочевого пузыря.', 'CDC'],
+    ['Бросившие реже болеют бронхитом и пневмонией: отказ от курения снижает число респираторных инфекций.', 'CDC'],
+    ['После отказа от курения становится меньше кашля, мокроты и хрипов.', 'CDC'],
+    ['Отказ от курения снижает риск ХОБЛ, а у тех, у кого она уже есть, замедляет потерю функции лёгких.', 'CDC'],
+    ['Отказ от курения — лучший способ защитить близких от пассивного курения.', 'CDC'],
+    ['Через 3–6 лет после отказа дополнительный риск ишемической болезни сердца уменьшается вдвое.', 'CDC'],
+    ['Через 5–10 лет после отказа дополнительный риск рака рта, горла и гортани снижается вдвое, уменьшается и риск инсульта.', 'CDC'],
+    ['Через 20 лет без сигарет риск рака рта, горла, гортани и поджелудочной железы приближается к уровню некурящего.', 'CDC'],
+    ['Через сутки после последней сигареты уровень никотина в крови падает до нуля.', 'CDC'],
+    ['Через несколько дней без сигарет уровень угарного газа в крови становится таким же, как у некурящих.', 'CDC'],
+    ['Через 1–2 года после отказа риск инфаркта резко снижается.', 'CDC'],
+    ['Отказ от курения снижает риск аневризмы брюшной аорты, и с каждым годом без сигарет этот эффект растёт.', 'CDC'],
+    ['Отказ от курения может снизить риск мерцательной аритмии, сердечной недостаточности и внезапной сердечной смерти.', 'CDC'],
+    ['У многих симптомы отмены полностью проходят через 2–4 недели. Пока они есть, они то накатывают, то отступают — это нормально.', 'Better Health (Австралия)'],
+    ['Тяга бывает сильной, но обычно длится всего несколько минут. Каждый раз, когда ты её пережидаешь, следующая становится слабее.', 'Better Health (Австралия)'],
+    ['Раздражительность, тревога и перепады настроения в первые дни и недели — нормальная часть отказа. Они проходят.', 'Better Health (Австралия)'],
+    ['Через полгода после отказа у большинства уровень стресса ниже, чем был во время курения.', 'Better Health (Австралия)'],
+    ['Повышенный аппетит после отказа — частое явление. Обычно он держится несколько недель.', 'Better Health (Австралия)'],
+    ['Симптомы как при простуде, запоры, лёгкое головокружение или язвочки во рту иногда появляются после отказа. Это временно.', 'Better Health (Австралия)'],
+    ['Через 3 месяца без сигарет кашель и хрипы становятся реже, а кровообращение — лучше.', 'Better Health (Австралия)'],
+    ['Через 20 лет без сигарет риск инфаркта и инсульта такой же, как у никогда не куривших.', 'Better Health (Австралия)'],
+    ['Никотин даёт короткую вспышку спокойствия, а уходя — раздражение и тревогу. Курильщик принимает это за стресс и снова закуривает. Ты из этого круга вышел.', 'NHS'],
+    ['Исследования показывают: отказ от курения улучшает настроение и снижает тревожность.', 'NHS'],
+    ['Без никотина химия мозга, включая дофамин, постепенно приходит в равновесие — это помогает выровнять настроение.', 'NHS'],
+    ['Обычно тяга заметно стихает примерно через 28 дней.', 'NHS'],
+    ['Кто продержался 28 дней без сигарет, у того в 5 раз выше шансы бросить навсегда.', 'NHS'],
+    ['Уже через 8 часов никотин и угарный газ начинают уходить из организма, а уровень кислорода в крови восстанавливается.', 'NHS'],
+    ['Через 2–12 недель после отказа физические нагрузки даются легче, а дыхание улучшается.', 'NHS'],
+    ['Если бросить курить до 35 лет, скорее всего, проживёшь столько же, сколько некурящий.', 'NHS'],
+    ['Через 72 часа без сигарет дышать становится легче: бронхи расслабляются, объём лёгких увеличивается.', 'HSE (Ирландия)'],
+    ['Примерно через 3 недели мокрота в лёгких разжижается, улучшаются функция лёгких и кровообращение.', 'HSE (Ирландия)'],
+    ['Через 20 минут после последней сигареты температура рук и ног возвращается к норме.', 'HSE (Ирландия)'],
+    ['Уже в первые сутки без сигарет кислород легче доходит до сердца и мышц.', 'Минздрав Австралии'],
+    ['У женщин через 5 лет без сигарет риск рака шейки матки становится таким же, как у никогда не куривших.', 'Минздрав Австралии'],
+    ['Через год без сигарет лёгкие здоровее, а дышится легче, чем если бы ты продолжал курить.', 'Минздрав Австралии'],
+    ['Каждая сигарета в среднем отнимает около 20 минут жизни, пачка из 20 штук — почти 7 часов.', 'UCL, NHS'],
+    ['По оценке UCL, мужчина в среднем теряет 17 минут жизни на каждой сигарете, женщина — 22 минуты.', 'UCL'],
+    ['Тот, кто выкуривал 10 сигарет в день, за первую неделю без них возвращает себе целый день жизни, а за год — около 50 дней.', 'UCL, NHS'],
+    ['Курение отнимает в основном здоровые годы среднего возраста, а не годы глубокой старости. Отказ возвращает именно их.', 'UCL'],
+    ['По данным ВОЗ, табак убивает до половины тех, кто его употребляет и не бросает. Ты из этой статистики вышел.', 'ВОЗ'],
+    ['Людям с ишемической болезнью сердца отказ от курения снижает риск преждевременной смерти и повторных инфарктов.', 'CDC'],
+    ['У людей с астмой отказ от курения может улучшить работу лёгких и самочувствие.', 'CDC'],
+    ['Через 10–15 лет без сигарет дополнительный риск рака лёгких снижается вдвое, уменьшается риск рака мочевого пузыря, пищевода и почек.', 'CDC'],
+    ['Через 15 лет без сигарет риск ишемической болезни сердца почти как у некурящего.', 'CDC'],
+    ['Через 5–15 лет после отказа риск инсульта снижается до уровня некурящего.', 'ВОЗ'],
+    ['Через 10 лет риск рака лёгких примерно вдвое ниже, чем у курящего; снижается и риск рака рта, горла, пищевода, мочевого пузыря и поджелудочной железы.', 'ВОЗ']
+  ].forEach(([text, source], i) => out.push({ id: 'f' + pad3(i + 1), type: 'fact', text, source }));
+
+  /* ---- Мотивация ---- */
+  [
+    'Тяга похожа на волну: накатывает, достигает пика и отступает. Ты уже пережил десятки таких волн.',
+    'Ты не отказываешься от удовольствия — ты отказываешься от зависимости, которая притворялась удовольствием.',
+    'Сегодня не нужно бросать навсегда. Нужно просто не курить сегодня. С этим ты справляешься.',
+    'Каждая непокуренная сигарета — маленькая победа, о которой знаешь только ты. Их у тебя уже много.',
+    'Мозгу нужно время, чтобы переучиться. Каждый день без сигарет прокладывает новую дорожку — и она становится шире.',
+    'Ты больше не планируешь день вокруг перекуров. Это и есть свобода — тихая, но настоящая.',
+    'Ни одна сигарета не сделает этот день лучше. Она лишь вернёт тебя к первому дню.',
+    'Помнишь, как трудно было в первые сутки? Сейчас легче. И дальше будет ещё легче.',
+    'Ты делаешь то, что получается далеко не у всех с первого раза. Это повод уважать себя.',
+    'Не обязательно чувствовать себя сильным, чтобы не курить. Достаточно просто не курить — сила придёт следом.',
+    'Курение обещало расслабление, а давало только паузу между двумя приступами тяги. Теперь эти паузы не нужны.',
+    'Ты возвращаешь себе время: на перекуры больше не уходят минуты, которые складывались в часы.',
+    'Каждый день без сигарет делает следующий чуть проще. Сложные проценты работают и здесь.',
+    'Сигарета никогда не решала проблему. Она откладывала её на пять минут и добавляла новую.',
+    'Ты меняешь не только привычку, но и то, как думаешь о себе: «я не курю».',
+    'Плохой день — не повод курить. Это просто плохой день, и он закончится.',
+    'Тяга — это не приказ. Это сигнал, на который можно не отвечать.',
+    'Твои лёгкие работают на тебя каждую секунду. Теперь и ты работаешь на них.',
+    'Если сегодня было трудно — ты всё равно справился. Трудный день без сигарет считается дважды.',
+    'Ты больше не зависишь от того, есть ли в кармане сигареты и открыт ли магазин.',
+    'Свободных денег становится больше — и они твои, а не табачной компании.',
+    'Помни, зачем ты начал. Причины никуда не делись — они всё ещё того стоят.',
+    'Маленькие шаги тоже ведут к цели. Сегодняшний шаг — ещё один день.',
+    'Тебе не нужно ничего доказывать другим. Достаточно знать, что ты держишь слово, данное себе.',
+    'Курильщик всё время думает, когда бы покурить. Ты теперь думаешь о другом. Это огромная перемена.',
+    'Самое трудное — не бросить, а продолжать не курить. Ты продолжаешь.',
+    'Тело благодарит тебя тихо: ровнее дыхание, лучше сон, больше сил к вечеру.',
+    'Сигарета — это пять минут. Твоя цель — два года и вся жизнь после. Сравнение не в пользу сигареты.',
+    'Всё, что ты чувствуешь сейчас, временно. А польза от отказа — надолго.',
+    'Сегодня ты на день дальше от последней сигареты, чем вчера. Простая математика на твоей стороне.',
+    'Ты не потерял друга. Ты избавился от того, кто брал с тебя деньги и здоровье.',
+    'Каждое «нет» сигарете — это «да» чему-то другому: здоровью, деньгам, спокойствию.',
+    'Вспомни запах табака на одежде и руках. Теперь его нет — и не будет.',
+    'Если кто-то рядом курит — это его путь. Твой путь другой, и ты по нему идёшь.',
+    'Хочется курить — значит, организм всё ещё перестраивается. Это хорошая новость: перестройка идёт.',
+    'Ты не обязан любить этот процесс. Достаточно его пройти.',
+    'Через месяц ты будешь рад, что не закурил сегодня. Через год — тем более.',
+    'Отказ от курения — один из лучших подарков, которые можно сделать себе в любом возрасте.',
+    'Ты учишься справляться со стрессом по-новому. Этот навык пригодится и не только здесь.',
+    'Каждое утро без кашля курильщика — повод сказать себе спасибо.',
+    'Ты сильнее одной сигареты. Ты уже это доказал.',
+    'Терпение — это тоже действие. Ты делаешь его каждый день.',
+    'Чем дольше ты не куришь, тем меньше места в голове занимает курение.',
+    'Срыв не отменяет прогресса. Каждый день без сигарет уже засчитан.',
+    'Ты возвращаешь себе вкус еды, запахи, дыхание. Это не мелочи — это жизнь.',
+    'Табачная компания потеряла клиента. Твоё здоровье нашло хозяина.',
+    'Пусть сегодня будет ещё одним днём, когда ты выбрал себя.',
+    'Нормально, если иногда скучаешь по ритуалу. Ритуал можно заменить, здоровье — нет.',
+    'Новые привычки поначалу неудобны, как новая обувь. Потом без них уже не можешь.',
+    'Твой пример видят близкие, даже если ничего не говорят.',
+    'Ты уже сделал самое сложное — начал. Теперь каждый день немного проще.',
+    'Сигарета ничего не даёт, кроме облегчения от тяги, которую сама и создала.',
+    'Будь к себе добрее. Ты делаешь трудную работу и делаешь её хорошо.',
+    'Когда тянет курить, напомни себе: это пройдёт, а гордость за себя останется.',
+    'В каждом дне без сигарет есть твоё решение. Ты принимаешь его снова и снова — и это стоит уважения.',
+    'Двухлетний путь складывается из обычных дней. Сегодня — один из них, и он твой.',
+    'Ты не «держишься». Ты живёшь без сигарет. Почувствуй разницу.',
+    'Свобода — это когда ты сам решаешь, что делать с перерывом, утром и вечером.',
+    'Твоё сердце бьётся спокойнее. Это не метафора, а физиология.',
+    'Отказ от курения — не наказание. Это возвращение того, что принадлежит тебе.',
+    'Ничего страшного, если сегодня всё раздражает. Это отмена, а не ты.',
+    'Подумай о себе через год: дышит свободно, тратит деньги на приятное, не ищет, где покурить.',
+    'Ты справляешься с тем, за что многие так и не решились взяться. Это много значит.',
+    'Каждый вечер без сигарет закрывает ещё один день, прожитый по-твоему.',
+    'Тяга сильнее, когда ты устал или голоден. Позаботься о себе — и ей будет не за что зацепиться.',
+    'Скучать по курению можно. Возвращаться к нему — необязательно.',
+    'Ты уже знаешь, что тяга проходит. Это знание сильнее любого желания.',
+    'Твоя копилка растёт, пока ты просто живёшь как обычно. Неплохая сделка.',
+    'Ты переписываешь свою историю. В новой версии нет сигарет.',
+    'Здоровые лёгкие — это лестница без одышки, смех без кашля и сон без хрипов.',
+    'Каждая минута без сигареты — вклад в твоё будущее. И проценты капают уже сейчас.',
+    '«Только одну» — самая коварная мысль. Ты знаешь, чем она заканчивается, и не попадёшься.',
+    'Ты не один: миллионы людей прошли этот путь и теперь живут без сигарет. Ты становишься одним из них.',
+    'Сегодня хороший день, чтобы снова не курить.',
+    'Ты уже не тот, кто курит. Ты тот, кто бросил.',
+    'Иногда достаточно просто дожить до вечера без сигареты. Это уже победа.',
+    'Сигарета не снимала стресс — она снимала тягу. Без тяги и стресса становится меньше.',
+    'Ты сам выбрал награды в сундуках. Где-то впереди ждёт следующая.',
+    'Каждый раз, справляясь с тягой, ты тренируешь волю. Она крепнет.',
+    'Не сравнивай свой путь с чужим. У тебя свой темп, и он работает.',
+    'Перечитай сегодня свои причины в настройках. Они написаны тобой и для тебя.',
+    'Тебе больше не нужно извиняться за запах, выходить на мороз и искать урну.',
+    'Сегодня ты дышишь чуть свободнее, чем месяц назад. Завтра будет ещё лучше.',
+    'Курение — привычка. Привычки меняются. Ты делаешь это прямо сейчас.',
+    'Даже если хочется — ты можешь не курить. Желание и действие — разные вещи.',
+    'Ты заслуживаешь жить без зависимости. И ты к этому идёшь.',
+    'Не нужно ждать идеального момента, чтобы гордиться собой. Он уже наступил.',
+    'Ещё один день, когда ты сам управляешь своей жизнью.',
+    'То, что казалось невозможным в первый день, стало твоей обычной жизнью.',
+    'Если тянет — значит, организм отвыкает. Ты на правильном пути.',
+    'Ты меняешь будущее, просто не делая одного действия. Мало что даёт такой эффект.',
+    'Ты уже вложил силы в первые дни. Не отдавай их обратно одной сигарете.',
+    'Однажды ты поймёшь, что весь день ни разу не вспомнил о сигаретах. Этот день ближе, чем кажется.',
+    'Выдержка — не врождённый талант, а навык. И ты его прокачиваешь.',
+    'Ты выбрал жить дольше и лучше. Сегодня ты снова подтверждаешь этот выбор.',
+    'Ни один день без сигарет не прошёл зря. Каждый из них работает на тебя.',
+    'Курение забирало деньги, время и силы. Теперь всё это возвращается к тебе.',
+    'Скоро ты перестанешь считать дни — просто потому что это станет нормой.',
+    'Не страшно, если сегодня пришлось нелегко. Ты справился — это главное.',
+    'Сделай сегодня что-то приятное для себя. Ты это заслужил.',
+    'Гордиться можно не только большими датами, но и обычным вторником без сигарет.',
+    'В твоих силах закончить этот день так же, как ты его начал, — без сигареты.',
+    'Ты больше не платишь за то, что тебе вредит. Это очень взрослое решение.',
+    'Вспомни, как пахнет воздух после дождя. Теперь ты чувствуешь его по-настоящему.',
+    'Утренний кофе может быть просто кофе. Без сигареты он даже вкуснее.',
+    'Тяга — гость, который приходит без приглашения. Не обязательно открывать ему дверь.',
+    'Ты учишься слышать своё тело. Оно говорит спасибо.',
+    'Даже маленький прогресс — это прогресс. А у тебя он совсем не маленький.',
+    'Не думай о двух годах сразу. Думай о сегодняшнем дне — он у тебя получается.',
+    'Тебе больше не нужно разрешение сигареты, чтобы отдохнуть.',
+    'С каждым днём твоё «я не курю» звучит увереннее.',
+    'Возможно, ты уже стал для кого-то примером, даже не зная об этом.',
+    'Хорошие перемены часто незаметны изнутри. Посмотри на цифры в аналитике — они говорят сами за себя.',
+    'Сигарета — всегда шаг назад. Ты выбираешь идти вперёд.',
+    'Здоровье не возвращается мгновенно, но возвращается. Ты даёшь ему время.',
+    'Ты делаешь это не ради цифр в приложении. Цифры просто показывают, как много ты делаешь.',
+    'Есть дни, когда легко, и дни, когда трудно. Ты справляешься и с теми, и с другими.',
+    'Тяга длится минуты. Досада после срыва — гораздо дольше. Выбор очевиден.',
+    'Ты освобождаешь место для новых привычек — тех, что действительно делают жизнь лучше.',
+    'Попробуй прямо сейчас: глубокий вдох — и почувствуй, что он полностью твой.',
+    'Тебе больше не нужно прятаться, чтобы покурить, и придумывать оправдания.',
+    'Каждый день без сигарет — голос за ту жизнь, которую ты хочешь.',
+    'Ты справляешься лучше, чем думаешь.',
+    'Просить поддержки — не слабость. Расскажи близким, как идут дела.',
+    'Через пару лет ты будешь рассказывать, как бросил, — и это будет хорошая история.',
+    'Твоя решимость сегодня — это твоё здоровье через десять лет.',
+    'Сигарета не друг в трудную минуту. Настоящая поддержка — люди, отдых и время.',
+    'Может, сегодня стоит лечь спать пораньше? Выспавшемуся человеку тяга даётся легче.',
+    'Ты учишься жить с паузами, которые не нужно заполнять дымом.',
+    'Ты уже проходил через тяжёлые моменты без сигарет. Значит, сможешь снова.',
+    'Каждый день ты становишься немного свободнее.',
+    'Твоё тело восстанавливается, даже когда ты этого не замечаешь.',
+    'Если сегодня ты сомневаешься — вспомни первый день. Ты уже так далеко от него.',
+    'Не бывает «маленькой» победы над зависимостью. Каждая — большая.',
+    'Ты сам решаешь, кем быть. Сегодня ты — некурящий.',
+    'Пусть тяга приходит. Ты знаешь, что делать: подождать, подышать, отвлечься.',
+    'Однажды отказ перестанет быть усилием воли и станет просто тем, кто ты есть.',
+    'Ты меняешь не только свою жизнь, но и воздух вокруг близких.',
+    'Хорошая новость: самые трудные дни уже позади.',
+    'Даже если сегодня всё пошло не так, одно точно получилось — ты не курил.',
+    'Ты справился вчера. Справишься и сегодня.',
+    'Каждый вдох без дыма — маленький подарок самому себе.',
+    'Чем больше дней позади, тем меньше у сигарет власти над тобой.',
+    'Деньги в копилке — не только сумма. Это доказательство того, что ты держишь слово.',
+    'Если хочется сорваться, подумай, каким ты проснёшься завтра. Выбери утро, которым будешь гордиться.',
+    'Тебе не нужно быть идеальным. Нужно просто продолжать.',
+    'Ты учишь себя главному: желание — ещё не повод действовать.',
+    'В мире много способов отдохнуть, порадоваться и успокоиться. Сигарета больше не в их числе.',
+    'Ты относишься к своему здоровью всерьёз. Это достойно уважения.',
+    'Ещё один день, ещё один шаг, ещё одна причина гордиться собой.',
+    'Пачка в день по 250 ₽ — это около 91 000 ₽ в год. Твоя копилка — реальные деньги, которые теперь остаются у тебя.'
+  ].forEach((text, i) => out.push({ id: 'm' + pad3(i + 1), type: 'motivation', text }));
+
+  /* ---- Советы ---- */
+  [
+    'Тянет курить после еды — сразу вставай из-за стола: помой чашку, пройдись, почисти зубы. Ритуал ломается, когда меняешь его первый шаг.',
+    'Начни утро не с кофе, а со стакана воды и пяти минут на свежем воздухе. Так утро перестаёт напоминать о сигарете.',
+    'Если кофе всегда шёл с сигаретой, поменяй обстановку: пей его в другом месте, из другой кружки или попробуй чай.',
+    'Держи под рукой то, что занимает рот: жвачку без сахара, семечки, морковные палочки, яблоко.',
+    'Займи руки: эспандер, чётки, ручка, головоломка. Рукам тоже нужно отвыкнуть.',
+    'Тяга накрыла? Отложи решение на 5 минут и засеки время. Обычно за это время она проходит.',
+    'Сделай медленный вдох на 4 счёта, задержи дыхание на 4 и выдохни на 6. Повтори пять раз.',
+    'Выпей прохладной воды маленькими глотками. Это простой способ переждать волну тяги.',
+    'Убери из дома и машины пепельницы, зажигалки и заначки. Чем меньше напоминаний, тем легче.',
+    'Постирай куртку и почисти салон машины от запаха табака. Новый запах — новые ассоциации.',
+    'В перерыве на работе вместо курилки выйди на короткую прогулку или поднимись по лестнице.',
+    'Если коллеги зовут покурить, сходи с ними за кофе или просто скажи: «Я бросил». Чем чаще говоришь, тем легче.',
+    'Алкоголь ослабляет самоконтроль. В первые месяцы пей меньше или выбирай безалкогольные напитки.',
+    'Идёшь в компанию, где курят? Заранее реши, что будешь делать, когда все выйдут курить: остаться внутри, позвонить кому-нибудь, взять напиток.',
+    'За рулём тяга часто приходит в пробке. Включи подкаст или аудиокнигу, держи в машине воду и жвачку.',
+    'Разговор по телефону тянет к сигарете? Во время звонка ходи по комнате или рисуй на листке.',
+    'Нервничаешь? Сожми и разожми кулаки 10 раз, расправь плечи и сделай три медленных выдоха.',
+    'Скука — частый повод закурить. Составь список дел на 5 минут: полить цветы, разобрать сообщения, сделать растяжку.',
+    'Ложись спать вовремя. Усталость усиливает тягу, а выспавшемуся человеку держаться легче.',
+    'Не пропускай еду. Голод легко спутать с тягой к сигарете.',
+    'Если тянет вечером, заведи новый вечерний ритуал: чай, душ, книга, прогулка.',
+    'Даже 10 минут быстрой ходьбы снижают тягу и поднимают настроение.',
+    'Почисти зубы, когда тянет курить. Свежий вкус во рту плохо сочетается с сигаретой.',
+    'Запиши в заметке к отметке, что ты чувствовал, когда захотелось курить. Так проще увидеть закономерности.',
+    'Отмечай каждую тягу в приложении — через пару недель аналитика покажет, когда тебе тяжелее всего.',
+    'Расскажи близким, что бросаешь. Поддержка работает лучше, чем кажется.',
+    'Найди человека, которому можно написать в трудную минуту. Короткое сообщение «тянет курить» уже помогает.',
+    'Если боишься набрать вес, держи под рукой овощи, фрукты, орехи и пей больше воды.',
+    'Пожуй гвоздику или палочку корицы — сильный вкус отвлекает от желания закурить.',
+    'Сделай 20 приседаний или отжиманий. Нагрузка быстро снимает напряжение.',
+    'Смени маршрут, если по пути ты обычно покупал сигареты или курил.',
+    'Первые недели обходи стороной места, где обычно курил.',
+    'Когда тянет, открой приложение и загляни в аналитику: там видно, сколько ты уже выиграл.',
+    'Когда хочется «всего одну», вспомни: одна обычно тянет за собой следующую. Лучше переждать 5 минут.',
+    'Реши, на что потратишь деньги из копилки. Конкретная цель мотивирует сильнее абстрактной экономии.',
+    'Награди себя за неделю без сигарет — чем-то маленьким, но приятным.',
+    'Пей больше воды в первые недели: это помогает организму и занимает руки и рот.',
+    'Если всё раздражает, скажи близким честно: «Я бросаю курить, мне сейчас непросто». Им будет проще тебя понять.',
+    'Жуй что-нибудь полезное и хрустящее: сельдерей, огурец, морковь.',
+    'Пей через трубочку — она частично заменяет привычное движение у рта.',
+    'Не держи сигареты «на всякий случай». Запасной вариант делает срыв проще.',
+    'В трудный день снизь планку: главное — не закурить, остальное подождёт.',
+    'Проснулся с желанием покурить — сразу вставай, умывайся и завтракай. Не оставляй тяге времени.',
+    'Чай с мятой или имбирём — хорошая замена «перекуру» в течение дня.',
+    'Если на работе ты курил по расписанию, поставь на то же время напоминание с другим делом: размяться, выпить воды, постоять у окна.',
+    'Найди новое занятие для рук: рисование, сборку моделей, гитару.',
+    'Смотри на календарь сундучков чаще. Видеть свой прогресс — мощная мотивация.',
+    'Перед праздником или вечеринкой продумай план: что будешь пить, с кем будешь рядом, когда уйдёшь.',
+    'Если предлагают сигарету, отвечай коротко: «Нет, спасибо, я не курю». Без оправданий.',
+    'Заранее подготовь фразу для тех, кто подшучивает. Например: «Бросил и рад этому».',
+    'Когда очень тяжело, представь тягу волной и мысленно прокатись на ней, наблюдая, как она поднимается и спадает.',
+    'Попробуй технику «5–4–3»: назови 5 предметов, которые видишь, 4 звука, которые слышишь, и 3 вещи, которых касаешься.',
+    'Делай перерывы не ради сигареты, а ради движения: потянись, пройдись, посмотри вдаль.',
+    'Держи в машине бутылку воды и леденцы без сахара.',
+    'В отпуске без сигарет лучше вкус еды и больше сил на прогулки. Напомни себе об этом, если потянет.',
+    'Освежи квартиру: проветри, постирай шторы и пледы. Пусть дом пахнет чистотой.',
+    'Замени утреннюю сигарету зарядкой на 3 минуты.',
+    'Если ты всегда курил в ожидании транспорта, включай в это время музыку или читай.',
+    'Перед сном вспомни три вещи, которые сегодня получились. Так проще замечать хорошее в днях без сигарет.',
+    'Если сорвался — не наказывай себя. Отметь срыв, подумай, что к нему привело, и продолжай.',
+    'Подумай, какая ситуация для тебя самая опасная, и заранее придумай, что будешь делать вместо сигареты.',
+    'Тянет — открой сегодняшний сундучок ещё раз, даже если уже открывал. Пара минут — и волна пройдёт.',
+    'Составь плейлист для трудных моментов и включай его, когда тянет.',
+    'Бегай, плавай, катайся на велосипеде — с каждой неделей дышать будет легче, и ты это почувствуешь.',
+    'Если курил на балконе или у окна, поставь там цветы или кресло для чтения. Пусть место получит новую роль.',
+    'Поменяй порядок утренних дел. Новый сценарий ломает старую привычку.',
+    'Лёгкий перекус вместо сигареты: горсть орехов, кусочек сыра, фрукт.',
+    'Отметь вслух маленькую победу: «Я не закурил». Звучит просто, но работает.',
+    'Тянет в гостях? Помоги хозяевам на кухне или поиграй с детьми. Занятые руки — меньше тяги.',
+    'Каждый вечер смотри, на сколько выросла сумма сэкономленного. Цифры мотивируют лучше обещаний.',
+    'Сфотографируй то, на что копишь, и поставь на заставку телефона.',
+    'Тянет сильнее, когда грустно? Позвони тому, кто тебя поддерживает, или выйди на улицу.',
+    'Работаешь за компьютером — ставь таймер на перерывы для разминки.',
+    'Если вы с сигаретой «ходили парой» с алкоголем, не держи алкоголь дома в первые недели.',
+    'После ссоры или неприятного разговора не спеши: выпей воды, пройдись, подыши. Через 10 минут станет легче.',
+    'Леденцы без сахара помогают пережить острую тягу.',
+    'Если трудно уснуть, отложи телефон за час до сна: тёплый душ и проветренная комната помогают лучше.',
+    'Возьми за правило: при тяге сначала выпить стакан воды, потом решать, что дальше. Чаще всего решать уже нечего.',
+    'Переводи деньги в копилку сразу, как приложение напомнит. Видеть, как растёт сумма, приятно.',
+    'Почитай истории людей, которые бросили. Чужой опыт напоминает, что это возможно.',
+    'Носи в кармане что-то, что напоминает о цели: брелок, монету, записку.',
+    'Если тянет после работы, придумай «переходный ритуал»: переоденься, прими душ, выйди на прогулку.',
+    'Бывшим коллегам по курилке предложи вместо перекура пройтись или выпить кофе.',
+    'Замечай прогресс не только в днях: легче ли подниматься по лестнице или бежать за автобусом?',
+    'Подумай, что было наградой в сигарете — пауза, общение, тишина. Найди эту награду без табака.',
+    'Устраивай маленький праздник в конце каждой недели. Пусть у дней без сигарет будет вкус.',
+    'Если тяга приходит ночью, держи у кровати воду и не включай яркий свет.',
+    'Заведи список отвлечений: дела на 2–3 минуты, которые помогают тебе переключиться.',
+    'Вкус еды без сигарет становится ярче — попробуй сегодня что-то новое.',
+    'Если кто-то замечает твои перепады настроения, просто объясни: это временно, ты бросаешь курить.',
+    'Поставь в машину ароматизатор. Пусть салон больше не пахнет табаком.',
+    'Иногда тяга — это жажда, голод или усталость. Спроси себя: я хочу пить, есть или отдохнуть?',
+    'Ставь короткие цели: день, неделя, месяц. Достигая их, легче идти к двум годам.',
+    'Если стал нервным и плохо спишь, пей меньше кофе: без сигарет кофеин может действовать сильнее.',
+    'Займи голову задачей: судоку, кроссворд, короткая игра на телефоне.',
+    'Если тянет курить при сильных эмоциях, запиши, что чувствуешь. Слова на бумаге часто снимают напряжение.',
+    'Чаще проветривай комнату: свежий воздух бодрит и напоминает, ради чего всё это.',
+    'Отдыхай без чувства вины. Отдых — не повод курить, а повод восстановиться.',
+    'Собери «аптечку от тяги»: жвачка, вода, эспандер, наушники. Держи её под рукой.',
+    'Встречаешься с курящим другом? Предложи место, где курить нельзя: кино, кафе, спортзал.',
+    'Купи новую кружку для утреннего кофе — маленькая перемена разрывает связь «кофе — сигарета».',
+    'Медленно подыши через трубочку для напитков: длинный вдох и выдох успокаивают и занимают рот.',
+    'Помассируй ладонь: надавливай большим пальцем на её центр 30 секунд, потом смени руку.',
+    'После обеда выйди на 10 минут на воздух. Прогулка заменяет привычную послеобеденную сигарету.',
+    'Утром продумай, чем займёшься в моменты, когда раньше курил.',
+    'Раз в неделю заглядывай в аналитику и подстраивай план под самые трудные часы.',
+    'Если курил за компьютером, держи рядом бутылку воды и делай глоток вместо затяжки.',
+    'Займись тем, с чем сигарета несовместима: плаванием, готовкой, мытьём машины, игрой с детьми.',
+    'Перед стрессовым событием — трудным разговором, экзаменом, совещанием — продумай, как снимешь напряжение после.',
+    'Не выходи «за компанию» в курилку. Найди себе другую компанию на перерыв.',
+    'Хочешь закурить, чтобы сделать паузу? Сделай паузу без сигареты: 5 минут тишины, глаза закрыты, медленное дыхание.',
+    'Радуй себя не только за большие сроки. Пусть каждую пятницу будет что-то маленькое и приятное.',
+    'Попробуй новый сорт чая или кофе — пусть утренний ритуал станет другим.',
+    'Сходи на профессиональную чистку зубов. Белые зубы — отличная мотивация не курить.',
+    'Если тянет курить на улице, смени темп: ускорь шаг или пройди круг вокруг квартала.',
+    'Попроси близких спрашивать, как дела, и хвалить за каждый месяц.',
+    'Посчитай, сколько часов в год уходило на перекуры, и реши, на что потратишь это время теперь.',
+    'Если курил, когда нервничал перед звонком, теперь перед звонком выпей воды и подыши.',
+    'Не спится — не ищи сигарету, почитай бумажную книгу при мягком свете.',
+    'Начни учиться чему-то новому. Новые навыки занимают голову и дают ощущение роста.',
+    'Подпевай любимой музыке в пробке — это тоже занимает рот.',
+    'Видишь курящего — напомни себе, сколько ты уже прошёл. Ты на шаг впереди.',
+    'Запиши, что изменилось к лучшему с тех пор, как ты бросил. Перечитывай, когда трудно.',
+    'В праздники держись ближе к некурящим и чаще выходи на прогулки.',
+    'Медленно съешь дольку апельсина: яркий вкус и запах отвлекают от тяги.',
+    'Если в магазине, где ты покупал сигареты, тянет, ходи в другой.',
+    'Хочется курить от радости? Отметь её иначе: позвони кому-нибудь, потанцуй, побалуй себя вкусным.',
+    'Сделай растяжку шеи и плеч: напряжение в теле часто усиливает тягу.',
+    'Есть собака или кошка? Выйди на прогулку или поиграй — это отвлекает лучше сигареты.',
+    'Перечитай свои причины в настройках и добавь новую, если появилась.',
+    'Если справляться тяжело, поговори с врачом: есть никотинозаместительная терапия и лекарства, которые облегчают отказ.',
+    'Занимай руки во время сериала: вязание, эспандер, пазл.',
+    'Сорвался вечером — утром начни заново, без самобичевания. Один эпизод не отменяет прогресса.',
+    'Планируй выходные: свободное время без планов часто оборачивается скукой и тягой.',
+    'Между делами вместо перекура сделай 10 глубоких вдохов у открытого окна.',
+    'Говори себе «я не курю» вместо «мне нельзя курить». Первая фраза звучит как выбор, а не запрет.',
+    'Загляни в аналитику на сигаретную башню. Каждая непокуренная сигарета делает её выше.',
+    'Когда ждёшь кого-то, держи в руках книгу или телефон с подкастом.',
+    'Если тянет при виде сигарет у кассы, смотри на другие полки и сразу переходи к оплате.',
+    'Сделай что-то приятное для лёгких: прогулка в парке, поездка за город, поход в лес.',
+    'Если тяга приходит в одно и то же время, поставь на это время напоминание: выпить чаю, выйти на воздух.',
+    'Если после долгого затишья снова потянуло сильнее — это нормально. Вспомни, что помогало раньше, и повтори.',
+    'Хвали себя за каждую пережитую тягу. Мозг запоминает победы.',
+    'Вспомни человека, который вдохновляет тебя силой воли, и спроси себя: как бы он поступил сейчас?',
+    'Хочется курить на нервах — сожми мяч-антистресс или потри ладони друг о друга 30 секунд.',
+    'Поставь на телефон фото, которое тебя мотивирует: семья, цель, место, куда хочешь поехать.',
+    'Держи себя в тонусе простыми радостями: вкусная еда, хорошая музыка, встречи с друзьями.'
+  ].forEach((text, i) => out.push({ id: 't' + pad3(i + 1), type: 'tip', text }));
+
+  return out;
+})();
+
+</script>
+<script>
+'use strict';
+
+/* ================= Константы ================= */
+const APP_ID = 'quit2y';
+const APP_VERSION = '1.0.0';            // повышай вместе с CACHE в sw.js
+const SCHEMA_VERSION = 1;               // повышай при изменении формы данных + шаг в migrate()
+const TOTAL_DAYS = 730;
+const MIN_GAP = 4;                      // минимум дней между наградами
+const MAX_REWARDS = Math.floor(TOTAL_DAYS / MIN_GAP);   // 182 при MIN_GAP = 4
+const LIFE_MIN_PER_CIG = 20;            // оценка UCL, 2024
+const TAR_MG_PER_CIG = 10;              // предел ТР ТС 035/2014
+const BREAK_MIN_PER_CIG = 5;
+const CIG_CM = 8.4;
+const MIN = 6e4, HOUR = 36e5, DAY = 864e5;
+const WIZARD_STEPS = 6;
+const IS_PREVIEW = false;              // true только в сборке превью для чата
+
+const DEFAULT_TRIGGERS = ['После еды', 'После сна', 'Кофе или чай', 'Стресс', 'Скука', 'Алкоголь', 'Компания курящих', 'Перерыв на работе', 'За рулём', 'Разговор по телефону', 'Другое'];
+const TRIGGER_PHRASE = {
+  'После еды': 'после еды', 'После сна': 'после сна', 'Кофе или чай': 'за кофе или чаем', 'Стресс': 'когда нервничаешь',
+  'Скука': 'от скуки', 'Алкоголь': 'с алкоголем', 'Компания курящих': 'в компании курящих', 'Перерыв на работе': 'в перерыв на работе',
+  'За рулём': 'за рулём', 'Разговор по телефону': 'во время разговора по телефону'
+};
+const SOS_TIPS = [
+  'Выпей стакан воды — медленно, маленькими глотками.',
+  'Выйди пройтись хотя бы на пять минут.',
+  'Почисти зубы: со свежим вкусом во рту курить не хочется.',
+  'Сделай 10 приседаний — тяга уходит вместе с напряжением.',
+  'Напиши другу пару строк о чём угодно.',
+  'Съешь что-нибудь хрустящее: яблоко, морковку, орехи.'
+];
+const REWARD_IDEAS = ['Поход в кино', 'Новая книга', 'Массаж', 'Ужин в ресторане', 'Беспроводные наушники', 'Поездка на выходные', 'Билет на концерт', 'Новые кроссовки'];
+
+const DEFAULT_STATE = {
+  profile: { name: '', cigsPerDay: null, packPrice: null, cigsPerPack: 20, yearsSmoking: null, reasons: ['', '', '', '', ''] },
+  program: { status: 'none', startDate: null, lastCigaretteAt: null, startedAt: null },
+  wizard: { step: 1 },
+  contentPlan: [],
+  chests: {},
+  rewards: [],
+  bank: { amount: 300, goalName: '', goalAmount: null, deposits: [] },
+  cravings: [],
+  triggers: DEFAULT_TRIGGERS.slice(),
+  lastExportAt: null,
+  debug: { enabled: false, offsetDays: 0 },
+  ui: { tab: 'chests', month: null, selectedDay: null, lungsView: 'now', journalFilter: '', hintHidden: false }
+};
+
+/* ================= Мелкие помощники ================= */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const clone = (x) => JSON.parse(JSON.stringify(x));
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const pad = (n) => String(n).padStart(2, '0');
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const nf = new Intl.NumberFormat('ru-RU');
+const nf1 = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 1 });
+const fmtInt = (n) => nf.format(Math.round(n || 0));
+const fmt1 = (n) => nf1.format(n || 0);
+const fmtMoney = (n) => fmtInt(n) + '\u00a0₽';
+const MONTHS_GEN = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+const MONTHS_NOM = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+const WD_SHORT = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+const WD_FULL = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'];
+
+function plural(n, one, few, many) {
+  const a = Math.abs(Math.trunc(n)) % 100, b = a % 10;
+  if (a > 10 && a < 20) return many;
+  if (b > 1 && b < 5) return few;
+  if (b === 1) return one;
+  return many;
+}
+const days = (n) => `${fmtInt(n)} ${plural(n, 'день', 'дня', 'дней')}`;
+
+function parseNum(v) {
+  const s = String(v ?? '').replace(/\s/g, '').replace(',', '.');
+  if (s === '') return null;
+  const n = parseFloat(s);
+  return Number.isFinite(n) ? n : null;
+}
+
+/* ---- даты: всё по локальному календарю устройства ---- */
+function ymd(d) { return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; }
+function ymdToUtc(s) { const [y, m, d] = s.split('-').map(Number); return Date.UTC(y, m - 1, d); }
+function diffDays(a, b) { return Math.round((ymdToUtc(b) - ymdToUtc(a)) / DAY); }
+function addDays(s, n) { return new Date(ymdToUtc(s) + n * DAY).toISOString().slice(0, 10); }
+function localIso(ms) { const d = new Date(ms); return `${ymd(d)}T${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`; }
+function parseLocal(s) {
+  if (!s) return NaN;
+  const [dp, tp = '00:00:00'] = String(s).split('T');
+  const [y, m, d] = dp.split('-').map(Number);
+  const [hh = 0, mm = 0, ss = 0] = tp.split(':').map(Number);
+  return new Date(y, m - 1, d, hh, mm, ss || 0).getTime();
+}
+function dateLong(s, withYear) {
+  const [y, m, d] = s.split('-').map(Number);
+  const curY = Number(todayStr().slice(0, 4));
+  return `${d} ${MONTHS_GEN[m - 1]}${withYear || y !== curY ? ' ' + y : ''}`;
+}
+function dateShort(s) { const [y, m, d] = s.slice(0, 10).split('-'); return `${d}.${m}.${y}`; }
+function timeHM(iso) { return iso.slice(11, 16); }
+function ymdParts(a, b) {
+  const [y1, m1, d1] = a.split('-').map(Number), [y2, m2, d2] = b.split('-').map(Number);
+  let years = y2 - y1, months = m2 - m1, dd = d2 - d1;
+  if (dd < 0) { months--; dd += new Date(y2, m2 - 1, 0).getDate(); }
+  if (months < 0) { years--; months += 12; }
+  return { years, months, days: dd };
+}
+function fmtDHM(ms) {
+  ms = Math.max(0, ms);
+  const d = Math.floor(ms / DAY), h = Math.floor((ms % DAY) / HOUR), m = Math.floor((ms % HOUR) / MIN);
+  if (d) return `${fmtInt(d)} д ${h} ч ${m} мин`;
+  if (h) return `${h} ч ${m} мин`;
+  return `${m} мин`;
+}
+function fmtLife(min) {
+  if (min < 60) return `${Math.round(min)} мин`;
+  const h = min / 60;
+  if (h < 48) { const n = Math.floor(h); return `${n} ${plural(n, 'час', 'часа', 'часов')}`; }
+  return days(Math.floor(h / 24));
+}
+function fmtElapsed(ms) {
+  if (ms < HOUR) return `${Math.floor(ms / MIN)} мин`;
+  if (ms < 48 * HOUR) { const h = Math.floor(ms / HOUR); return `${h} ${plural(h, 'час', 'часа', 'часов')}`; }
+  return days(Math.floor(ms / DAY));
+}
+function fmtSpan(ms) {
+  if (ms < HOUR) { const m = Math.max(1, Math.ceil(ms / MIN)); return `${m} мин`; }
+  if (ms < 48 * HOUR) { const h = Math.ceil(ms / HOUR); return `${h} ${plural(h, 'час', 'часа', 'часов')}`; }
+  return days(Math.ceil(ms / DAY));
+}
+
+/* ---- случайность: crypto.getRandomValues ---- */
+function randInt(min, max) {
+  const range = max - min + 1;
+  const buf = new Uint32Array(1);
+  const limit = Math.floor(0x100000000 / range) * range;
+  let x;
+  do { crypto.getRandomValues(buf); x = buf[0]; } while (x >= limit);
+  return min + (x % range);
+}
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) { const j = randInt(0, i); [arr[i], arr[j]] = [arr[j], arr[i]]; }
+  return arr;
+}
+
+/* ================= Хранилище ================= */
+const Store = {
+  key: APP_ID + ':state',
+  load() {
+    try {
+      const raw = localStorage.getItem(this.key);
+      return raw ? migrate(JSON.parse(raw)) : clone(DEFAULT_STATE);
+    } catch (e) {
+      console.warn('load failed', e);
+      return clone(DEFAULT_STATE);
+    }
+  },
+  save(s) {
+    try {
+      localStorage.setItem(this.key, JSON.stringify({ v: SCHEMA_VERSION, state: s }));
+      return true;
+    } catch (e) {
+      toast('Не удалось сохранить — сделай резервную копию');
+      return false;
+    }
+  }
+};
+
+// Приводит сохранённые данные любой старой версии к текущей схеме.
+function migrate(saved) {
+  let v = (saved && saved.v) || 1;
+  const s = (saved && saved.state) || {};
+  // if (v < 2) { ...; v = 2; }
+  const base = clone(DEFAULT_STATE);
+  const out = Object.assign(base, s);
+  for (const k of ['profile', 'program', 'wizard', 'bank', 'debug', 'ui']) out[k] = Object.assign(clone(DEFAULT_STATE[k]), s[k] || {});
+  while (out.profile.reasons.length < 5) out.profile.reasons.push('');
+  return out;
+}
+
+let state = Store.load();
+function save() { Store.save(state); }
+function commit() { save(); render(); }
+
+/* ================= Время программы ================= */
+const P = () => state.program;
+const started = () => P().status === 'active';
+function nowMs() { return Date.now() + (state.debug.offsetDays || 0) * DAY; }
+function todayStr() { return ymd(new Date(nowMs())); }
+function dayNum() { return diffDays(P().startDate, todayStr()) + 1; }
+function dateOfDay(n) { return addDays(P().startDate, n - 1); }
+function dayOfDate(s) { return diffDays(P().startDate, s) + 1; }
+function finishDate() { return dateOfDay(TOTAL_DAYS); }
+function quitMs() { return parseLocal(P().lastCigaretteAt); }
+function relapses() { return state.cravings.filter((c) => c.outcome === 'smoked'); }
+function lastSmokeMs(at = nowMs()) {
+  let m = quitMs();
+  for (const c of relapses()) { const t = parseLocal(c.at); if (t > m && t <= at) m = t; }
+  return m;
+}
+function smokedBetween(from, to) {
+  let n = 0;
+  for (const c of relapses()) { const t = parseLocal(c.at); if (t > from && t <= to) n += Number(c.cigs) || 1; }
+  return n;
+}
+function figuresAt(ms) {
+  const pr = state.profile;
+  const q = quitMs();
+  const elapsed = Math.max(0, ms - q);
+  const notSmoked = Math.max(0, Math.floor((elapsed / DAY) * (pr.cigsPerDay || 0)) - smokedBetween(q, ms));
+  const money = (notSmoked / (pr.cigsPerPack || 20)) * (pr.packPrice || 0);
+  return {
+    elapsed, notSmoked, money,
+    lifeMin: notSmoked * LIFE_MIN_PER_CIG,
+    tarG: (notSmoked * TAR_MG_PER_CIG) / 1000,
+    breakMin: notSmoked * BREAK_MIN_PER_CIG,
+    lengthM: (notSmoked * CIG_CM) / 100,
+    smokeFree: Math.max(0, ms - lastSmokeMs(ms))
+  };
+}
+function endOfDayMs(n) { return parseLocal(dateOfDay(n + 1)) - 1000; }
+function figuresForDay(n) {
+  const t = dayNum();
+  return figuresAt(n >= t ? nowMs() : endOfDayMs(n));
+}
+
+/* ================= Награды: раскладка ================= */
+// Дни 1..total делятся на n отрезков; в каждом — случайный день не ближе gap к предыдущему.
+function distributeDays(n, total = TOTAL_DAYS, gap = MIN_GAP) {
+  const out = [];
+  let prev = -Infinity;
+  for (let i = 0; i < n; i++) {
+    const a = Math.floor((i * total) / n) + 1;
+    const b = Math.floor(((i + 1) * total) / n);
+    const lo = Math.max(a, prev + gap);
+    if (lo > b) throw new Error('Отрезок короче минимального разрыва');
+    const d = randInt(lo, b);
+    out.push(d);
+    prev = d;
+  }
+  return out;
+}
+function checkDistribution(daysArr, n, total = TOTAL_DAYS, gap = MIN_GAP) {
+  if (daysArr.length !== n) return 'число дней не равно N';
+  const sorted = daysArr.slice().sort((a, b) => a - b);
+  for (let i = 0; i < sorted.length; i++) {
+    if (sorted[i] < 1 || sorted[i] > total) return 'день вне диапазона';
+    if (i && sorted[i] === sorted[i - 1]) return 'повтор дня';
+    if (i && sorted[i] - sorted[i - 1] < gap) return 'разрыв меньше ' + gap;
+  }
+  return null;
+}
+// Обязательный тест из ТЗ: 1000 прогонов для N = 1, 10, 40, 100, 182.
+function runRewardTest(runs = 1000) {
+  const ns = [1, 10, 40, 100, MAX_REWARDS];
+  const report = [];
+  for (const n of ns) {
+    let fails = 0, firstErr = null;
+    for (let r = 0; r < runs; r++) {
+      let err;
+      try { err = checkDistribution(distributeDays(n), n); } catch (e) { err = e.message; }
+      if (err) { fails++; firstErr = firstErr || err; }
+    }
+    report.push({ n, runs, fails, firstErr });
+  }
+  return { ok: report.every((x) => !x.fails), report };
+}
+function assignRewardDays() {
+  const list = shuffle(state.rewards.slice());
+  const ds = distributeDays(list.length);
+  list.forEach((r, i) => { r.day = ds[i]; r.redeemedAt = null; });
+}
+const rewardForDay = (d) => state.rewards.find((r) => r.day === d) || null;
+const isFound = (r) => !!(r.day && state.chests[r.day]);
+// Новая награда после старта — на случайный будущий неоткрытый день, не ближе MIN_GAP к другим.
+function placeReward(text, exceptId) {
+  const from = Math.max(1, dayNum() + 1);
+  const taken = state.rewards.filter((r) => r.id !== exceptId && r.day).map((r) => r.day);
+  const cand = [];
+  for (let d = from; d <= TOTAL_DAYS; d++) {
+    if (state.chests[d]) continue;
+    if (taken.every((t) => Math.abs(t - d) >= MIN_GAP)) cand.push(d);
+  }
+  if (!cand.length) return null;
+  return cand[randInt(0, cand.length - 1)];
+}
+
+/* ================= Тексты сундучков ================= */
+const TEXTS = CONTENT;
+const TEXT_BY_ID = Object.fromEntries(TEXTS.map((t) => [t.id, t]));
+const KIND_LABEL = { milestone: 'Веха здоровья', celebration: 'Праздник', fact: 'Факт', motivation: 'Мотивация', tip: 'Совет' };
+function buildContentPlan() {
+  const plan = Array(TOTAL_DAYS).fill(null);
+  for (const t of TEXTS) if (t.type === 'milestone' && t.day <= TOTAL_DAYS) plan[t.day - 1] = t.id;
+  for (const t of TEXTS) if (t.type === 'celebration' && t.day <= TOTAL_DAYS && !plan[t.day - 1]) plan[t.day - 1] = t.id;
+  const types = ['fact', 'motivation', 'tip'];
+  const fresh = () => Object.fromEntries(types.map((tp) => [tp, shuffle(TEXTS.filter((t) => t.type === tp).map((t) => t.id))]));
+  let pools = fresh(), k = 0;
+  for (let i = 0; i < TOTAL_DAYS; i++) {
+    if (plan[i]) continue;
+    let id = null;
+    for (let tries = 0; tries < 3 && !id; tries++) {
+      const tp = types[(k + tries) % 3];
+      if (pools[tp].length) { id = pools[tp].pop(); k += tries; }
+    }
+    if (!id) { pools = fresh(); id = pools[types[k % 3]].pop(); }
+    k++;
+    plan[i] = id;
+  }
+  return plan;
+}
+function textForDay(d) {
+  const id = (state.chests[d] && state.chests[d].textId) || state.contentPlan[d - 1];
+  return TEXT_BY_ID[id] || { id: 'x', type: 'motivation', text: 'Ещё один день без сигарет. Каждый такой день — твой.' };
+}
+
+/* ================= Вехи здоровья ================= */
+const MILESTONES = [
+  { id: '20m', at: 20 * MIN, to: 20 * MIN, when: '20 минут', sys: ['heart'], title: 'Снижаются пульс и давление', src: 'ВОЗ' },
+  { id: '12h', at: 12 * HOUR, to: 12 * HOUR, when: '12 часов', sys: ['blood'], title: 'Уровень угарного газа в крови приходит в норму', src: 'ВОЗ' },
+  { id: '24h', at: DAY, to: DAY, when: '24 часа', sys: ['lungs'], title: 'Лёгкие начинают выводить слизь и остатки дыма', src: 'NHS' },
+  { id: '48h', at: 2 * DAY, to: 2 * DAY, when: '48 часов', sys: ['taste'], title: 'Никотин выведен из организма, улучшаются вкус и обоняние', src: 'NHS' },
+  { id: '1w', at: 7 * DAY, to: 7 * DAY, when: '1 неделя', sys: ['lungs', 'taste'], title: 'Начинает восстанавливаться естественная система очистки лёгких', src: 'Минздрав Австралии' },
+  { id: '2-12w', at: 14 * DAY, to: 84 * DAY, when: '2–12 недель', sys: ['heart', 'lungs'], title: 'Улучшается кровообращение, растёт функция лёгких', src: 'ВОЗ' },
+  { id: '2m', at: 60 * DAY, to: 60 * DAY, when: '2 месяца', sys: ['blood', 'immune'], title: 'Кровь менее густая, лучше кровоток в руках и ногах, иммунитет восстанавливается', src: 'Минздрав Австралии' },
+  { id: '1-9m', at: 30 * DAY, to: 270 * DAY, when: '1–9 месяцев', sys: ['lungs'], title: 'Меньше кашля и одышки', src: 'ВОЗ' },
+  { id: '6m', at: 182 * DAY, to: 182 * DAY, when: '6 месяцев', sys: ['lungs'], title: 'Лёгкие работают заметно лучше, меньше мокроты', src: 'Минздрав Австралии' },
+  { id: '1y', at: 365 * DAY, to: 365 * DAY, when: '1 год', sys: ['heart'], title: 'Риск ишемической болезни сердца примерно вдвое ниже, чем у курящего', src: 'ВОЗ' },
+  { id: '2-5y', at: 730 * DAY, to: 1826 * DAY, when: '2–5 лет', sys: ['heart'], title: 'Сильно снижается риск инфаркта и инсульта', src: 'Минздрав Австралии' },
+  { id: '5-15y', at: 1826 * DAY, to: 5479 * DAY, when: '5–15 лет', sys: ['heart'], title: 'Риск инсульта снижается до уровня некурящего', src: 'ВОЗ' },
+  { id: '10y', at: 3652 * DAY, to: 3652 * DAY, when: '10 лет', sys: ['lungs'], title: 'Риск рака лёгких примерно вдвое ниже, чем у курящего', src: 'ВОЗ' },
+  { id: '15y', at: 5479 * DAY, to: 5479 * DAY, when: '15 лет', sys: ['heart'], title: 'Риск ишемической болезни сердца как у некурящего', src: 'ВОЗ' }
+];
+const SYSTEMS = [
+  { id: 'heart', name: 'Сердце и сосуды' },
+  { id: 'blood', name: 'Кровь и кислород' },
+  { id: 'lungs', name: 'Лёгкие и дыхание' },
+  { id: 'taste', name: 'Вкус и обоняние' },
+  { id: 'immune', name: 'Иммунитет' }
+];
+// Вехи до 3 дней после срыва считаются от последней сигареты, остальные — от старта.
+function msBase(m) { return m.to <= 3 * DAY ? lastSmokeMs() : quitMs(); }
+function msStatus(m) {
+  const base = msBase(m), el = nowMs() - base;
+  if (el >= m.to) return { state: 'passed', pct: 1, date: ymd(new Date(base + m.to)) };
+  if (el >= m.at) return { state: 'going', pct: el / m.to, left: m.to - el };
+  return { state: 'ahead', pct: Math.max(0, el / m.to), left: m.at - el };
+}
+const LUNG_POINTS = [[0, 0], [1, 5], [3, 10], [14, 20], [90, 45], [270, 70], [365, 80], [730, 100]];
+function lungPct(dd) {
+  if (dd <= 0) return 0;
+  for (let i = 1; i < LUNG_POINTS.length; i++) {
+    const [x0, y0] = LUNG_POINTS[i - 1], [x1, y1] = LUNG_POINTS[i];
+    if (dd <= x1) return y0 + ((y1 - y0) * (dd - x0)) / (x1 - x0);
+  }
+  return 100;
+}
+
+/* ================= Копилка ================= */
+const depositFor = (d) => state.bank.deposits.find((x) => x.day === d) || null;
+function bankDaysUpTo(t) { const out = []; for (let d = 2; d <= Math.min(t, TOTAL_DAYS); d += 2) out.push(d); return out; }
+function pendingBank() { return started() ? bankDaysUpTo(dayNum()).filter((d) => !depositFor(d)) : []; }
+function bankStats() {
+  const t = Math.min(dayNum(), TOTAL_DAYS);
+  const elapsed = bankDaysUpTo(t).length;
+  const done = state.bank.deposits.filter((x) => x.status === 'done');
+  const actual = done.reduce((s, x) => s + (Number(x.amount) || 0), 0);
+  const plan = elapsed * (state.bank.amount || 0);
+  const totalPlan = (TOTAL_DAYS / 2) * (state.bank.amount || 0);
+  const pct = plan ? actual / plan : 0;
+  return { elapsed, actual, plan, pct, totalPlan, forecast: plan ? pct * totalPlan : 0, doneCount: done.length };
+}
+
+/* ================= Состояние сундука ================= */
+function chestState(d) {
+  if (state.chests[d]) return rewardForDay(d) ? 'reward' : 'open';
+  const t = dayNum();
+  if (d > t) return 'future';
+  if (d === t) return 'today';
+  return 'missed';
+}
+
+/* ================= Рисунки ================= */
+let svgSeq = 0;
+function bigChest(cls = '') {
+  const g = 'g' + (++svgSeq);
+  return `<svg class="chest-svg ${cls}" viewBox="0 0 120 106" role="img" aria-label="Сундучок">
+  <defs>
+    <radialGradient id="${g}a" cx="50%" cy="55%" r="50%"><stop offset="0" stop-color="#fff6d2"/><stop offset=".45" stop-color="#ffd36b" stop-opacity=".75"/><stop offset="1" stop-color="#ffd36b" stop-opacity="0"/></radialGradient>
+    <linearGradient id="${g}b" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#fff1b8" stop-opacity=".95"/><stop offset="1" stop-color="#fff1b8" stop-opacity="0"/></linearGradient>
+  </defs>
+  <ellipse cx="60" cy="100" rx="46" ry="5" fill="#000" opacity=".12"/>
+  <g class="glow"><ellipse cx="60" cy="48" rx="60" ry="44" fill="url(#${g}a)"/><path d="M24 56 L6 2 H114 L96 56 Z" fill="url(#${g}b)"/></g>
+  <rect x="15" y="50" width="90" height="10" rx="2" style="fill:var(--chest-inside)"/>
+  <g class="body">
+    <rect x="12" y="55" width="96" height="42" rx="7" style="fill:var(--chest-body)"/>
+    <rect x="27" y="55" width="9" height="42" style="fill:var(--chest-band)"/>
+    <rect x="84" y="55" width="9" height="42" style="fill:var(--chest-band)"/>
+    <rect x="12" y="55" width="96" height="5" style="fill:var(--chest-band)"/>
+    <rect x="12" y="89" width="96" height="3" fill="#000" opacity=".12"/>
+    <rect x="51" y="58" width="18" height="20" rx="4" style="fill:var(--chest-lock)"/>
+    <circle cx="60" cy="66" r="2.6" style="fill:var(--chest-inside)"/>
+    <rect x="58.9" y="66" width="2.2" height="6.5" rx="1" style="fill:var(--chest-inside)"/>
+  </g>
+  <g class="lid">
+    <path d="M12 56 V38 C12 20 30 12 60 12 C90 12 108 20 108 38 V56 Z" style="fill:var(--chest-lid)"/>
+    <path d="M27 56 V18 C30 17 33 16.4 36 16 V56 Z" style="fill:var(--chest-band)"/>
+    <path d="M84 56 V16 C87 16.4 90 17 93 18 V56 Z" style="fill:var(--chest-band)"/>
+    <rect x="12" y="50" width="96" height="6" style="fill:var(--chest-band)"/>
+    <path d="M18 34 C20 22 36 16.5 60 16.5" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="3" stroke-linecap="round"/>
+    <rect x="51" y="46" width="18" height="12" rx="3" style="fill:var(--chest-lock)"/>
+  </g>
+</svg>`;
+}
+function miniChest(kind) {
+  if (kind === 'open') return '<svg class="mini" viewBox="0 0 40 34" aria-hidden="true"><use href="#ch-open"/></svg>';
+  if (kind === 'reward') return '<svg class="mini" viewBox="0 0 40 34" aria-hidden="true"><use href="#ch-open"/><use href="#ch-star" transform="translate(10 -1) scale(.5)"/></svg>';
+  if (kind === 'future') return '<svg class="mini" viewBox="0 0 40 34" aria-hidden="true"><use href="#ch-closed"/><use href="#ch-lock"/></svg>';
+  return '<svg class="mini" viewBox="0 0 40 34" aria-hidden="true"><use href="#ch-closed"/></svg>';
+}
+function seeded(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+const TAR_DOTS = (() => {
+  const r = seeded(7), out = [];
+  const lobes = [{ cx: 74, cy: 132, rx: 30, ry: 46 }, { cx: 166, cy: 134, rx: 28, ry: 44 }];
+  while (out.length < 40) {
+    const L = lobes[out.length % 2];
+    const x = L.cx + (r() * 2 - 1) * L.rx, y = L.cy + (r() * 2 - 1) * L.ry;
+    if (((x - L.cx) / L.rx) ** 2 + ((y - L.cy) / L.ry) ** 2 <= 0.82) out.push([x, y, 2.2 + r() * 2.6]);
+  }
+  return out;
+})();
+function mixHex(a, b, t) {
+  const pa = a.match(/\w\w/g).map((h) => parseInt(h, 16)), pb = b.match(/\w\w/g).map((h) => parseInt(h, 16));
+  return '#' + pa.map((v, i) => Math.round(v + (pb[i] - v) * t).toString(16).padStart(2, '0')).join('');
+}
+function lungsSvg(pct) {
+  const t = clamp(pct / 100, 0, 1);
+  const fill = mixHex('8c7a69', 'f19ea0', t), edge = mixHex('5f5045', 'd16f78', t), tree = mixHex('6b5a4c', 'c95e6b', t);
+  const shown = Math.round(40 * (1 - t));
+  const dots = TAR_DOTS.slice(0, shown).map(([x, y, rr]) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rr.toFixed(1)}" fill="#3b2f27" opacity=".55"/>`).join('');
+  return `<svg viewBox="0 0 240 210" role="img" aria-label="Лёгкие: ${Math.round(pct)}% пути">
+  <g class="breathing">
+    <path d="M110 66 C86 50 46 66 38 118 C31 164 50 196 82 194 C104 192 112 178 112 152 Z" fill="${fill}" stroke="${edge}" stroke-width="3"/>
+    <path d="M130 66 C154 50 196 66 204 118 C211 164 192 196 160 194 C140 192 130 180 130 162 C140 156 142 144 131 136 Z" fill="${fill}" stroke="${edge}" stroke-width="3"/>
+    ${dots}
+    <g fill="none" stroke="${tree}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M120 8 V62"/>
+      <path d="M120 62 C110 70 100 74 92 84" /><path d="M120 62 C130 70 140 74 148 84"/>
+    </g>
+    <g fill="none" stroke="${tree}" stroke-width="2.6" stroke-linecap="round" opacity=".85">
+      <path d="M92 84 C82 96 74 110 70 128"/><path d="M92 84 C92 104 90 124 92 150"/><path d="M80 104 C70 112 62 116 56 122"/><path d="M72 124 C64 136 60 146 58 160"/><path d="M90 128 C84 140 80 156 80 172"/>
+      <path d="M148 84 C158 96 166 110 170 128"/><path d="M148 84 C150 100 152 116 150 130"/><path d="M160 104 C170 112 178 116 184 122"/><path d="M168 124 C176 136 180 146 182 160"/><path d="M152 132 C158 146 160 160 160 174"/>
+    </g>
+  </g>
+</svg>`;
+}
+
+/* ================= Отрисовка: общая ================= */
+function render() {
+  const st = P().status;
+  $('#screenWelcome').hidden = st !== 'none';
+  $('#screenWizard').hidden = st !== 'setup';
+  $('#screenMain').hidden = st !== 'active';
+  if (st === 'none') renderWelcome();
+  else if (st === 'setup') renderWizard();
+  else renderMain();
+}
+
+function renderWelcome() {
+  $('#screenWelcome').innerHTML = `
+    ${bigChest('hero-chest wobble')}
+    <h1>2 года без сигарет</h1>
+    <p>Каждый день — сундучок: что сейчас восстанавливается в организме, факт или совет. Иногда внутри награда, которую ты назначишь себе сам.</p>
+    <button class="btn primary big" data-act="begin">Начинаю бросать курить</button>
+    <p class="tiny">Работает без интернета. Всё хранится только на этом устройстве.</p>`;
+}
+
+/* ================= Мастер ================= */
+function renderWizard() {
+  const s = state.wizard.step, pr = state.profile, p = P();
+  const steps = Array.from({ length: WIZARD_STEPS }, (_, i) => `<i class="${i < s ? 'on' : ''}"></i>`).join('');
+  let body = '', title = '', lead = '';
+  if (s === 1) {
+    title = 'О привычке';
+    lead = 'По этим цифрам приложение посчитает, сколько сигарет ты не выкурил и сколько денег сэкономил.';
+    body = `
+      <div class="two">
+        <label class="lbl"><span><b>Сигарет в день</b></span><input class="field" data-bind="profile.cigsPerDay" data-type="num" inputmode="decimal" value="${esc(pr.cigsPerDay ?? '')}" placeholder="15" autocomplete="off"></label>
+        <label class="lbl"><span><b>Цена пачки, ₽</b></span><input class="field" data-bind="profile.packPrice" data-type="num" inputmode="decimal" value="${esc(pr.packPrice ?? '')}" placeholder="250" autocomplete="off"></label>
+      </div>
+      <div class="two">
+        <label class="lbl"><span>Сигарет в пачке</span><input class="field" data-bind="profile.cigsPerPack" data-type="num" inputmode="numeric" value="${esc(pr.cigsPerPack ?? 20)}" autocomplete="off"></label>
+        <label class="lbl"><span>Стаж курения, лет</span><input class="field" data-bind="profile.yearsSmoking" data-type="num" inputmode="decimal" value="${esc(pr.yearsSmoking ?? '')}" placeholder="необязательно" autocomplete="off"></label>
+      </div>
+      <label class="lbl"><span>Как к тебе обращаться</span><input class="field" data-bind="profile.name" data-type="text" value="${esc(pr.name)}" placeholder="необязательно" autocomplete="off" enterkeyhint="done"></label>
+      <p class="muted small" id="wzErr" hidden>Укажи, сколько сигарет в день и сколько стоит пачка.</p>`;
+  } else if (s === 2) {
+    title = 'Старт';
+    lead = 'День старта — первый день программы. От времени последней сигареты пойдёт таймер и первые вехи здоровья.';
+    const t = todayStr();
+    body = `
+      <label class="lbl"><span><b>Дата старта</b></span><input class="field" type="date" data-bind="program.startDate" data-type="date" value="${esc(p.startDate || t)}" min="${addDays(t, -60)}" max="${addDays(t, 14)}"></label>
+      <label class="lbl"><span><b>Последняя сигарета</b></span><input class="field" type="datetime-local" data-bind="program.lastCigaretteAt" data-type="datetime" value="${esc((p.lastCigaretteAt || localIso(nowMs())).slice(0, 16))}"></label>
+      <p class="muted small" id="wzFinish">Финиш программы — ${esc(dateLong(addDays(p.startDate || t, TOTAL_DAYS - 1), true))}.</p>`;
+  } else if (s === 3) {
+    title = 'Зачем я бросаю';
+    lead = 'Напиши своими словами. Эти причины появятся, когда будет тяжело и ты нажмёшь «Хочу курить».';
+    const ph = ['Чтобы легко подниматься по лестнице', 'Чтобы не пахнуть табаком', 'Отложить деньги на отпуск', 'Быть примером для близких', 'Чувствовать вкус еды'];
+    body = pr.reasons.map((r, i) => `<input class="field" data-bind="profile.reasons.${i}" data-type="text" value="${esc(r)}" placeholder="${ph[i]}" autocomplete="off" aria-label="Причина ${i + 1}">`).join('');
+  } else if (s === 4) {
+    title = 'Награды';
+    lead = 'Придумай подарки себе. Они спрячутся в случайных сундучках на все 2 года — не чаще раза в 4 дня.';
+    body = wizardRewardsBody();
+  } else if (s === 5) {
+    title = 'Копилка';
+    lead = 'Раз в 2 дня приложение попросит перевести эту сумму на накопительный счёт — как будто ты потратил её на сигареты.';
+    const b = state.bank;
+    body = `
+      <label class="lbl"><span><b>Сумма взноса, ₽</b></span><input class="field" data-bind="bank.amount" data-type="num" inputmode="decimal" value="${esc(b.amount ?? 300)}" autocomplete="off"></label>
+      <div class="two">
+        <label class="lbl"><span>На что копишь</span><input class="field" data-bind="bank.goalName" data-type="text" value="${esc(b.goalName)}" placeholder="Отпуск" autocomplete="off"></label>
+        <label class="lbl"><span>Сумма цели, ₽</span><input class="field" data-bind="bank.goalAmount" data-type="num" inputmode="decimal" value="${esc(b.goalAmount ?? '')}" placeholder="100 000" autocomplete="off"></label>
+      </div>
+      <p class="muted small" id="wzBankTotal">За 2 года — ${TOTAL_DAYS / 2} взносов, ${fmtMoney((TOTAL_DAYS / 2) * (b.amount || 0))}.</p>`;
+  } else {
+    title = 'Проверим';
+    lead = 'Если всё верно — поехали. Дату старта потом не изменить, остальное можно поправить в настройках.';
+    const start = p.startDate || todayStr();
+    body = `<dl class="summary">
+      <div><dt>Старт</dt><dd>${dateShort(start)}</dd></div>
+      <div><dt>Финиш</dt><dd>${dateShort(addDays(start, TOTAL_DAYS - 1))}</dd></div>
+      <div><dt>Сигарет в день</dt><dd>${fmt1(pr.cigsPerDay)}</dd></div>
+      <div><dt>Пачка</dt><dd>${fmtMoney(pr.packPrice)}</dd></div>
+      <div><dt>Наград в сундуках</dt><dd>${state.rewards.length}</dd></div>
+      <div><dt>Копилка</dt><dd>${fmtMoney(state.bank.amount)} раз в 2 дня</dd></div>
+    </dl>`;
+  }
+  $('#screenWizard').innerHTML = `
+    <div class="wz-top">
+      <button class="btn icon quiet" data-act="wz-back" aria-label="Назад" style="background:transparent;box-shadow:none">‹</button>
+      <div class="wz-steps" aria-hidden="true">${steps}</div>
+      <span class="wz-count">Шаг ${s} из ${WIZARD_STEPS}</span>
+    </div>
+    <h1>${title}</h1>
+    <p class="lead">${lead}</p>
+    <div class="wz-body">${body}</div>
+    <div class="wz-nav">
+      ${s === WIZARD_STEPS ? '<button class="btn primary big" data-act="start-program">Поехали</button>' : '<button class="btn primary big" data-act="wz-next">Далее</button>'}
+    </div>`;
+}
+function wizardRewardsBody() {
+  const n = state.rewards.length;
+  const items = state.rewards.map((r) => `<li><input class="field" data-reward="${r.id}" value="${esc(r.text)}" aria-label="Награда" autocomplete="off"><button class="btn icon quiet" data-act="wz-del-reward" data-id="${r.id}" aria-label="Удалить">✕</button></li>`).join('');
+  const ideas = REWARD_IDEAS.filter((x) => !state.rewards.some((r) => r.text === x)).map((x) => `<button class="chip" data-act="wz-idea" data-text="${esc(x)}">+ ${esc(x)}</button>`).join('');
+  return `
+    <form class="row" data-form="wz-add-reward" autocomplete="off">
+      <input class="field grow" id="newReward" placeholder="Например, спиннинг" enterkeyhint="done" aria-label="Новая награда" style="flex:1 1 200px">
+      <button class="btn primary" type="submit">Добавить</button>
+    </form>
+    ${ideas ? `<div class="chips" aria-label="Идеи">${ideas}</div>` : ''}
+    <ul class="reward-list">${items}</ul>
+    <p class="muted small">Наград: <b>${n}</b> из максимум ${MAX_REWARDS}</p>
+    ${n < 10 ? `<p class="note">${n === 0 ? 'Пока наград нет. Без них в сундуках будут только тексты.' : 'Наград меньше 10 — они будут попадаться реже раза в 2 месяца. Добавь ещё, чтобы находить их чаще.'}</p>` : ''}`;
+}
+
+/* ================= Основной экран ================= */
+const TAB_TITLE = { chests: 'Сундучки', journal: 'Тяга', health: 'Здоровье', stats: 'Аналитика' };
+function renderMain() {
+  const tab = state.ui.tab;
+  $('#title').textContent = TAB_TITLE[tab];
+  $$('.tabbar [data-tab]').forEach((b) => { if (b.dataset.tab === tab) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  renderBanners();
+  const el = $('#tab');
+  if (tab === 'chests') el.innerHTML = tabChests();
+  else if (tab === 'journal') el.innerHTML = tabJournal();
+  else if (tab === 'health') el.innerHTML = tabHealth();
+  else el.innerHTML = tabStats();
+}
+
+let updateWorker = null, backupDismissed = false;
+function renderBanners() {
+  const out = [];
+  if (updateWorker) out.push('<div class="banner"><p>Доступна новая версия приложения.</p><button class="btn primary" data-act="sw-update">Обновить</button></div>');
+  if (IS_PREVIEW && !state.ui.hintHidden) out.push('<div class="banner"><p>Это превью: данные хранятся только в этом браузере. Чтобы поставить приложение на iPhone, опубликуй файлы из архива на GitHub Pages.</p><button class="btn" data-act="hide-hint">Понятно</button></div>');
+  else if (!isStandalone && !state.ui.hintHidden) out.push('<div class="banner"><p>Чтобы поставить иконку: «Поделиться» → «На экран „Домой“». Данные вводи уже в установленном приложении — у него своё хранилище, из вкладки Safari они туда не перейдут.</p><button class="btn" data-act="hide-hint">Понятно</button></div>');
+  if (!backupDismissed && started()) {
+    const ref = parseLocal(state.lastExportAt || P().startedAt);
+    if (Date.now() - ref > 30 * DAY) out.push('<div class="banner"><p>Сделай резервную копию: если удалить иконку, данные пропадут.</p><button class="btn primary" data-act="export">Сохранить</button><button class="btn quiet" data-act="dismiss-backup">Позже</button></div>');
+  }
+  $('#banners').innerHTML = out.join('');
+}
+
+/* ---------- Вкладка «Сундучки» ---------- */
+function tabChests() {
+  const t = dayNum(), f = figuresAt(nowMs());
+  const shown = clamp(t, 0, TOTAL_DAYS);
+  let head;
+  if (t < 1) {
+    head = `<div class="daystat"><p class="dayline"><span class="lbl">До старта</span><span class="big num">${1 - t}</span><span class="of">${plural(1 - t, 'день', 'дня', 'дней')}</span></p>
+      <p class="timer">Первый сундучок откроется ${esc(dateLong(P().startDate))}.</p></div>`;
+  } else {
+    head = `<div class="daystat">
+      <p class="dayline"><span class="lbl">День</span><span class="big num">${shown}</span><span class="of">из ${TOTAL_DAYS}</span></p>
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${TOTAL_DAYS}" aria-valuenow="${shown}" aria-label="Пройдено дней программы"><i style="width:${((shown / TOTAL_DAYS) * 100).toFixed(2)}%"></i></div>
+      <p class="timer">Без сигарет <b id="tmr">${fmtDHM(f.smokeFree)}</b></p>
+      <div class="savings"><span><b class="num" id="tmrCigs">${fmtInt(f.notSmoked)}</b>не выкурено</span><span><b class="num" id="tmrMoney">${fmtMoney(f.money)}</b>сэкономлено</span></div>
+    </div>`;
+  }
+  return `<div class="layout chests"><div>${head}${todayHero()}${calendar()}</div><aside class="side" id="side">${sidePanel()}</aside></div>`;
+}
+function todayHero() {
+  const t = dayNum();
+  if (t < 1) return '';
+  if (t > TOTAL_DAYS) {
+    const missed = Object.keys(state.chests).length < TOTAL_DAYS;
+    return `<section class="hero-today"><h2>730 дней позади</h2><p class="muted">Ты прошёл всю программу. ${missed ? 'Пропущенные сундучки всё ещё можно открыть.' : 'Все сундучки открыты.'}</p></section>`;
+  }
+  if (!state.chests[t]) {
+    return `<section class="hero-today">
+      <div data-act="open-day" data-day="${t}" role="button" aria-label="Открыть сундучок дня ${t}">${bigChest('wobble')}</div>
+      <h2>Сундучок дня ${t}</h2>
+      <button class="btn gold big" data-act="open-day" data-day="${t}">Открыть</button>
+    </section>`;
+  }
+  const tx = textForDay(t), rw = rewardForDay(t);
+  return `<section class="hero-today opened">
+    <div class="peek-top"><svg viewBox="0 0 40 34" aria-hidden="true"><use href="#ch-open"/>${rw ? '<use href="#ch-star" transform="translate(10 -1) scale(.5)"/>' : ''}</svg><div><p class="dc-kind k-${tx.type}">${KIND_LABEL[tx.type]}</p></div></div>
+    <p class="peek">${esc(tx.text)}</p>
+    ${rw ? `<p class="small"><b>Награда дня:</b> ${esc(rw.text)}${rw.redeemedAt ? ' — получена' : ''}</p>` : ''}
+    <button class="btn" data-act="open-day" data-day="${t}">Открыть ещё раз</button>
+  </section>`;
+}
+function programMonths() {
+  const s = P().startDate.slice(0, 7), e = finishDate().slice(0, 7), out = [];
+  let [y, m] = s.split('-').map(Number);
+  for (;;) { const k = `${y}-${pad(m)}`; out.push(k); if (k === e) break; m++; if (m > 12) { m = 1; y++; } }
+  return out;
+}
+function currentMonth() {
+  const months = programMonths();
+  let m = state.ui.month;
+  if (!m || !months.includes(m)) {
+    const t = todayStr().slice(0, 7);
+    m = months.includes(t) ? t : (t < months[0] ? months[0] : months.at(-1));
+  }
+  return m;
+}
+function calendar() {
+  const months = programMonths(), m = currentMonth(), idx = months.indexOf(m);
+  const [y, mo] = m.split('-').map(Number);
+  const first = new Date(y, mo - 1, 1), lead = (first.getDay() + 6) % 7, dim = new Date(y, mo, 0).getDate();
+  const sel = state.ui.selectedDay || clamp(dayNum(), 1, TOTAL_DAYS);
+  let cells = '';
+  for (let i = 0; i < lead; i++) cells += '<span class="cell out" aria-hidden="true"></span>';
+  for (let d = 1; d <= dim; d++) {
+    const ds = `${m}-${pad(d)}`, n = dayOfDate(ds);
+    if (n < 1 || n > TOTAL_DAYS) { cells += `<span class="cell out" aria-hidden="true"><span class="dn">${d}</span></span>`; continue; }
+    const st = chestState(n);
+    const label = { future: 'закрыт', today: 'сегодня, можно открыть', missed: 'пропущен, можно открыть', open: 'открыт', reward: 'открыт, была награда' }[st];
+    const kind = st === 'today' || st === 'missed' ? 'closed' : st;
+    cells += `<button class="cell ${st}${n === sel && isWide() ? ' sel' : ''}" data-act="open-day" data-day="${n}" aria-label="${d} ${MONTHS_GEN[mo - 1]}, день ${n}: ${label}"><span class="dn">${d}</span>${miniChest(kind)}</button>`;
+  }
+  return `
+    <div class="cal-head">
+      <button class="btn icon" data-act="month" data-dir="-1" ${idx <= 0 ? 'disabled' : ''} aria-label="Предыдущий месяц">‹</button>
+      <h2>${MONTHS_NOM[mo - 1]} ${y}</h2>
+      <button class="btn icon" data-act="month" data-dir="1" ${idx >= months.length - 1 ? 'disabled' : ''} aria-label="Следующий месяц">›</button>
+    </div>
+    <div class="cal-tools"><span>Месяц ${idx + 1} из ${months.length}</span><button class="btn" data-act="month-today">Сегодня</button></div>
+    <div class="wk" aria-hidden="true">${WD_SHORT.map((w) => `<span>${w}</span>`).join('')}</div>
+    <div class="grid" id="calGrid">${cells}</div>
+    <div class="legend" aria-hidden="true">
+      <span><svg viewBox="0 0 40 34"><use href="#ch-closed"/></svg>можно открыть</span>
+      <span><svg viewBox="0 0 40 34"><use href="#ch-open"/></svg>открыт</span>
+      <span><svg viewBox="0 0 40 34"><use href="#ch-open"/><use href="#ch-star" transform="translate(10 -1) scale(.5)"/></svg>была награда</span>
+      <span class="cell future" style="background:none;aspect-ratio:auto;min-height:0;display:inline-flex"><svg viewBox="0 0 40 34"><use href="#ch-closed"/><use href="#ch-lock"/></svg></span><span style="margin-left:-8px">впереди</span>
+    </div>`;
+}
+const isWide = () => matchMedia('(min-width: 960px) and (orientation: landscape)').matches;
+function sidePanel() {
+  if (dayNum() < 1) return `<p class="muted">Сундучки начнут открываться ${esc(dateLong(P().startDate))}.</p>`;
+  const d = state.ui.selectedDay || clamp(dayNum(), 1, TOTAL_DAYS);
+  const st = chestState(d);
+  if (st === 'open' || st === 'reward') return dayCard(d);
+  if (st === 'future') return `<div class="daycard"><div class="dc-head"><p class="dc-day">День ${d}</p><p class="dc-date">${esc(dateLong(dateOfDay(d), true))}</p></div>${miniChest('future')}<p class="muted">Откроется ${esc(dateLong(dateOfDay(d)))}.</p></div>`;
+  return `<div class="daycard" style="justify-items:center;text-align:center"><div class="dc-head" style="width:100%"><p class="dc-day">День ${d}</p><p class="dc-date">${esc(dateLong(dateOfDay(d), true))}</p></div>
+    <div style="width:200px" data-act="open-day" data-day="${d}" role="button" aria-label="Открыть сундучок">${bigChest(st === 'today' ? 'wobble' : '')}</div>
+    <button class="btn gold big" data-act="open-day" data-day="${d}">Открыть</button></div>`;
+}
+function dayCard(d) {
+  const tx = textForDay(d), rw = rewardForDay(d), f = figuresForDay(d);
+  const life = fmtLife(f.lifeMin);
+  return `<article class="daycard">
+    <div class="dc-head"><p class="dc-day">День ${d}</p><p class="dc-date">${esc(dateLong(dateOfDay(d), true))}</p></div>
+    <p class="dc-kind k-${tx.type}">${KIND_LABEL[tx.type]}</p>
+    <blockquote class="dc-text">${esc(tx.text)}</blockquote>
+    ${tx.source ? `<p class="dc-src">Источник: ${esc(tx.source)}</p>` : ''}
+    <dl class="figs">
+      <div><dt>Без сигарет</dt><dd>${fmtElapsed(f.smokeFree)}</dd></div>
+      <div><dt>Не выкурено</dt><dd>${fmtInt(f.notSmoked)}</dd></div>
+      <div><dt>Сэкономлено</dt><dd>${fmtMoney(f.money)}</dd></div>
+      <div><dt>Вернулось жизни</dt><dd>~${life}</dd></div>
+    </dl>
+    ${rw ? `<div class="dc-reward"><p class="r-lbl">Твоя награда</p><p class="r-text">${esc(rw.text)}</p>
+      ${rw.redeemedAt ? `<p class="small">Получена ${dateShort(rw.redeemedAt)}</p>` : `<button class="btn primary" data-act="redeem" data-day="${d}">Получил награду</button>`}</div>` : ''}
+  </article>`;
+}
+
+/* ---------- Открытие сундука ---------- */
+let bankDeferred = false;
+function openDay(d) {
+  if (!started()) return;
+  if (d < 1 || d > TOTAL_DAYS) return;
+  if (d > dayNum()) { toast(`Откроется ${dateLong(dateOfDay(d))}`); return; }
+  const first = !state.chests[d];
+  state.ui.selectedDay = d;
+  if (first) {
+    state.chests[d] = { openedAt: localIso(nowMs()), textId: state.contentPlan[d - 1] };
+    save();
+  } else if (isWide()) { save(); render(); return; }
+  showChest(d, first);
+}
+function showChest(d, animate) {
+  const dlg = $('#chestDlg');
+  const rw = rewardForDay(d);
+  dlg.innerHTML = `<div class="chest-stage">
+    <button class="btn icon close" data-act="close-chest" aria-label="Закрыть">✕</button>
+    <div class="chest-inner">
+      ${bigChest('stage-chest' + (animate ? '' : ' is-open'))}
+      <div class="chest-card${animate ? '' : ' show'}" id="chestCard">${dayCard(d)}</div>
+      <button class="btn big wide" data-act="close-chest">Закрыть</button>
+    </div></div>`;
+  dlg.showModal();
+  if (!animate) return;
+  const svg = $('.stage-chest', dlg), reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { svg.classList.add('is-open'); $('#chestCard').classList.add('show'); return; }
+  requestAnimationFrame(() => {
+    svg.classList.add('shake');
+    setTimeout(() => { svg.classList.remove('shake'); svg.classList.add('is-open'); if (rw) confetti(); }, 520);
+    setTimeout(() => $('#chestCard') && $('#chestCard').classList.add('show'), 900);
+  });
+}
+function confetti() {
+  const box = document.createElement('div');
+  box.className = 'confetti';
+  const colors = ['#efb435', '#ffd36b', '#23b883', '#3fd3a0', '#f19ea0', '#ffffff'];
+  for (let i = 0; i < 70; i++) {
+    const p = document.createElement('i');
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.background = colors[i % colors.length];
+    p.style.setProperty('--dx', (Math.random() * 120 - 60).toFixed(0) + 'px');
+    p.style.setProperty('--rot', (Math.random() * 720 - 360).toFixed(0) + 'deg');
+    p.style.animationDuration = (1.6 + Math.random() * 1.4).toFixed(2) + 's';
+    p.style.animationDelay = (Math.random() * 0.3).toFixed(2) + 's';
+    box.append(p);
+  }
+  document.body.append(box);
+  setTimeout(() => box.remove(), 3600);
+}
+
+/* ---------- Вкладка «Тяга» ---------- */
+let journalLimit = 50;
+function tabJournal() {
+  const all = state.cravings.slice().sort((a, b) => b.at.localeCompare(a.at));
+  const filter = state.ui.journalFilter;
+  const list = filter ? all.filter((c) => c.trigger === filter) : all;
+  const t = todayStr();
+  const todayN = all.filter((c) => c.at.slice(0, 10) === t).length;
+  const weekN = all.filter((c) => diffDays(c.at.slice(0, 10), t) < 7 && diffDays(c.at.slice(0, 10), t) >= 0).length;
+  const used = [...new Set(all.map((c) => c.trigger))];
+  const chips = used.length > 1 ? `<div class="chips" style="margin-top:18px"><button class="chip" data-act="jfilter" data-v="" aria-pressed="${!filter}">Все</button>${used.map((u) => `<button class="chip" data-act="jfilter" data-v="${esc(u)}" aria-pressed="${filter === u}">${esc(u)}</button>`).join('')}</div>` : '';
+  let groups = '';
+  if (!all.length) {
+    groups = `<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 9c2.5-2.4 4.5-2.4 7 0s4.5 2.4 7 0 4.5-2.4 6 0"/><path d="M2 15c2.5-2.4 4.5-2.4 7 0s4.5 2.4 7 0 4.5-2.4 6 0"/></svg>
+      <p>Здесь будут твои отметки. Когда захочется курить, нажми «Хочу курить» — так станет видно, в какие моменты тяга сильнее.</p></div>`;
+  } else {
+    const byDay = new Map();
+    for (const c of list.slice(0, journalLimit)) { const k = c.at.slice(0, 10); if (!byDay.has(k)) byDay.set(k, []); byDay.get(k).push(c); }
+    for (const [k, arr] of byDay) {
+      const dd = diffDays(k, t);
+      const name = dd === 0 ? 'Сегодня' : dd === 1 ? 'Вчера' : dateLong(k);
+      groups += `<section class="j-day"><h3>${esc(name)}</h3><ul class="j-list">${arr.map(jItem).join('')}</ul></section>`;
+    }
+    if (list.length > journalLimit) groups += `<button class="btn wide" style="margin-top:18px" data-act="jmore">Показать ещё (${list.length - journalLimit})</button>`;
+  }
+  return `
+    <div class="sos-cta"><p><b>Тянет прямо сейчас?</b>Подыши 3 минуты вместе с приложением — волна пройдёт.</p><button class="btn primary" data-act="sos">Переждать</button></div>
+    <p class="muted small" style="margin-top:14px">Сегодня ${todayN} ${plural(todayN, 'отметка', 'отметки', 'отметок')}, за 7 дней — ${weekN}.</p>
+    ${chips}${groups}`;
+}
+function jItem(c) {
+  const dots = Array.from({ length: 5 }, (_, i) => `<i class="${i < c.intensity ? 'on' : ''}"></i>`).join('');
+  return `<li><button class="j-item" data-act="edit-craving" data-id="${c.id}">
+    <span class="t">${timeHM(c.at)}</span>
+    <span><span class="what">${esc(c.trigger)}</span><br><span class="dots" aria-label="Сила ${c.intensity} из 5">${dots}</span>${c.note ? ` <span class="note">${esc(c.note)}</span>` : ''}</span>
+    ${c.outcome === 'smoked' ? `<span class="tag smoked">Закурил${c.cigs > 1 ? ' ×' + c.cigs : ''}</span>` : '<span class="tag">Справился</span>'}
+  </button></li>`;
+}
+
+/* ---------- Отметка тяги ---------- */
+let draft = null;
+function openCraving(id) {
+  const c = id ? state.cravings.find((x) => x.id === id) : null;
+  draft = c ? clone(c) : { id: null, trigger: null, intensity: 3, outcome: 'resisted', cigs: 1, note: '', at: localIso(nowMs()) };
+  openDialog(cravingHtml(), 'dlg');
+}
+function cravingHtml() {
+  const d = draft;
+  const chips = state.triggers.map((tr) => `<button class="chip" data-act="cr-trigger" data-v="${esc(tr)}" aria-pressed="${d.trigger === tr}">${esc(tr)}</button>`).join('');
+  return `<div class="dlg">
+    <div class="dlg-head"><h2 id="dlgTitle">${d.id ? 'Отметка' : 'Хочу курить'}</h2><button class="btn icon" data-act="close-dlg" aria-label="Закрыть">✕</button></div>
+    <div class="dlg-body">
+      <div class="stack"><p class="small"><b>Когда это случилось?</b></p><div class="chips">${chips}<button class="chip" data-act="cr-add-trigger">+ Своя ситуация</button></div>
+        <form class="row" data-form="cr-new-trigger" id="newTrigForm" hidden autocomplete="off"><input class="field" id="newTrig" placeholder="Например, в очереди" style="flex:1 1 180px" enterkeyhint="done" aria-label="Своя ситуация"><button class="btn" type="submit">Добавить</button></form></div>
+      <div class="stack"><p class="small"><b>Насколько сильно?</b></p><div class="intens">${[1, 2, 3, 4, 5].map((n) => `<button data-act="cr-int" data-v="${n}" aria-pressed="${d.intensity === n}" aria-label="Сила ${n}">${n}</button>`).join('')}</div></div>
+      <div class="stack"><p class="small"><b>Итог</b></p><div class="seg"><button data-act="cr-out" data-v="resisted" aria-pressed="${d.outcome === 'resisted'}">Справился</button><button data-act="cr-out" data-v="smoked" aria-pressed="${d.outcome === 'smoked'}">Закурил</button></div>
+        ${d.outcome === 'smoked' ? `<label class="lbl"><span>Сколько сигарет</span><input class="field" id="crCigs" inputmode="numeric" value="${esc(d.cigs)}" autocomplete="off"></label>` : ''}</div>
+      <details class="more" ${d.id || d.note ? 'open' : ''}><summary>Время и заметка</summary>
+        <div class="stack" style="margin-top:8px">
+          <label class="lbl"><span>Время</span><input class="field" type="datetime-local" id="crAt" value="${esc(d.at.slice(0, 16))}"></label>
+          <label class="lbl"><span>Заметка</span><textarea class="field" id="crNote" placeholder="Что происходило?">${esc(d.note)}</textarea></label>
+        </div></details>
+    </div>
+    <div class="dlg-foot">
+      <button class="btn primary big" data-act="cr-save" ${d.trigger ? '' : 'disabled'}>Сохранить</button>
+      ${d.id ? '<button class="btn quiet" data-act="cr-delete">Удалить отметку</button>' : ''}
+    </div></div>`;
+}
+function rerenderCraving() {
+  const dlg = $('#dlg');
+  const scroll = $('.dlg-body', dlg)?.scrollTop || 0;
+  captureCravingInputs();
+  dlg.innerHTML = cravingHtml();
+  $('.dlg-body', dlg).scrollTop = scroll;
+}
+function captureCravingInputs() {
+  if (!draft) return;
+  const at = $('#crAt'), note = $('#crNote'), cigs = $('#crCigs');
+  if (at && at.value) draft.at = at.value.length === 16 ? at.value + ':00' : at.value;
+  if (note) draft.note = note.value.trim();
+  if (cigs) draft.cigs = Math.max(1, Math.round(parseNum(cigs.value) || 1));
+}
+function saveCraving() {
+  captureCravingInputs();
+  const d = draft;
+  if (!d.trigger) return;
+  const rec = { id: d.id || uid(), at: d.at, trigger: d.trigger, intensity: d.intensity, outcome: d.outcome, cigs: d.outcome === 'smoked' ? d.cigs : 0, note: d.note };
+  const i = state.cravings.findIndex((x) => x.id === rec.id);
+  const isNew = i < 0;
+  if (isNew) state.cravings.push(rec); else state.cravings[i] = rec;
+  commit();
+  closeDialog('dlg');
+  if (!isNew) { toast('Отметка сохранена'); return; }
+  if (rec.outcome === 'smoked') showRelapse(rec);
+  else showSosOffer();
+}
+function showSosOffer() {
+  openDialog(`<div class="dlg">
+    <div class="dlg-head"><h2 id="dlgTitle">Записал</h2><button class="btn icon" data-act="close-dlg" aria-label="Закрыть">✕</button></div>
+    <div class="dlg-body"><p>Тяга похожа на волну: она поднимается и через несколько минут спадает. Давай переждём её вместе — дыхание и пара подсказок.</p></div>
+    <div class="dlg-foot"><button class="btn primary big" data-act="sos">Переждать тягу</button><button class="btn quiet" data-act="close-dlg">Не сейчас</button></div></div>`, 'dlg');
+}
+function showRelapse(rec) {
+  const f = figuresAt(nowMs());
+  const daysTotal = Math.max(0, Math.floor((nowMs() - quitMs()) / DAY));
+  openDialog(`<div class="dlg">
+    <div class="dlg-head"><h2 id="dlgTitle">Бывает</h2><button class="btn icon" data-act="close-dlg" aria-label="Закрыть">✕</button></div>
+    <div class="dlg-body">
+      <p>${rec.cigs > 1 ? rec.cigs + ' ' + plural(rec.cigs, 'сигарета', 'сигареты', 'сигарет') : 'Одна сигарета'} не перечёркивает ${days(daysTotal)} программы. Большинство людей бросают не с первой попытки — важно просто продолжить.</p>
+      <p>Таймер «Без сигарет» начат заново. Календарь, награды и копилка идут как шли: не выкурено уже ${fmtInt(f.notSmoked)}, сэкономлено ${fmtMoney(f.money)}.</p>
+      <p class="muted small">Загляни потом во вкладку «Аналитика» — там видно, в какие моменты тяга сильнее. Это поможет подготовиться к следующему разу.</p>
+    </div>
+    <div class="dlg-foot"><button class="btn primary big" data-act="close-dlg">Продолжаю</button></div></div>`, 'dlg');
+}
+
+/* ---------- SOS ---------- */
+let sosTimer = null, phaseTimer = null, sosEnd = 0;
+function openSos() {
+  closeDialog('dlg');
+  const reasons = state.profile.reasons.filter((r) => r.trim());
+  const f = figuresAt(nowMs());
+  const sf = Math.floor(f.smokeFree / DAY);
+  openDialog(`<div class="dlg">
+    <div class="dlg-head"><h2 id="dlgTitle">Переждать тягу</h2><button class="btn icon" data-act="close-dlg" aria-label="Закрыть">✕</button></div>
+    <div class="dlg-body">
+      <div class="breath" aria-hidden="true"><div class="ring"></div><div class="core"></div><span class="phase" id="phase">Вдох</span></div>
+      <p class="sos-timer" id="sosLeft" aria-live="off">3:00</p>
+      <p class="muted small" style="text-align:center;margin-top:-10px">Вдох — 4 секунды, задержка — 4, выдох — 6.</p>
+      <div class="tipbox"><p id="sosTip">${esc(SOS_TIPS[randInt(0, SOS_TIPS.length - 1)])}</p><button class="btn ghost" data-act="sos-tip" style="padding:0;min-height:36px">Другой совет</button></div>
+      ${reasons.length ? `<div class="stack"><p><b>Ты бросаешь, потому что…</b></p><ul class="reasons">${reasons.map((r) => `<li>${esc(r)}</li>`).join('')}</ul></div>` : ''}
+      <p>${sf >= 1 ? `Ты уже ${days(sf)} без сигарет и сэкономил ${fmtMoney(f.money)}.` : f.smokeFree >= HOUR ? `Ты уже ${fmtDHM(f.smokeFree)} без сигарет. Каждый час — победа.` : 'Каждая минута без сигареты — уже победа.'}</p>
+    </div>
+    <div class="dlg-foot"><button class="btn big" data-act="close-dlg">Закрыть</button></div></div>`, 'dlg', stopSos);
+  sosEnd = Date.now() + 180000;
+  const tick = () => {
+    const left = Math.max(0, sosEnd - Date.now());
+    const el = $('#sosLeft');
+    if (!el) return stopSos();
+    el.textContent = `${Math.floor(left / 60000)}:${pad(Math.floor((left % 60000) / 1000))}`;
+    if (!left) { el.textContent = 'Волна прошла'; stopSos(); }
+  };
+  tick();
+  sosTimer = setInterval(tick, 500);
+  const start = Date.now();
+  phaseTimer = setInterval(() => {
+    const ph = $('#phase'); if (!ph) return;
+    const t = ((Date.now() - start) / 1000) % 14;
+    ph.textContent = t < 4 ? 'Вдох' : t < 8 ? 'Задержи' : 'Выдох';
+  }, 250);
+}
+function stopSos() { clearInterval(sosTimer); clearInterval(phaseTimer); sosTimer = phaseTimer = null; }
+
+/* ---------- Копилка: окна ---------- */
+let bankSnoozed = false, bankQueue = [];
+// Окно копилки идёт после сундучка: пока сегодняшний сундук не открыт, ждём его закрытия
+// (или перехода на другую вкладку, если сундук сегодня так и не открыли).
+function maybeShowBank(ignoreChest = false) {
+  if (!started() || bankSnoozed || $$('dialog[open]').length) return;
+  const p = pendingBank();
+  if (!p.length) return;
+  const t = dayNum();
+  if (!ignoreChest && t >= 1 && t <= TOTAL_DAYS && !state.chests[t]) { bankDeferred = true; return; }
+  bankDeferred = false;
+  showBank(p);
+}
+const bankClosed = () => { bankSnoozed = true; };
+function showBank(p) {
+  if (p.length === 1) { bankQueue = p.slice(); showBankOne(); return; }
+  const amt = state.bank.amount || 0;
+  openDialog(`<div class="dlg">
+    <div class="dlg-head"><h2 id="dlgTitle">Копилка ждёт</h2><button class="btn icon" data-act="bank-later" aria-label="Напомнить позже">✕</button></div>
+    <div class="dlg-body"><p>Пропущено ${p.length} ${plural(p.length, 'взнос', 'взноса', 'взносов')} — ${fmtMoney(p.length * amt)}. Это деньги, которые раньше ушли бы на сигареты.</p></div>
+    <div class="dlg-foot">
+      <button class="btn primary big" data-act="bank-all">Перевёл всё</button>
+      <button class="btn" data-act="bank-each">Отметить по одному</button>
+      <button class="btn quiet" data-act="bank-skip-all">Пропустить</button>
+    </div></div>`, 'dlg', bankClosed);
+}
+function showBankOne() {
+  const d = bankQueue[0];
+  if (!d) { closeDialog('dlg'); return; }
+  const isToday = d === dayNum();
+  openDialog(`<div class="dlg">
+    <div class="dlg-head"><h2 id="dlgTitle">${isToday ? 'День копилки' : `Взнос за день ${d}`}</h2><button class="btn icon" data-act="bank-later" aria-label="Напомнить позже">✕</button></div>
+    <div class="dlg-body">
+      <p>${isToday ? '' : esc(dateLong(dateOfDay(d))) + '. '}Переведи ${fmtMoney(state.bank.amount)} на накопительный счёт — это деньги, которые раньше ушли бы на сигареты.</p>
+      <label class="lbl"><span>Сумма, ₽</span><input class="field" id="bankAmt" inputmode="decimal" value="${esc(state.bank.amount)}" autocomplete="off"></label>
+      ${bankQueue.length > 1 ? `<p class="muted small">Ещё ${bankQueue.length - 1} ${plural(bankQueue.length - 1, 'взнос', 'взноса', 'взносов')} после этого.</p>` : ''}
+    </div>
+    <div class="dlg-foot">
+      <button class="btn primary big" data-act="bank-done">Перевёл</button>
+      <button class="btn" data-act="bank-later">Напомнить позже</button>
+      <button class="btn quiet" data-act="bank-skip">Пропустить</button>
+    </div></div>`, 'dlg', bankClosed);
+}
+function recordDeposit(d, status, amount) {
+  state.bank.deposits = state.bank.deposits.filter((x) => x.day !== d);
+  state.bank.deposits.push({ day: d, amount: status === 'done' ? amount : 0, status, at: localIso(nowMs()) });
+  state.bank.deposits.sort((a, b) => a.day - b.day);
+}
+
+/* ---------- Вкладка «Здоровье» ---------- */
+function tabHealth() {
+  const dd = (nowMs() - quitMs()) / DAY;
+  const pct = lungPct(dd);
+  const view = state.ui.lungsView;
+  const shownPct = view === 'start' ? 0 : pct;
+  const inProgram = MILESTONES.filter((m) => m.at < 730 * DAY);
+  const ahead = MILESTONES.filter((m) => m.at >= 730 * DAY);
+  const sys = SYSTEMS.map((s) => {
+    const ms = MILESTONES.filter((m) => m.sys.includes(s.id));
+    const st = ms.map((m) => ({ m, s: msStatus(m) }));
+    const passed = st.filter((x) => x.s.state === 'passed');
+    const last = passed.at(-1);
+    const next = st.find((x) => x.s.state !== 'passed');
+    return `<div class="sys"><h3>${sysIcon(s.id)}${s.name}</h3>
+      ${last ? `<p class="done">${esc(last.m.title)}</p>` : '<p class="muted small">Первые изменения уже скоро.</p>'}
+      ${next ? `<p class="next">Дальше через ${fmtSpan(next.s.left ?? 0)}: ${esc(lowerFirst(next.m.title))}</p><div class="bar"><i style="width:${(next.s.pct * 100).toFixed(1)}%"></i></div>` : '<p class="next">Все вехи этой системы пройдены.</p>'}
+    </div>`;
+  }).join('');
+  return `
+    <section class="lungs-hero">
+      ${lungsSvg(shownPct)}
+      <p class="pct">Лёгкие: ${Math.round(shownPct)}% пути</p>
+      <div class="seg" role="group" aria-label="Сравнение"><button data-act="lungs" data-v="start" aria-pressed="${view === 'start'}">День 0</button><button data-act="lungs" data-v="now" aria-pressed="${view !== 'start'}">Сейчас</button></div>
+      <p class="muted small">${view === 'start' ? 'Так было в день отказа: тёмные точки — смола.' : dd < 1 ? 'Восстановление началось с первой минуты без сигарет.' : `${days(Math.floor(dd))} с отказа. Точки смолы исчезают по мере восстановления.`}</p>
+    </section>
+    <section class="sec"><h2>Системы организма</h2><div class="systems">${sys}</div></section>
+    <section class="sec"><h2>Вехи восстановления</h2><ul class="ms-list">${inProgram.map(msItem).join('')}</ul></section>
+    <section class="sec"><h2>Впереди</h2><p class="muted">Это уже после двух лет — ради этого стоит продолжать.</p><ul class="ms-list">${ahead.map(msItem).join('')}</ul></section>
+    <p class="disclaimer">Картинка лёгких — наглядная метафора, а не медицинский показатель. Сроки — средние по данным ВОЗ, NHS и Минздрава Австралии; у каждого человека восстановление идёт по-своему. Приложение не заменяет консультацию врача.</p>`;
+}
+const lowerFirst = (s) => s.charAt(0).toLowerCase() + s.slice(1);
+function msItem(m) {
+  const s = msStatus(m);
+  const lbl = s.state === 'passed' ? `пройдено ${dateShort(s.date)}` : s.state === 'going' ? 'идёт' : `через ${fmtSpan(s.left)}`;
+  return `<li><div class="ms-top"><span class="ms-when">${m.when}</span><span class="ms-state ${s.state === 'passed' ? 'passed' : ''}">${lbl}</span></div>
+    <p class="ms-title">${esc(m.title)}</p>
+    <div class="bar"><i style="width:${(s.pct * 100).toFixed(1)}%"></i></div><p class="ms-src">${esc(m.src)}</p></li>`;
+}
+function sysIcon(id) {
+  const p = {
+    heart: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+    blood: '<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/>',
+    lungs: '<path d="M12 3v7"/><path d="M9 7C5.5 6.5 4 11 4 15c0 3 1.7 4.6 3.8 4.2C10 18.8 10.5 16 10.5 13.5V9"/><path d="M15 7c3.5-.5 5 4 5 8 0 3-1.7 4.6-3.8 4.2C14 18.8 13.5 16 13.5 13.5V9"/>',
+    taste: '<path d="M7 4c0 4 2 6 5 6s5-2 5-6"/><path d="M12 10v10"/><path d="M8 20h8"/>',
+    immune: '<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/>'
+  }[id];
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+}
+
+/* ---------- Вкладка «Аналитика» ---------- */
+function chartWidth() { return Math.max(260, Math.min(700, ($('#view').clientWidth || 360) - 60)); }
+function tabStats() {
+  const t = dayNum(), shown = clamp(t, 0, TOTAL_DAYS), f = figuresAt(nowMs());
+  const fin = finishDate();
+  let remain;
+  if (t > TOTAL_DAYS) remain = 'программа пройдена';
+  else if (t === TOTAL_DAYS) remain = 'сегодня последний день';
+  else if (t < 1) remain = `старт через ${days(1 - t)}`;
+  else {
+    const pr = ymdParts(todayStr(), addDays(fin, 1));
+    remain = 'осталось ' + [pr.years && `${pr.years} г`, pr.months && `${pr.months} мес`, pr.days && `${pr.days} дн`].filter(Boolean).join(' ');
+  }
+  const streak = streaks();
+  const ch = chestStats();
+  const rw = state.rewards, found = rw.filter(isFound).length, redeemed = rw.filter((r) => r.redeemedAt).length;
+  const bs = bankStats();
+  const tower = towerText(f.lengthM);
+  return `
+    <section><div class="kpis">
+      <div class="kpi wide"><span class="l">Программа</span><span class="v">День ${shown} из ${TOTAL_DAYS}</span>
+        <div class="bar" style="margin:8px 0 4px"><i style="width:${((shown / TOTAL_DAYS) * 100).toFixed(2)}%"></i></div>
+        <span class="s">${((shown / TOTAL_DAYS) * 100).toFixed(1).replace('.', ',')}% · ${remain} · финиш ${dateShort(fin)}</span></div>
+      <div class="kpi"><span class="l">Серия без срывов</span><span class="v">${days(streak.current)}</span><span class="s">лучшая — ${days(streak.best)}</span></div>
+      <div class="kpi"><span class="l">Награды</span><span class="v">${found} из ${rw.length}</span><span class="s">осталось ${rw.length - found}, получено ${redeemed}</span></div>
+      <div class="kpi wide-phone"><span class="l">Сундучки</span><span class="v">${ch.onTime + ch.late}</span><span class="s">в свой день ${ch.onTime}, позже ${ch.late}, ждут ${ch.missed}</span></div>
+    </div></section>
+
+    <section class="sec"><h2>Копилка</h2>${bankBlock(bs)}</section>
+
+    <section class="sec"><h2>Что ты выиграл</h2><div class="kpis">
+      <div class="kpi"><span class="l">Не выкурено</span><span class="v">${fmtInt(f.notSmoked)}</span><span class="s">${plural(f.notSmoked, 'сигарета', 'сигареты', 'сигарет')}</span></div>
+      <div class="kpi"><span class="l">Деньги на сигаретах</span><span class="v">${fmtMoney(f.money)}</span><span class="s">сэкономлено</span></div>
+      <div class="kpi"><span class="l">Жизнь</span><span class="v">~${fmtLife(f.lifeMin)}</span><span class="s">по 20 минут за сигарету (UCL)</span></div>
+      <div class="kpi"><span class="l">Смола</span><span class="v">~${fmt1(f.tarG)} г</span><span class="s">не попало в лёгкие</span></div>
+      <div class="kpi"><span class="l">Время</span><span class="v">${fmtLife(f.breakMin)}</span><span class="s">не ушло на перекуры</span></div>
+      <div class="kpi"><span class="l">Сигаретная башня</span><span class="v">${fmt1(f.lengthM)} м</span><span class="s">${esc(tower)}</span></div>
+    </div></section>
+
+    <section class="sec"><h2>Тяга</h2>${cravingStats()}</section>
+    <section class="sec"><h2>Достижения</h2>${achievementsHtml(f, bs, found)}</section>`;
+}
+function streaks() {
+  const q = quitMs(), now = nowMs();
+  const pts = [q, ...relapses().map((c) => parseLocal(c.at)).filter((x) => x > q && x <= now).sort((a, b) => a - b), now];
+  let best = 0;
+  for (let i = 1; i < pts.length; i++) best = Math.max(best, pts[i] - pts[i - 1]);
+  return { current: Math.floor(Math.max(0, now - lastSmokeMs()) / DAY), best: Math.floor(best / DAY) };
+}
+function chestStats() {
+  let onTime = 0, late = 0, missed = 0;
+  const t = Math.min(dayNum(), TOTAL_DAYS + 1);
+  for (let d = 1; d <= TOTAL_DAYS; d++) {
+    const c = state.chests[d];
+    if (c) { if (c.openedAt.slice(0, 10) === dateOfDay(d)) onTime++; else late++; }
+    else if (d < t) missed++;
+  }
+  return { onTime, late, missed };
+}
+function bankBlock(bs) {
+  const b = state.bank;
+  const goal = b.goalAmount ? `<div class="stack" style="gap:6px"><p class="small"><b>${esc(b.goalName || 'Цель')}</b> — ${fmtInt(bs.actual)} из ${fmtMoney(b.goalAmount)}</p><div class="bar gold"><i style="width:${clamp((bs.actual / b.goalAmount) * 100, 0, 100).toFixed(1)}%"></i></div></div>` : '';
+  const hist = state.bank.deposits.slice().reverse().slice(0, 60).map((x) => `<li><span class="grow">День ${x.day} · ${dateShort(dateOfDay(x.day))}</span><span class="num">${x.status === 'done' ? fmtMoney(x.amount) : '<span class="muted">пропущен</span>'}</span><button class="btn" data-act="dep-edit" data-day="${x.day}">Изменить</button></li>`).join('');
+  return `<div class="panel stack" style="gap:14px">
+    <div><p class="muted small">В копилке</p><p class="num" style="font-size:40px;font-weight:700;line-height:1.1">${fmtMoney(bs.actual)}</p></div>
+    <div class="stack" style="gap:6px"><p class="small">План на сегодня ${fmtMoney(bs.plan)} — выполнено ${Math.round(bs.pct * 100)}%</p><div class="bar"><i style="width:${clamp(bs.pct * 100, 0, 100).toFixed(1)}%"></i></div></div>
+    ${goal}
+    <p class="small muted">Прогноз на финиш: ${fmtMoney(bs.forecast)} из ${fmtMoney(bs.totalPlan)} возможных.</p>
+    ${pendingBank().length ? `<button class="btn primary" data-act="bank-open">Отметить взносы (${pendingBank().length})</button>` : ''}
+    ${hist ? `<details class="more"><summary>История взносов</summary><ul class="history">${hist}</ul></details>` : '<p class="muted small">Первый день копилки — день 2.</p>'}
+  </div>`;
+}
+function towerText(m) {
+  const refs = [[12, 'автобус', 'автобуса'], [27, '9-этажный дом', '9-этажного дома'], [105, 'футбольное поле', 'футбольного поля'], [540, 'Останкинская башня', 'Останкинской башни']];
+  if (m < 12) return `ещё ${fmt1(12 - m)} м до длины автобуса (12 м)`;
+  let best = refs[0];
+  for (const r of refs) if (m >= r[0]) best = r;
+  const k = m / best[0];
+  return k < 1.05 ? `как ${best[1]} (${best[0]} м)` : `≈ ${fmt1(k)} × ${best[1]} (${best[0]} м)`;
+}
+function cravingStats() {
+  const cr = state.cravings.filter((c) => !isNaN(parseLocal(c.at)) && parseLocal(c.at) <= nowMs());
+  if (cr.length < 5) return `<div class="empty panel"><p>Отметь тягу хотя бы 5 раз — здесь появятся карта по часам, частые ситуации и тренд. Пока отметок: ${cr.length}.</p></div>`;
+  const W = chartWidth();
+  const resisted = cr.filter((c) => c.outcome !== 'smoked').length;
+  const last30 = cr.filter((c) => nowMs() - parseLocal(c.at) <= 30 * DAY);
+  const r30 = last30.length ? Math.round((last30.filter((c) => c.outcome !== 'smoked').length / last30.length) * 100) : null;
+  const t = todayStr();
+  const inRange = (c, a, b) => { const dd = diffDays(c.at.slice(0, 10), t); return dd >= a && dd <= b; };
+  const thisW = cr.filter((c) => inRange(c, 0, 6)).length, lastW = cr.filter((c) => inRange(c, 7, 13)).length;
+  const arrow = thisW < lastW ? '↓' : thisW > lastW ? '↑' : '→';
+  const quiet = longestQuiet(cr);
+  return `
+    <p class="insight">${esc(insightText(cr))}</p>
+    <div class="kpis" style="margin-top:12px">
+      <div class="kpi"><span class="l">Справился</span><span class="v">${Math.round((resisted / cr.length) * 100)}%</span><span class="s">за всё время${r30 !== null ? `, за 30 дней — ${r30}%` : ''}</span></div>
+      <div class="kpi"><span class="l">Эта неделя</span><span class="v">${thisW} ${arrow}</span><span class="s">прошлая — ${lastW} ${plural(lastW, 'отметка', 'отметки', 'отметок')}</span></div>
+      <div class="kpi"><span class="l">Дольше всего без тяги</span><span class="v">${quiet}</span><span class="s">между отметками</span></div>
+    </div>
+    <div class="chart" style="margin-top:12px"><h3>Когда тянет курить</h3><p class="sub">Чем темнее клетка, тем чаще тяга. Коснись клетки.</p>${heatmap(cr, W)}<p class="readout" aria-live="polite"></p></div>
+    <div class="chart" style="margin-top:12px"><h3>Частые ситуации</h3><p class="sub">Число отметок и средняя сила желания</p>${triggerBars(cr)}</div>
+    <div class="chart" style="margin-top:12px"><h3>Тренд по неделям</h3><p class="sub">Сколько раз тянуло и насколько сильно. Коснись недели.</p>${trend(cr, W)}<p class="readout" aria-live="polite"></p></div>`;
+}
+function longestQuiet(cr) {
+  const ts = cr.map((c) => parseLocal(c.at)).sort((a, b) => a - b);
+  const pts = [Math.max(quitMs(), parseLocal(P().startDate)), ...ts, nowMs()];
+  let best = 0;
+  for (let i = 1; i < pts.length; i++) best = Math.max(best, pts[i] - pts[i - 1]);
+  return best >= 2 * DAY ? days(Math.floor(best / DAY)) : `${Math.floor(best / HOUR)} ч`;
+}
+function insightText(cr) {
+  const cnt = Array(24).fill(0), wk = Array(24).fill(0);
+  for (const c of cr) { const d = new Date(parseLocal(c.at)); const h = d.getHours(); cnt[h]++; if ((d.getDay() + 6) % 7 < 5) wk[h]++; }
+  let bh = 0, bv = -1;
+  for (let h = 0; h < 24; h++) { const v = cnt[h] + cnt[(h + 1) % 24]; if (v > bv) { bv = v; bh = h; } }
+  const wkShare = (wk[bh] + wk[(bh + 1) % 24]) / Math.max(1, bv);
+  const when = wkShare >= 0.85 ? 'по будням ' : wkShare <= 0.35 ? 'по выходным ' : '';
+  const trig = {};
+  for (const c of cr) trig[c.trigger] = (trig[c.trigger] || 0) + 1;
+  const top = Object.entries(trig).sort((a, b) => b[1] - a[1])[0][0];
+  const phrase = TRIGGER_PHRASE[top] || (top === 'Другое' ? '' : `в ситуации «${top}»`);
+  return `Чаще всего тебе хочется курить ${when}с ${bh} до ${(bh + 2) % 24}${phrase ? ', ' + phrase : ''}.`;
+}
+function heatmap(cr, W) {
+  const narrow = W < 480, cols = narrow ? 12 : 24, step = 24 / cols;
+  const m = Array.from({ length: 7 }, () => Array(cols).fill(0));
+  for (const c of cr) { const d = new Date(parseLocal(c.at)); m[(d.getDay() + 6) % 7][Math.floor(d.getHours() / step)]++; }
+  const max = Math.max(1, ...m.flat());
+  const left = 26, gap = 2, cw = (W - left) / cols, chh = narrow ? 24 : 20, H = 7 * chh + 20;
+  let s = '';
+  for (let r = 0; r < 7; r++) {
+    s += `<text x="0" y="${r * chh + chh / 2 + 4}">${WD_SHORT[r]}</text>`;
+    for (let c = 0; c < cols; c++) {
+      const v = m[r][c], h0 = c * step;
+      const tip = `${WD_FULL[r]}, ${h0}:00–${h0 + step}:00 — ${v} ${plural(v, 'отметка', 'отметки', 'отметок')}`;
+      s += `<rect x="${(left + c * cw).toFixed(1)}" y="${r * chh}" width="${(cw - gap).toFixed(1)}" height="${chh - gap}" rx="3" ${v ? `fill="var(--mint)" fill-opacity="${(0.15 + 0.85 * (v / max)).toFixed(2)}"` : 'fill="var(--surface-2)"'} data-tip="${tip}"/>`;
+    }
+  }
+  for (let hh = 0; hh <= 24; hh += 6) { const x = left + (hh / step) * cw; s += `<text x="${Math.min(x, W - 12).toFixed(1)}" y="${H - 4}" text-anchor="${hh === 0 ? 'start' : hh === 24 ? 'end' : 'middle'}">${hh}:00</text>`; }
+  return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Карта тяги по дням недели и часам">${s}</svg>`;
+}
+function triggerBars(cr) {
+  const agg = {};
+  for (const c of cr) { const a = agg[c.trigger] || (agg[c.trigger] = { n: 0, s: 0 }); a.n++; a.s += c.intensity; }
+  const rows = Object.entries(agg).sort((a, b) => b[1].n - a[1].n).slice(0, 7);
+  const max = rows[0][1].n;
+  return `<div class="stack" style="gap:10px">${rows.map(([k, v]) => `<div style="display:grid;grid-template-columns:minmax(90px,38%) 1fr auto;gap:10px;align-items:center">
+    <span class="small">${esc(k)}</span>
+    <span class="bar" style="height:12px"><i style="width:${((v.n / max) * 100).toFixed(1)}%;background:var(--mint)"></i></span>
+    <span class="small num" style="white-space:nowrap"><b>${v.n}</b> <span class="muted">· сила ${fmt1(v.s / v.n)}</span></span></div>`).join('')}</div>`;
+}
+function trend(cr, W) {
+  const t = Math.min(dayNum(), TOTAL_DAYS);
+  const nW = Math.max(1, Math.ceil(t / 7));
+  const wk = Array.from({ length: nW }, () => ({ n: 0, s: 0 }));
+  for (const c of cr) { const n = dayOfDate(c.at.slice(0, 10)); if (n < 1 || n > t) continue; const w = Math.floor((n - 1) / 7); wk[w].n++; wk[w].s += c.intensity; }
+  const from = Math.max(0, nW - 26), data = wk.slice(from).map((w, i) => ({ i: from + i + 1, n: w.n, a: w.n ? w.s / w.n : null }));
+  const left = 28, right = 8, ch = 96, gapY = 34, base2 = ch * 2 + gapY + 8, H = base2 + 26;
+  const xs = (i) => left + (data.length === 1 ? (W - left - right) / 2 : (i * (W - left - right)) / (data.length - 1));
+  const maxN = Math.max(1, ...data.map((d) => d.n));
+  const niceN = maxN <= 5 ? 5 : Math.ceil(maxN / 5) * 5;
+  const y1 = (v) => 8 + ch - (v / niceN) * ch, y2 = (v) => ch + gapY + 8 + ch - ((v - 1) / 4) * ch;
+  let s = '';
+  for (const v of [0, niceN / 2, niceN]) s += `<line x1="${left}" x2="${W - right}" y1="${y1(v)}" y2="${y1(v)}" stroke="var(--line)"/><text x="${left - 6}" y="${y1(v) + 4}" text-anchor="end">${fmt1(v)}</text>`;
+  for (const v of [1, 3, 5]) s += `<line x1="${left}" x2="${W - right}" y1="${y2(v)}" y2="${y2(v)}" stroke="var(--line)"/><text x="${left - 6}" y="${y2(v) + 4}" text-anchor="end">${v}</text>`;
+  s += `<text x="${left}" y="0" class="lbl-ink" dy="0">Отметок за неделю</text><text x="${left}" y="${ch + gapY - 2}" class="lbl-ink">Средняя сила, 1–5</text>`;
+  const p1 = data.map((d, i) => `${i ? 'L' : 'M'}${xs(i).toFixed(1)} ${y1(d.n).toFixed(1)}`).join(' ');
+  s += `<path d="${p1}" fill="none" stroke="var(--mint)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+  let p2 = '', pen = false;
+  data.forEach((d, i) => { if (d.a == null) { pen = false; return; } p2 += `${pen ? 'L' : 'M'}${xs(i).toFixed(1)} ${y2(d.a).toFixed(1)} `; pen = true; });
+  s += `<path d="${p2}" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+  const lastI = data.length - 1, last = data[lastI];
+  s += `<circle cx="${xs(lastI)}" cy="${y1(last.n)}" r="4.5" fill="var(--mint)" stroke="var(--surface)" stroke-width="2"/>`;
+  if (last.a != null) s += `<circle cx="${xs(lastI)}" cy="${y2(last.a)}" r="4.5" fill="var(--ink)" stroke="var(--surface)" stroke-width="2"/>`;
+  const colW = data.length > 1 ? (W - left - right) / (data.length - 1) : W - left - right;
+  data.forEach((d, i) => {
+    s += `<rect x="${(xs(i) - colW / 2).toFixed(1)}" y="0" width="${colW.toFixed(1)}" height="${H - 18}" fill="transparent" data-tip="Неделя ${d.i}: ${d.n} ${plural(d.n, 'отметка', 'отметки', 'отметок')}${d.a != null ? ', средняя сила ' + fmt1(d.a) : ''}"/>`;
+  });
+  const lbls = data.length <= 8 ? data : data.filter((_, i) => i === 0 || i === lastI || i % Math.ceil(data.length / 6) === 0);
+  for (const d of lbls) { const i = data.indexOf(d); s += `<text x="${xs(i).toFixed(1)}" y="${base2 + 20}" text-anchor="middle">нед ${d.i}</text>`; }
+  return `<svg viewBox="0 -12 ${W} ${H + 12}" width="${W}" height="${H + 12}" role="img" aria-label="Тренд тяги по неделям">${s}</svg>`;
+}
+function achievementsHtml(f, bs, found) {
+  const elapsedD = (nowMs() - quitMs()) / DAY;
+  const sorted = state.cravings.slice().sort((a, b) => a.at.localeCompare(b.at));
+  let run = 0, bestRun = 0;
+  for (const c of sorted) { run = c.outcome === 'smoked' ? 0 : run + 1; bestRun = Math.max(bestRun, run); }
+  let chestRun = 0, bestChest = 0;
+  for (let d = 1; d <= TOTAL_DAYS; d++) {
+    const c = state.chests[d];
+    if (c && c.openedAt.slice(0, 10) === dateOfDay(d)) { chestRun++; bestChest = Math.max(bestChest, chestRun); } else chestRun = 0;
+  }
+  const list = [
+    ...[1, 3, 7, 30, 100, 180, 365, 500, 730].map((n) => ({ ok: elapsedD >= n, badge: String(n), title: days(n), cond: 'без сигарет' })),
+    { ok: bestRun >= 10, badge: '×10', title: 'Устоял 10 раз', cond: 'подряд отметил «Справился»' },
+    { ok: f.notSmoked >= 1000, badge: '1000', title: '1000 сигарет', cond: 'не выкурено' },
+    { ok: bs.actual >= 10000, badge: '₽', title: '10\u00a0000\u00a0₽', cond: 'накоплено в копилке' },
+    { ok: found >= 10, badge: '★', title: '10 наград', cond: 'найдено в сундуках' },
+    { ok: bestChest >= 30, badge: '30', title: 'Без пропусков', cond: '30 сундуков подряд открыты в свой день' }
+  ];
+  return `<div class="ach">${list.map((a) => `<div class="${a.ok ? '' : 'off'}" aria-label="${esc(a.title)}: ${a.ok ? 'получено' : 'ещё нет'}">
+    <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="${a.ok ? 'var(--gold)' : 'var(--surface-2)'}"/><circle cx="24" cy="24" r="17" fill="none" stroke="${a.ok ? '#fff' : 'var(--line)'}" stroke-opacity=".6" stroke-width="1.5"/><text x="24" y="${a.badge.length > 3 ? 28 : 29.5}" text-anchor="middle" font-family="ui-rounded, -apple-system, sans-serif" font-weight="800" font-size="${a.badge.length > 3 ? 11 : a.badge.length > 2 ? 13 : 16}" fill="${a.ok ? '#2b1a00' : 'var(--muted)'}">${esc(a.badge)}</text></svg>
+    <b>${esc(a.title)}</b><span>${esc(a.cond)}</span></div>`).join('')}</div>`;
+}
+
+/* ================= Диалоги ================= */
+// Своё окно подтверждения вместо системного: работает одинаково на iPhone, iPad и в превью.
+function askConfirm(text, ok = 'Да', cancel = 'Отмена') {
+  return new Promise((resolve) => {
+    const d = $('#dlgc');
+    d.innerHTML = `<div class="dlg"><div class="dlg-body"><p>${esc(text)}</p></div><div class="dlg-foot"><button class="btn primary big" data-c="1">${esc(ok)}</button><button class="btn" data-c="0">${esc(cancel)}</button></div></div>`;
+    let done = false;
+    const finish = (v) => { if (done) return; done = true; if (d.open) d.close(); resolve(v); };
+    d.onclick = (e) => { const b = e.target.closest('[data-c]'); if (b) finish(b.dataset.c === '1'); else if (e.target === d) finish(false); };
+    d.oncancel = () => finish(false);   // Escape; событие close не слушаем — оно приходит с задержкой и сбило бы следующее окно
+    d.showModal();
+  });
+}
+const dlgClose = {};
+function openDialog(html, id = 'dlg', onClose) {
+  const d = $('#' + id);
+  d.innerHTML = html;
+  dlgClose[id] = onClose || null;
+  if (!d.open) d.showModal();
+  const first = $('.dlg-body', d);
+  if (first) first.scrollTop = 0;
+}
+function closeDialog(id = 'dlg') { const d = $('#' + id); if (d.open) d.close(); }
+['dlg', 'dlg2'].forEach((id) => {
+  const d = document.getElementById(id);
+  d.addEventListener('close', () => {
+    const fn = dlgClose[id]; dlgClose[id] = null;
+    if (fn) fn();
+    if (id === 'dlg' && draft) draft = null;
+    if (id === 'dlg') setTimeout(() => { if (!$$('dialog[open]').length) maybeShowBank(); }, 300);
+  });
+  d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+});
+$('#chestDlg').addEventListener('close', () => {
+  render();
+  if (bankDeferred) { bankDeferred = false; setTimeout(maybeShowBank, 350); }
+});
+
+/* ---------- Настройки ---------- */
+let verTaps = 0;
+function openSettings() {
+  openDialog(settingsHtml(), 'dlg');
+}
+function settingsHtml() {
+  const pr = state.profile, b = state.bank, p = P();
+  const found = state.rewards.filter(isFound).length, hidden = state.rewards.length - found;
+  const dbg = state.debug;
+  return `<div class="dlg">
+    <div class="dlg-head"><h2 id="dlgTitle">Настройки</h2><button class="btn icon" data-act="close-dlg" aria-label="Закрыть">✕</button></div>
+    <div class="dlg-body">
+      <div class="set-group"><h3>О привычке</h3>
+        <div class="two">
+          <label class="lbl"><span>Сигарет в день</span><input class="field" data-bind="profile.cigsPerDay" data-type="num" inputmode="decimal" value="${esc(pr.cigsPerDay ?? '')}"></label>
+          <label class="lbl"><span>Цена пачки, ₽</span><input class="field" data-bind="profile.packPrice" data-type="num" inputmode="decimal" value="${esc(pr.packPrice ?? '')}"></label>
+        </div>
+        <div class="two">
+          <label class="lbl"><span>Сигарет в пачке</span><input class="field" data-bind="profile.cigsPerPack" data-type="num" inputmode="numeric" value="${esc(pr.cigsPerPack ?? 20)}"></label>
+          <label class="lbl"><span>Стаж, лет</span><input class="field" data-bind="profile.yearsSmoking" data-type="num" inputmode="decimal" value="${esc(pr.yearsSmoking ?? '')}"></label>
+        </div>
+        <label class="lbl"><span>Имя</span><input class="field" data-bind="profile.name" data-type="text" value="${esc(pr.name)}"></label>
+      </div>
+      <div class="set-group"><h3>Зачем я бросаю</h3>${pr.reasons.map((r, i) => `<input class="field" data-bind="profile.reasons.${i}" data-type="text" value="${esc(r)}" aria-label="Причина ${i + 1}" placeholder="Причина ${i + 1}">`).join('')}</div>
+      <div class="set-group"><h3>Копилка</h3>
+        <label class="lbl"><span>Сумма взноса, ₽</span><input class="field" data-bind="bank.amount" data-type="num" inputmode="decimal" value="${esc(b.amount ?? 300)}"></label>
+        <div class="two">
+          <label class="lbl"><span>На что копишь</span><input class="field" data-bind="bank.goalName" data-type="text" value="${esc(b.goalName)}"></label>
+          <label class="lbl"><span>Сумма цели, ₽</span><input class="field" data-bind="bank.goalAmount" data-type="num" inputmode="decimal" value="${esc(b.goalAmount ?? '')}"></label>
+        </div>
+        <p class="muted tiny">Новая сумма не меняет уже сделанные взносы.</p>
+      </div>
+      <div class="set-group"><h3>Награды</h3>
+        <p>Найдено ${found} · спрятано ещё ${hidden}</p>
+        <div class="row"><button class="btn primary" data-act="reward-add">Добавить награду</button><button class="btn" data-act="reward-reveal">Показать все</button></div>
+      </div>
+      <div class="set-group"><h3>Резервная копия</h3>
+        <p class="small muted">${state.lastExportAt ? 'Последняя копия — ' + dateShort(state.lastExportAt) : 'Копий ещё не было.'} Этим же файлом можно перенести данные между iPhone и iPad.</p>
+        <div class="row"><button class="btn primary" data-act="export">Сохранить копию</button><button class="btn" data-act="import">Восстановить из копии</button></div>
+        <input type="file" id="importFile" accept="application/json,.json" hidden>
+      </div>
+      <div class="set-group"><h3>Программа</h3>
+        <p class="small muted">Старт ${dateShort(p.startDate)}, финиш ${dateShort(finishDate())}</p>
+        <button class="btn" data-act="restart">Начать программу заново</button>
+        <button class="btn quiet" data-act="wipe">Удалить все данные</button>
+      </div>
+      ${dbg.enabled ? `<div class="set-group debug"><h3>Отладка</h3>
+        <p class="small">Сдвиг «сегодня»: ${dbg.offsetDays >= 0 ? '+' : ''}${dbg.offsetDays} дн (сейчас ${dateShort(todayStr())}, день ${dayNum()})</p>
+        <div class="row">${[1, 7, 30, 365].map((n) => `<button class="btn" data-act="dbg-shift" data-v="${n}">+${n}</button>`).join('')}<button class="btn" data-act="dbg-shift" data-v="0">Сброс</button></div>
+        <button class="btn" data-act="dbg-demo">Демо-данные за 60 дней</button>
+        <button class="btn" data-act="dbg-test">Проверить раскладку наград</button>
+        <p class="small" id="dbgOut"></p>
+        <button class="btn quiet" data-act="dbg-off">Выключить отладку</button>
+      </div>` : ''}
+      <p class="ver" data-act="ver-tap">Версия ${APP_VERSION}</p>
+    </div></div>`;
+}
+function refreshSettings() {
+  const d = $('#dlg');
+  const sc = $('.dlg-body', d)?.scrollTop || 0;
+  d.innerHTML = settingsHtml();
+  $('.dlg-body', d).scrollTop = sc;
+}
+
+function openRewardAdd(id) {
+  const r = id ? state.rewards.find((x) => x.id === id) : null;
+  openDialog(`<div class="dlg">
+    <div class="dlg-head"><h2 id="dlg2Title">${r ? 'Награда' : 'Новая награда'}</h2><button class="btn icon" data-act="close-dlg2" aria-label="Закрыть">✕</button></div>
+    <form class="dlg-body" data-form="reward-save" data-id="${r ? r.id : ''}" autocomplete="off">
+      <input class="field" id="rwText" value="${esc(r ? r.text : '')}" placeholder="Например, абонемент в бассейн" enterkeyhint="done" aria-label="Награда">
+      <p class="muted small">${r ? '' : 'Она спрячется в случайный будущий сундучок — не ближе 4 дней к другим наградам.'}</p>
+      <button class="btn primary big" type="submit">${r ? 'Сохранить' : 'Спрятать в сундук'}</button>
+      ${r && !isFound(r) ? '<button class="btn quiet" type="button" data-act="reward-del" data-id="' + r.id + '">Удалить награду</button>' : ''}
+    </form></div>`, 'dlg2', () => { if ($('#dlg').open) refreshSettings(); });
+}
+function openRewardList() {
+  const rows = state.rewards.slice().sort((a, b) => (a.day || 0) - (b.day || 0)).map((r) => `<li><span class="grow"><b>${esc(r.text)}</b><br><span class="muted tiny">${isFound(r) ? `найдена, день ${r.day}${r.redeemedAt ? ', получена' : ''}` : r.day ? `день ${r.day}, ${dateShort(dateOfDay(r.day))}` : 'без дня'}</span></span>${isFound(r) ? '' : `<button class="btn" data-act="reward-edit" data-id="${r.id}">Изменить</button>`}</li>`).join('');
+  openDialog(`<div class="dlg">
+    <div class="dlg-head"><h2 id="dlg2Title">Все награды</h2><button class="btn icon" data-act="close-dlg2" aria-label="Закрыть">✕</button></div>
+    <div class="dlg-body">${rows ? `<ul class="history">${rows}</ul>` : '<p class="muted">Наград пока нет.</p>'}</div></div>`, 'dlg2', () => { if ($('#dlg').open) refreshSettings(); });
+}
+
+/* ================= Резервная копия ================= */
+async function exportData() {
+  if (IS_PREVIEW) { toast('В превью сохранить файл нельзя — копия работает в установленном приложении'); return; }
+  const name = APP_ID + '-backup-' + todayStr() + '.json';
+  const prev = state.lastExportAt;
+  state.lastExportAt = localIso(Date.now());
+  const payload = JSON.stringify({ app: APP_ID, v: SCHEMA_VERSION, exportedAt: new Date().toISOString(), state }, null, 2);
+  const file = new File([payload], name, { type: 'application/json' });
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    try { await navigator.share({ files: [file], title: name }); save(); backupDismissed = true; renderBanners(); return; }
+    catch (e) { if (e.name === 'AbortError') { state.lastExportAt = prev; return; } }
+  }
+  const url = URL.createObjectURL(file);
+  const a = Object.assign(document.createElement('a'), { href: url, download: name });
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+  save(); backupDismissed = true; renderBanners();
+  if ($('#dlg').open && $('#dlgTitle')?.textContent === 'Настройки') refreshSettings();
+}
+function validBackup(data) {
+  return data && data.app === APP_ID && data.state && typeof data.state === 'object' && data.state.program && Array.isArray(data.state.cravings ?? []) && (data.v || 1) <= SCHEMA_VERSION;
+}
+async function importData(file) {
+  let data;
+  try { data = JSON.parse(await file.text()); } catch (e) { toast('Файл не читается как резервная копия'); return; }
+  if (!validBackup(data)) { toast(data && data.v > SCHEMA_VERSION ? 'Копия из более новой версии — сначала обнови приложение' : 'Это не резервная копия этого приложения'); return; }
+  if (!(await askConfirm('Заменить текущие данные данными из копии?', 'Заменить'))) return;
+  state = migrate({ v: data.v, state: data.state });
+  closeDialog('dlg');
+  commit();
+  toast('Данные восстановлены');
+}
+
+/* ================= Демо-данные (отладка) ================= */
+function generateDemo() {
+  const t = todayStr();
+  const start = addDays(t, -59);
+  const pr = state.profile;
+  if (!pr.cigsPerDay) pr.cigsPerDay = 15;
+  if (!pr.packPrice) pr.packPrice = 250;
+  if (!pr.reasons.some((x) => x.trim())) pr.reasons = ['Легко подниматься по лестнице', 'Отпуск на сэкономленные деньги', '', '', ''];
+  if (!state.rewards.length) state.rewards = REWARD_IDEAS.map((x) => ({ id: uid(), text: x, day: null, redeemedAt: null }));
+  P().status = 'active'; P().startDate = start; P().lastCigaretteAt = start + 'T08:30:00'; P().startedAt = start + 'T08:30:00';
+  assignRewardDays();
+  state.contentPlan = buildContentPlan();
+  state.chests = {}; state.bank.deposits = []; state.cravings = [];
+  const r = Math.random;
+  for (let d = 1; d <= 59; d++) {
+    if (r() < 0.88) {
+      const late = r() < 0.15 ? Math.min(59, d + 1 + Math.floor(r() * 3)) : d;
+      state.chests[d] = { openedAt: addDays(start, late - 1) + 'T0' + (7 + Math.floor(r() * 3)) + ':1' + Math.floor(r() * 6) + ':00', textId: state.contentPlan[d - 1] };
+    }
+    if (d % 2 === 0) state.bank.deposits.push({ day: d, amount: r() < 0.86 ? state.bank.amount : 0, status: r() < 0.86 ? 'done' : 'skipped', at: addDays(start, d - 1) + 'T20:05:00' });
+  }
+  state.bank.deposits.forEach((x) => { if (x.status === 'skipped') x.amount = 0; });
+  const slots = [[8, 'Кофе или чай'], [9, 'После сна'], [13, 'После еды'], [14, 'После еды'], [11, 'Перерыв на работе'], [16, 'Перерыв на работе'], [18, 'За рулём'], [19, 'После еды'], [21, 'Стресс'], [22, 'Скука'], [20, 'Алкоголь'], [12, 'Разговор по телефону']];
+  for (let d = 1; d <= 60; d++) {
+    const date = addDays(start, d - 1);
+    const wd = (new Date(parseLocal(date)).getDay() + 6) % 7;
+    const n = Math.max(0, Math.round(6 * Math.exp(-d / 22) + r() * 1.6 - 0.3));
+    for (let k = 0; k < n; k++) {
+      let s = slots[Math.floor(r() * slots.length)];
+      if (wd < 5 && r() < 0.35) s = r() < 0.5 ? [13, 'После еды'] : [14, 'После еды'];
+      if (wd >= 5 && s[1] === 'Перерыв на работе') s = [20, 'Алкоголь'];
+      const intensity = clamp(Math.round(4.3 - d / 22 + (r() * 2 - 1)), 1, 5);
+      state.cravings.push({ id: uid(), at: `${date}T${pad(s[0])}:${pad(Math.floor(r() * 60))}:00`, trigger: s[1], intensity, outcome: 'resisted', cigs: 0, note: '' });
+    }
+  }
+  for (const [d, h, cigs] of [[12, 21, 1], [33, 22, 2]]) state.cravings.push({ id: uid(), at: `${addDays(start, d - 1)}T${h}:15:00`, trigger: d === 12 ? 'Алкоголь' : 'Стресс', intensity: 5, outcome: 'smoked', cigs, note: '' });
+  state.cravings = state.cravings.filter((c) => parseLocal(c.at) <= nowMs());
+  state.cravings.sort((a, b) => a.at.localeCompare(b.at));
+}
+
+/* ================= События ================= */
+const ACTIONS = {
+  begin() { P().status = 'setup'; state.wizard.step = 1; if (!P().startDate) P().startDate = todayStr(); if (!P().lastCigaretteAt) P().lastCigaretteAt = localIso(nowMs()); commit(); },
+  'wz-back'() {
+    if (state.wizard.step <= 1) { P().status = 'none'; commit(); return; }
+    state.wizard.step--; commit(); window.scrollTo(0, 0);
+  },
+  async 'wz-next'() {
+    const s = state.wizard.step, pr = state.profile;
+    if (s === 1 && !(pr.cigsPerDay > 0 && pr.packPrice > 0)) { $('#wzErr').hidden = false; return; }
+    if (s === 4 && !state.rewards.length && !(await askConfirm('Без наград в сундуках будут только тексты. Продолжить?', 'Продолжить без наград', 'Добавить награды'))) return;
+    state.wizard.step = Math.min(WIZARD_STEPS, s + 1); commit(); window.scrollTo(0, 0);
+  },
+  'wz-del-reward'(el) { state.rewards = state.rewards.filter((r) => r.id !== el.dataset.id); commit(); },
+  'wz-idea'(el) { addWizardReward(el.dataset.text); },
+  'start-program'() {
+    const p = P();
+    if (!p.startDate) p.startDate = todayStr();
+    if (!p.lastCigaretteAt) p.lastCigaretteAt = localIso(nowMs());
+    state.rewards = state.rewards.filter((r) => r.text.trim()).slice(0, MAX_REWARDS);
+    assignRewardDays();
+    state.contentPlan = buildContentPlan();
+    state.chests = {}; state.bank.deposits = [];
+    p.status = 'active'; p.startedAt = localIso(Date.now());
+    state.ui.tab = 'chests'; state.ui.month = null; state.ui.selectedDay = null;
+    commit(); window.scrollTo(0, 0);
+  },
+  settings() { openSettings(); },
+  craving() { openCraving(null); },
+  'edit-craving'(el) { openCraving(el.dataset.id); },
+  'cr-trigger'(el) { draft.trigger = el.dataset.v; rerenderCraving(); },
+  'cr-int'(el) { draft.intensity = Number(el.dataset.v); rerenderCraving(); },
+  'cr-out'(el) { draft.outcome = el.dataset.v; rerenderCraving(); },
+  'cr-add-trigger'() { const f = $('#newTrigForm'); f.hidden = false; $('#newTrig').focus(); },
+  'cr-save'() { saveCraving(); },
+  async 'cr-delete'() { const id = draft.id; if (!(await askConfirm('Удалить эту отметку?', 'Удалить'))) return; state.cravings = state.cravings.filter((c) => c.id !== id); closeDialog('dlg'); commit(); },
+  sos() { openSos(); },
+  'sos-tip'() { const el = $('#sosTip'); const cur = el.textContent; let n; do { n = SOS_TIPS[randInt(0, SOS_TIPS.length - 1)]; } while (n === cur); el.textContent = n; },
+  'close-dlg'() { closeDialog('dlg'); },
+  'close-dlg2'() { closeDialog('dlg2'); },
+  'close-chest'() { $('#chestDlg').close(); },
+  'open-day'(el) { openDay(Number(el.dataset.day)); },
+  month(el) { const ms = programMonths(); const i = ms.indexOf(currentMonth()) + Number(el.dataset.dir); if (ms[i]) { state.ui.month = ms[i]; save(); render(); } },
+  'month-today'() { state.ui.month = null; state.ui.selectedDay = null; save(); render(); },
+  redeem(el) {
+    const r = rewardForDay(Number(el.dataset.day)); if (!r) return;
+    r.redeemedAt = localIso(nowMs()); save();
+    const card = el.closest('.daycard');
+    if (card) card.outerHTML = dayCard(Number(el.dataset.day));
+    toast('Награда получена. Заслужил!');
+    if (!$('#chestDlg').open) render();
+  },
+  jfilter(el) { state.ui.journalFilter = el.dataset.v; journalLimit = 50; save(); render(); },
+  jmore() { journalLimit += 100; render(); },
+  lungs(el) { state.ui.lungsView = el.dataset.v; save(); render(); },
+  'bank-open'() { const p = pendingBank(); if (p.length) { bankSnoozed = false; showBank(p); } },
+  'bank-all'() { const amt = state.bank.amount || 0; pendingBank().forEach((d) => recordDeposit(d, 'done', amt)); closeDialog('dlg'); commit(); toast('Взносы отмечены'); },
+  'bank-each'() { bankQueue = pendingBank(); showBankOne(); },
+  'bank-skip-all'() { pendingBank().forEach((d) => recordDeposit(d, 'skipped', 0)); closeDialog('dlg'); commit(); },
+  'bank-done'() { const d = bankQueue.shift(); recordDeposit(d, 'done', Math.max(0, parseNum($('#bankAmt').value) ?? state.bank.amount)); save(); if (bankQueue.length) showBankOne(); else { closeDialog('dlg'); render(); toast('Отмечено. Копилка растёт'); } },
+  'bank-skip'() { const d = bankQueue.shift(); recordDeposit(d, 'skipped', 0); save(); if (bankQueue.length) showBankOne(); else { closeDialog('dlg'); render(); } },
+  'bank-later'() { bankSnoozed = true; bankQueue = []; closeDialog('dlg'); },
+  'dep-edit'(el) {
+    const d = Number(el.dataset.day), x = depositFor(d); if (!x) return;
+    openDialog(`<div class="dlg"><div class="dlg-head"><h2 id="dlg2Title">Взнос за день ${d}</h2><button class="btn icon" data-act="close-dlg2" aria-label="Закрыть">✕</button></div>
+      <form class="dlg-body" data-form="dep-save" data-day="${d}" autocomplete="off">
+        <label class="lbl"><span>Сумма, ₽ (0 — пропущен)</span><input class="field" id="depAmt" inputmode="decimal" value="${esc(x.status === 'done' ? x.amount : 0)}"></label>
+        <button class="btn primary big" type="submit">Сохранить</button>
+        <button class="btn quiet" type="button" data-act="dep-del" data-day="${d}">Удалить запись</button>
+      </form></div>`, 'dlg2');
+  },
+  async 'dep-del'(el) { const d = Number(el.dataset.day); if (!(await askConfirm('Удалить запись? Взнос снова будет ждать отметки.', 'Удалить'))) return; state.bank.deposits = state.bank.deposits.filter((x) => x.day !== d); closeDialog('dlg2'); commit(); },
+  'reward-add'() { openRewardAdd(null); },
+  'reward-edit'(el) { openRewardAdd(el.dataset.id); },
+  async 'reward-reveal'() { if (await askConfirm('Показать все награды? Сюрприз пропадёт.', 'Показать')) openRewardList(); },
+  async 'reward-del'(el) { const id = el.dataset.id; if (!(await askConfirm('Удалить награду? Её день освободится.', 'Удалить'))) return; state.rewards = state.rewards.filter((r) => r.id !== id); save(); closeDialog('dlg2'); render(); toast('Награда удалена'); },
+  export() { exportData(); },
+  import() { $('#importFile').click(); },
+  async restart() {
+    if (!(await askConfirm('Начать программу заново с сегодняшнего дня? Календарь, сундучки и копилка начнутся сначала, награды спрячутся заново. Журнал тяги сохранится.', 'Начать заново'))) return;
+    if (!(await askConfirm('Точно начать заново? Это нельзя отменить.', 'Да, начать заново'))) return;
+    const p = P(); p.startDate = todayStr(); p.lastCigaretteAt = localIso(nowMs()); p.startedAt = localIso(Date.now());
+    assignRewardDays(); state.contentPlan = buildContentPlan(); state.chests = {}; state.bank.deposits = []; state.ui.month = null; state.ui.selectedDay = null;
+    closeDialog('dlg'); commit(); toast('Новый старт — день 1');
+  },
+  async wipe() {
+    if (!(await askConfirm('Удалить все данные приложения?', 'Удалить'))) return;
+    if (!(await askConfirm('Точно удалить всё? Без резервной копии восстановить не получится.', 'Да, удалить всё'))) return;
+    const hint = state.ui.hintHidden;
+    state = clone(DEFAULT_STATE); state.ui.hintHidden = hint;
+    closeDialog('dlg'); commit();
+  },
+  'ver-tap'() {
+    verTaps++;
+    if (verTaps >= 7) { verTaps = 0; state.debug.enabled = !state.debug.enabled; save(); refreshSettings(); toast(state.debug.enabled ? 'Режим отладки включён' : 'Режим отладки выключен'); }
+  },
+  'dbg-shift'(el) { const v = Number(el.dataset.v); state.debug.offsetDays = v ? state.debug.offsetDays + v : 0; bankSnoozed = false; save(); refreshSettings(); render(); },
+  async 'dbg-demo'() { if (!(await askConfirm('Заменить данные демо-данными за 60 дней?', 'Заменить'))) return; generateDemo(); save(); closeDialog('dlg'); render(); toast('Демо-данные созданы'); },
+  'dbg-test'() {
+    const res = runRewardTest(1000);
+    $('#dbgOut').innerHTML = (res.ok ? '<b>Тест пройден.</b> ' : '<b>Ошибка!</b> ') + res.report.map((x) => `N=${x.n}: ${x.runs - x.fails}/${x.runs}${x.firstErr ? ' (' + esc(x.firstErr) + ')' : ''}`).join(', ');
+  },
+  'dbg-off'() { state.debug.enabled = false; state.debug.offsetDays = 0; save(); refreshSettings(); render(); },
+  'hide-hint'() { state.ui.hintHidden = true; commit(); },
+  'dismiss-backup'() { backupDismissed = true; renderBanners(); },
+  'sw-update'() { if (updateWorker) updateWorker.postMessage('skipWaiting'); }
+};
+
+function addWizardReward(text) {
+  text = String(text || '').trim();
+  if (!text) return;
+  if (state.rewards.length >= MAX_REWARDS) { toast(`Больше ${MAX_REWARDS} не поместится: между наградами должно быть минимум ${MIN_GAP} дня`); return; }
+  state.rewards.push({ id: uid(), text, day: null, redeemedAt: null });
+  commit();
+  const inp = $('#newReward'); if (inp) inp.focus();
+}
+
+document.addEventListener('click', (e) => {
+  const tb = e.target.closest('[data-tab]');
+  if (tb) { state.ui.tab = tb.dataset.tab; save(); render(); window.scrollTo(0, 0); if (bankDeferred) setTimeout(() => maybeShowBank(true), 500); return; }
+  const tip = e.target.closest('[data-tip]');
+  if (tip) { const ro = tip.closest('.chart')?.querySelector('.readout'); if (ro) ro.textContent = tip.dataset.tip; }
+  const el = e.target.closest('[data-act]');
+  if (!el) return;
+  const fn = ACTIONS[el.dataset.act];
+  if (fn) { e.preventDefault(); fn(el, e); }
+});
+document.addEventListener('pointerover', (e) => {
+  if (e.pointerType !== 'mouse') return;
+  const tip = e.target.closest('[data-tip]');
+  if (tip) { const ro = tip.closest('.chart')?.querySelector('.readout'); if (ro) ro.textContent = tip.dataset.tip; }
+});
+document.addEventListener('submit', (e) => {
+  const f = e.target.closest('[data-form]');
+  if (!f) return;
+  e.preventDefault();
+  const kind = f.dataset.form;
+  if (kind === 'wz-add-reward') { addWizardReward($('#newReward').value); }
+  else if (kind === 'cr-new-trigger') {
+    const v = $('#newTrig').value.trim();
+    if (!v) return;
+    if (!state.triggers.includes(v)) state.triggers.splice(Math.max(0, state.triggers.length - 1), 0, v);
+    save(); draft.trigger = v; rerenderCraving();
+  } else if (kind === 'reward-save') {
+    const text = $('#rwText').value.trim();
+    if (!text) return;
+    const id = f.dataset.id;
+    if (id) { const r = state.rewards.find((x) => x.id === id); if (r) r.text = text; save(); closeDialog('dlg2'); toast('Сохранено'); return; }
+    if (state.rewards.length >= MAX_REWARDS) { toast(`Больше ${MAX_REWARDS} наград не поместится`); return; }
+    const day = placeReward(text);
+    if (!day) { toast('Не нашлось свободного дня: все будущие сундуки слишком близко к другим наградам'); return; }
+    state.rewards.push({ id: uid(), text, day, redeemedAt: null });
+    save(); closeDialog('dlg2'); toast('Награда спрятана в один из будущих сундуков');
+  } else if (kind === 'dep-save') {
+    const d = Number(f.dataset.day), amt = Math.max(0, parseNum($('#depAmt').value) ?? 0);
+    recordDeposit(d, amt > 0 ? 'done' : 'skipped', amt);
+    closeDialog('dlg2'); commit();
+  }
+});
+document.addEventListener('input', (e) => {
+  const el = e.target;
+  if (el.dataset.reward) {
+    const r = state.rewards.find((x) => x.id === el.dataset.reward);
+    if (r) { r.text = el.value; save(); }
+    return;
+  }
+  const path = el.dataset.bind;
+  if (!path) return;
+  let v = el.value;
+  const type = el.dataset.type;
+  if (type === 'num') v = parseNum(v);
+  else if (type === 'datetime') v = v ? (v.length === 16 ? v + ':00' : v) : null;
+  else if (type === 'date') v = v || null;
+  const parts = path.split('.');
+  let o = state;
+  for (let i = 0; i < parts.length - 1; i++) o = o[parts[i]];
+  o[parts.at(-1)] = v;
+  save();
+  if (path === 'program.startDate' && v) { const fe = $('#wzFinish'); if (fe) fe.textContent = `Финиш программы — ${dateLong(addDays(v, TOTAL_DAYS - 1), true)}.`; }
+  if (path === 'bank.amount') { const fe = $('#wzBankTotal'); if (fe) fe.textContent = `За 2 года — ${TOTAL_DAYS / 2} взносов, ${fmtMoney((TOTAL_DAYS / 2) * (v || 0))}.`; }
+  if (path.startsWith('profile.') && (path.endsWith('cigsPerDay') || path.endsWith('packPrice'))) { const er = $('#wzErr'); if (er && state.profile.cigsPerDay > 0 && state.profile.packPrice > 0) er.hidden = true; }
+});
+document.addEventListener('change', (e) => {
+  if (e.target.id === 'importFile') { const f = e.target.files[0]; if (f) importData(f); e.target.value = ''; }
+});
+
+/* ---- свайп по календарю ---- */
+let swipeX = null, swipeY = null;
+document.addEventListener('touchstart', (e) => { if (e.target.closest('#calGrid')) { swipeX = e.touches[0].clientX; swipeY = e.touches[0].clientY; } else swipeX = null; }, { passive: true });
+document.addEventListener('touchend', (e) => {
+  if (swipeX == null) return;
+  const dx = e.changedTouches[0].clientX - swipeX, dy = e.changedTouches[0].clientY - swipeY;
+  swipeX = null;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+    const ms = programMonths(), i = ms.indexOf(currentMonth()) + (dx < 0 ? 1 : -1);
+    if (ms[i]) { state.ui.month = ms[i]; save(); render(); }
+  }
+}, { passive: true });
+
+/* ================= Тосты ================= */
+let toastTimer;
+function toast(msg) {
+  const t = $('#toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+/* ================= Таймеры и смена дня ================= */
+let lastDay = null;
+function tick() {
+  if (!started()) return;
+  const t = todayStr();
+  if (lastDay && t !== lastDay) { lastDay = t; bankSnoozed = false; if (!$$('dialog[open]').length) { render(); maybeShowBank(); } return; }
+  lastDay = t;
+  const f = figuresAt(nowMs());
+  const a = $('#tmr'), b = $('#tmrCigs'), c = $('#tmrMoney');
+  if (a) a.textContent = fmtDHM(f.smokeFree);
+  if (b) b.textContent = fmtInt(f.notSmoked);
+  if (c) c.textContent = fmtMoney(f.money);
+}
+setInterval(tick, 15000);
+let hiddenAt = 0;
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') { hiddenAt = Date.now(); return; }
+  if (!started()) return;
+  if (Date.now() - hiddenAt > 30000) bankSnoozed = false;
+  if (!$$('dialog[open]').length) { render(); setTimeout(maybeShowBank, 400); }
+});
+let resizeT;
+window.addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTimeout(() => { if (started() && !$('#chestDlg').open) render(); }, 200); });
+
+/* ================= Установка и хранилище ================= */
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
+
+/* ================= Офлайн и обновления ================= */
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  navigator.serviceWorker.register('sw.js').then((reg) => {
+    const offer = (w) => { updateWorker = w; if (started()) renderBanners(); };
+    if (reg.waiting && navigator.serviceWorker.controller) offer(reg.waiting);
+    reg.addEventListener('updatefound', () => {
+      const w = reg.installing;
+      if (!w) return;
+      w.addEventListener('statechange', () => { if (w.state === 'installed' && navigator.serviceWorker.controller) offer(w); });
+    });
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reg.update().catch(() => {}); });
+  }).catch(() => {});
+  const hadController = !!navigator.serviceWorker.controller;
+  let reloading = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!hadController || reloading) return;
+    reloading = true;
+    location.reload();
+  });
+}
+
+/* ================= Старт ================= */
+render();
+if (started()) { lastDay = todayStr(); setTimeout(maybeShowBank, 600); }
+
+</script>
+</body>
+</html>
