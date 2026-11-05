@@ -929,14 +929,100 @@ const CONTENT = (() => {
   return out;
 })();
 
+/* Наборы наград, которые один раз добавляются к уже существующим (id набора запоминается в state.appliedPacks).
+   Новый набор — новый объект в конце списка с новым id; старые не меняй. */
+const REWARD_PACKS = [
+  { id: 'pack-2026-11-05', items: [
+    'Любимый десерт в кафе',
+    'Небольшая головоломка-лабиринт',
+    'Комикс в цифровом формате',
+    'Наволочка приятной ткани',
+    'Плитка хорошего тёмного шоколада',
+    'Три часа свободного игрового времени',
+    'Книжная закладка из металла',
+    'Сходить в парк аттракционов',
+    'Настольная подставка для iPhone',
+    'Порция любимого мороженого',
+    'Билет в кино',
+    'Две порции мороженого',
+    'Скин для любимого героя Dota 2',
+    'Головоломка из металла',
+    'Одна партия в боулинг по акции',
+    'Билет в музей игровых автоматов по акции',
+    'Небольшое дополнение к настольной игре',
+    'Одна настольная игра для двоих',
+    'Новый чехол для iPhone',
+    'Билет на стендап',
+    'Автомойка кузова максимальная',
+    'Весь день играть в Доту',
+    'Весь день играть в балдерсгейт',
+    'Весь день играть экспедиция 33',
+    'Один сеанс лазертага',
+    'Час настольного тенниса в клубе',
+    'Час игры в бильярд',
+    'Раунд мини-гольфа',
+    'Билет участника в паб-квиз',
+    'Билет на спектакль в небольшом театре',
+    'Билет на камерный музыкальный концерт',
+    'Порция том-яма из кафе',
+    'Небольшой сет роллов',
+    'Маленькая пицца из любимой пиццерии',
+    'Фирменный бургер',
+    'Купить наушники',
+    'Обложка для автодокументов',
+    'Визитница',
+    'Мини-маятник Ньютона для стола',
+    'Кинетическая игрушка на стол',
+    'Купить мышку для работы',
+    'Купить клавиатуру для работы',
+    'Сходить с валерой в компы',
+    'Сюжетная игра-детектив для Steam по скидке',
+    'Премиальная игра-головоломка для iPad',
+    'Пирамидка Мефферта',
+    'Билет на выставку оптических иллюзий',
+    'Билет на вечер открытого микрофона',
+    'Билет на локальный киберспортивный турнир',
+    'Порция хинкали в грузинском кафе',
+    'Хачапури по-аджарски',
+    'Обложка на обычный паспорт',
+    'Очки без диоптрий',
+    'Поездка в Санаторий на выходные',
+    'Любимый десерт в кафе',
+    'Плитка хорошего тёмного шоколада',
+    'Три часа свободного игрового времени',
+    'Порция любимого мороженого',
+    'Билет в кино',
+    'Две порции мороженого',
+    'Скин для любимого героя Dota 2',
+    'Одна партия в боулинг по акции',
+    'Небольшое дополнение к настольной игре',
+    'Весь день играть в Доту',
+    'Весь день играть в балдерсгейт',
+    'Весь день играть экспедиция 33',
+    'Час настольного тенниса в клубе',
+    'Час игры в бильярд',
+    'Билет участника в паб-квиз',
+    'Билет на спектакль в небольшом театре',
+    'Билет на камерный музыкальный концерт',
+    'Порция том-яма из кафе',
+    'Небольшой сет роллов',
+    'Маленькая пицца из любимой пиццерии',
+    'Фирменный бургер',
+    'Сходить с валерой в компы',
+    'Билет на вечер открытого микрофона',
+    'Порция хинкали в грузинском кафе',
+    'Хачапури по-аджарски'
+  ] }
+];
+
 </script>
 <script>
 'use strict';
 
 /* ================= Константы ================= */
 const APP_ID = 'quit2y';
-const APP_VERSION = '1.0.0';            // повышай вместе с CACHE в sw.js
-const SCHEMA_VERSION = 1;               // повышай при изменении формы данных + шаг в migrate()
+const APP_VERSION = '1.1.0';            // повышай вместе с CACHE в sw.js
+const SCHEMA_VERSION = 2;               // повышай при изменении формы данных + шаг в migrate()
 const TOTAL_DAYS = 730;
 const MIN_GAP = 4;                      // минимум дней между наградами
 const MAX_REWARDS = Math.floor(TOTAL_DAYS / MIN_GAP);   // 182 при MIN_GAP = 4
@@ -975,6 +1061,7 @@ const DEFAULT_STATE = {
   cravings: [],
   triggers: DEFAULT_TRIGGERS.slice(),
   lastExportAt: null,
+  appliedPacks: [],
   debug: { enabled: false, offsetDays: 0 },
   ui: { tab: 'chests', month: null, selectedDay: null, lungsView: 'now', journalFilter: '', hintHidden: false }
 };
@@ -1105,7 +1192,7 @@ const Store = {
 function migrate(saved) {
   let v = (saved && saved.v) || 1;
   const s = (saved && saved.state) || {};
-  // if (v < 2) { ...; v = 2; }
+  if (v < 2) { if (!Array.isArray(s.appliedPacks)) s.appliedPacks = []; v = 2; }   // v2: наборы наград
   const base = clone(DEFAULT_STATE);
   const out = Object.assign(base, s);
   for (const k of ['profile', 'program', 'wizard', 'bank', 'debug', 'ui']) out[k] = Object.assign(clone(DEFAULT_STATE[k]), s[k] || {});
@@ -1160,13 +1247,12 @@ function figuresForDay(n) {
 }
 
 /* ================= Награды: раскладка ================= */
-// Дни 1..total делятся на n отрезков; в каждом — случайный день не ближе gap к предыдущему.
-function distributeDays(n, total = TOTAL_DAYS, gap = MIN_GAP) {
-  const out = [];
-  let prev = -Infinity;
+// Дни from..to делятся на n равных отрезков; в каждом — случайный день не ближе gap к предыдущему.
+function distributeRange(n, from, to, prev = -Infinity, gap = MIN_GAP) {
+  const len = to - from + 1, out = [];
   for (let i = 0; i < n; i++) {
-    const a = Math.floor((i * total) / n) + 1;
-    const b = Math.floor(((i + 1) * total) / n);
+    const a = from + Math.floor((i * len) / n);
+    const b = from + Math.floor(((i + 1) * len) / n) - 1;
     const lo = Math.max(a, prev + gap);
     if (lo > b) throw new Error('Отрезок короче минимального разрыва');
     const d = randInt(lo, b);
@@ -1175,6 +1261,7 @@ function distributeDays(n, total = TOTAL_DAYS, gap = MIN_GAP) {
   }
   return out;
 }
+function distributeDays(n, total = TOTAL_DAYS, gap = MIN_GAP) { return distributeRange(n, 1, total, -Infinity, gap); }
 function checkDistribution(daysArr, n, total = TOTAL_DAYS, gap = MIN_GAP) {
   if (daysArr.length !== n) return 'число дней не равно N';
   const sorted = daysArr.slice().sort((a, b) => a - b);
@@ -1218,6 +1305,48 @@ function placeReward(text, exceptId) {
   }
   if (!cand.length) return null;
   return cand[randInt(0, cand.length - 1)];
+}
+
+// Все ещё не найденные награды заново раскладываются по оставшимся сундукам: с сегодняшнего
+// (если он не открыт) до дня 730. Найденные остаются на месте, разрыв с ними тоже не меньше MIN_GAP.
+function redistributeHidden() {
+  const t = dayNum();
+  const from = t < 1 ? 1 : state.chests[t] ? t + 1 : t;
+  const found = state.rewards.filter(isFound);
+  const hidden = shuffle(state.rewards.filter((r) => !isFound(r)));
+  const prev = found.length ? Math.max(...found.map((r) => r.day)) : -Infinity;
+  let n = from <= TOTAL_DAYS ? hidden.length : 0, ds = [];
+  while (n > 0) { try { ds = distributeRange(n, from, TOTAL_DAYS, prev); break; } catch (e) { n--; } }
+  hidden.forEach((r, i) => { r.day = i < n ? ds[i] : null; });
+  return { hidden: hidden.length, placed: n, from };
+}
+// Наборы наград из REWARD_PACKS добавляются один раз. После старта программы все спрятанные
+// награды (старые и новые) перемешиваются и равномерно раскладываются до конца срока.
+function applyRewardPacks() {
+  const packs = (typeof REWARD_PACKS === 'undefined' ? [] : REWARD_PACKS).filter((p) => !state.appliedPacks.includes(p.id));
+  if (!packs.length) return null;
+  let added = 0;
+  for (const p of packs) {
+    for (const text of p.items) { state.rewards.push({ id: uid(), text, day: null, redeemedAt: null }); added++; }
+    state.appliedPacks.push(p.id);
+  }
+  const res = { added, started: started() };
+  if (started()) Object.assign(res, redistributeHidden());
+  save();
+  return res;
+}
+function showPackNotice(r) {
+  let body;
+  if (!r.started) body = `<p>В список наград добавлено ${r.added} из твоего списка. Они спрячутся в сундуки, когда ты нажмёшь «Поехали».</p>`;
+  else {
+    body = `<p>Добавлено ${r.added} ${plural(r.added, 'награда', 'награды', 'наград')} из твоего списка.</p>
+      <p>Теперь спрятано ${r.placed} — все они заново перемешаны и разложены по сундукам ${r.from <= dayNum() ? 'с сегодняшнего дня' : 'с ' + esc(dateLong(dateOfDay(r.from)))} до конца программы, не чаще раза в ${MIN_GAP} дня. Уже найденные награды остались на месте.</p>`;
+    if (r.hidden > r.placed) body += `<p class="note">Не поместилось ${r.hidden - r.placed}: между наградами нужно минимум ${MIN_GAP} дня. Они остались в списке без дня.</p>`;
+  }
+  openDialog(`<div class="dlg">
+    <div class="dlg-head"><h2 id="dlgTitle">Новые награды</h2><button class="btn icon" data-act="close-dlg" aria-label="Закрыть">✕</button></div>
+    <div class="dlg-body">${body}</div>
+    <div class="dlg-foot"><button class="btn primary big" data-act="close-dlg">Отлично</button></div></div>`, 'dlg');
 }
 
 /* ================= Тексты сундучков ================= */
@@ -2298,8 +2427,10 @@ async function importData(file) {
   if (!(await askConfirm('Заменить текущие данные данными из копии?', 'Заменить'))) return;
   state = migrate({ v: data.v, state: data.state });
   closeDialog('dlg');
+  const pack = applyRewardPacks();
   commit();
   toast('Данные восстановлены');
+  if (pack) setTimeout(() => showPackNotice(pack), 400);
 }
 
 /* ================= Демо-данные (отладка) ================= */
@@ -2599,7 +2730,9 @@ if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.
 }
 
 /* ================= Старт ================= */
+const packResult = applyRewardPacks();
 render();
+if (packResult) showPackNotice(packResult);
 if (started()) { lastDay = todayStr(); setTimeout(maybeShowBank, 600); }
 
 </script>
